@@ -1,0 +1,36 @@
+---
+layout: default
+---
+<div id="bar-setting">
+    <div id="bar-content">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="link-info" href="/index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{page.title}}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div id="content">
+    <!-- 文章列表部分 -->
+    <div class="row">
+        {% assign filtered_posts = site.posts | where: 'series', page.series %}
+        {% for post in filtered_posts %}
+        <div class="col-md-12">
+            <div class="card" id="card-setting">
+                <div class="card-body">
+                    <a class="card-text d-flex link-dark" id="link-title" href="{{ post.url }}" >{{ post.title }}</a>
+                    <span class="card-text d-flex justify-content-end">{{ post.date | date: "%Y-%m-%d" }}</span>
+                    <p class="card-text">{{ post.excerpt }}</p>
+                    <a href="{{ post.url }}" class="link-info">more>></a>
+                </div>
+                <div class="card-footer d-flex justify-content-end" id="cardfooter-setting">
+                    <a href="{{ post.url }}" class="btn btn-secondary" bottom=0>阅读全文</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- 添加更多文章卡片 -->
+    </div>
+</div>

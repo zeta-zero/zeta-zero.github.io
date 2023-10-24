@@ -6,5 +6,25 @@ Author:
   Name: 一个路过的假人
   Info: 一个掌握了各种技能的嵌入式软件工程师
   Intro: 总感觉你们在背着我学习
-  EXP : 1000
+  EXP : 30W
   State: 存在
+
+collections:
+  classes:
+    output: true
+
+default: 
+  - scope:
+      path: ""
+      type: "classes"
+    values:
+      layout: "class"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+    values:
+      layout: "default"

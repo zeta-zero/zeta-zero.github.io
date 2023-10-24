@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 技能树/Skill Tree
+series: others
 ---
 这是关于个人技能树的记录。
 

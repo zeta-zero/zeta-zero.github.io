@@ -27,6 +27,10 @@ body {
 #cardfooter-setting{
     background-color: white;
 }
+#link-title{
+    text-decoration: none;
+    font-size: 32px;
+}
 #link-info{
     margin: 10px;
     text-align: center;
@@ -42,4 +46,15 @@ td{
 }
 #post-time{
     text-align: right;
+}
+
+#bar-setting{
+    height: 5vh;
+    margin-left: 280px; /* 左侧宽度 + 20px 间隔 */
+    top:0;
+    background-color: white;
+}
+#bar-content{
+    padding-left: 20px;
+    padding-top: 10px;
 }
