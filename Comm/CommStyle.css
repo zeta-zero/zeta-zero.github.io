@@ -1,0 +1,28 @@
+
+/* 自定义样式 */
+body {
+    background-color: #E0E0E0;
+}
+#sidebar {
+    background-color: gray;
+    color: #fff;
+    height: 100vh;
+    width: 250px; /* 左侧固定宽度 */
+    position: fixed;
+}
+#content {
+    margin-left: 270px; /* 左侧宽度 + 20px 间隔 */
+    padding: 20px;
+}
+#personal-info {
+    padding: 20px;
+    text-align: center;
+}
+#card-setting{
+    margin-bottom: 20px;
+    min-height: 200px;
+    padding: 20px;
+}
+#cardfooter-setting{
+    background-color: white;
+}
