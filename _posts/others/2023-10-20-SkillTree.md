@@ -144,7 +144,11 @@ series: others
 
 ##### 5. Lua
 
+- Using in STM32
+
 ##### 6. HTML
+
+- github page
 
 #### Tool
 

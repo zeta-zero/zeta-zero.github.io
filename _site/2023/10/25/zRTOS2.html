@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一些知识</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/css/Comm/CommStyle.css">
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+</head>
+<body>
+    <div id="sidebar">
+        <!-- 个人信息部分 -->
+        <div id="personal-info">
+            <h3>一个路过的假人</h3>
+            <p style="font-size: 12px;color: lightgray;">一个掌握了各种技能的嵌入式软件工程师</p>
+            <p>总感觉你们在背着我学习</p>
+        </div>
+        <hr>
+        <!-- 描述 -->
+        <div margin="10px">
+            <table>
+                <tr>
+                    <td>经验值: </td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>状态: </td>
+                    <td> 存在</td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <!-- 链接 -->
+        <div id="link-info" >
+            <a href="/index.html" class="link-light" >HOME</a>
+            <a href="/about.html" class="link-light" >ABOUT</a>
+        </div>
+    </div>
+    <div id="bar-setting">
+    <div id="bar-content">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="link-info" href="/index.html">Home</a></li>
+            
+            <li class="breadcrumb-item"><a class="link-info" href="/classes/rtos_series.html">从零开始设计RTOS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">从零开始设计RTOS - 第二章 简单的任务调度</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div id="content">
+    <div id="post-setting">
+        <h1>从零开始设计RTOS - 第二章 简单的任务调度</h1>
+        <div id="post-time">2023-10-25</div>
+        <hr>
+    
+        <p>现在实现的任务切换，是由任务自身触发实现。虽然这样实现了任务切换，但不够理想，会出现以下的问题：</p>
+<ol>
+  <li>当任务数量很多的时候，每个任务的排队时间将会很久；</li>
+  <li>出现一个任务执行时间过长，影响整个系统运行；</li>
+  <li>当任务不触发切换，其他任务将无法执行；</li>
+</ol>
+
+<p>等等。</p>
+
+<p>为了解决这些问题，操作系统常见的做法是为每一个任务分配一个时间片，当时间片用完了，就切换到其他进程。</p>
+
+<p>实现这种时间划分的机制，一般都会用到计时器/定时器等功能。在Cortex‑M3系列的MCU中，都会有一个叫SysTIck的系统嘀嗒计时器。在开发STM32时，也会经常用到。</p>
+
+<p>因此，可以使用它来设计出一个简单的任务调度器。</p>
+
+<hr />
+
+<h3 id="1-使用systick触发上下文切换">1. 使用SysTick触发上下文切换</h3>
+
+<p>SysTick计时器，可以周期性触发中断，是适合作为调度任务的工具之一。可以将任务切换的功能放到SysTick中断服务函数里。</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">void</span> <span class="nf">SysTick_Handleer</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">zeta_core_switch</span><span class="p">();</span>
+<span class="p">}</span></code></pre></figure>
+
+<p>这样可以周期性的切换任务，而任务里面，并不需要加上触发上下文切换的功能。</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="c1">//任务1</span>
+<span class="kt">void</span> <span class="nf">fun1</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">zeta_uint8_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+        <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">//任务2</span>
+<span class="kt">void</span> <span class="nf">fun2</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">zeta_uint8_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+        <span class="n">j</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>同时，设置SysTick定时器每10ms执行一次。</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">SysTick_Config</span><span class="p">(</span><span class="n">SystemCoreClock</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span></code></pre></figure>
+
+<hr />
+
+<h3 id="2-链表设计">2. 链表设计</h3>
+
+<p>现在的切换函数并不是很理想，每添加一个任务就需要在 zeta_core_switch() 函数里添加相关函数，而这一部分是RTOS的核心功能之一，每新开发个工程，就需要对该函数进行改动，实在是一个糟糕的功能；而且在任务繁多、复杂的情况下，这样切换就显得更臃肿、更不合适，需要知道具体有多少任务，需要确定每个任务的调度规则，对于程序设计来说，这绝不是合适的做法。所以，需要完善这部分功能，实现低耦合。</p>
+
+<p>通过完善任务控制块结构体 zeta_core_TaskControlBlock 来实现更好的调度方式。</p>
+
+<p>比如建立结构体数组的方式，通过遍历结构体数组实现逐一切换，依次执行。优点是设计简单，缺点是这种方式不够灵活，只能限定使用的任务数量，超过会被舍弃，造成功能的缺失。</p>
+
+<p>更好的选择是使用链表，灵活性大大提升。不像结构体数组那般，需要确定任务数量。可以向链表中添加新的任务控制块来添加新的任务，当任务结束，将任务控制块从链接从删除。</p>
+
+<p>实现一个双向链表。</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">ListNode</span><span class="p">{</span>
+    <span class="cm">/* 一些变量 */</span>
+    <span class="k">struct</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">PreNode</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">ListNode</span> <span class="o">*</span><span class="n">NextNode</span><span class="p">;</span>
+<span class="p">};</span></code></pre></figure>
+
+<p>任务可以按执行的顺序依次加入双向链表，从链首的任务开始执行，执行过的任务插到链尾进行排队等待。</p>
+
+<p>这样，可以不错地实现需要的功能。不过，通过借鉴Linux内核中双向链表的设计来达到更巧妙的应用，将链表抽象，实现链表的泛用化，减少因结构体内数据成员不一样，而编写出功能类似的大量代码。</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">zeta_blist_Node</span><span class="p">{</span>
+    <span class="k">struct</span> <span class="n">zeta_blist_Node</span> <span class="o">*</span><span class="n">PreNode</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">zeta_blist_Node</span> <span class="o">*</span><span class="n">NextNode</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">zeta_blist_Node</span> <span class="n">zeta_BList_t</span><span class="p">;</span></code></pre></figure>
+
+<p>对于链表的应用，只需要围绕 zeta_BList_Node 结构体来操作，可以简化编程任务。</p>
+
+<p>通过定义宏定义 CONTAINER_OF() ，用它来实现通过结构体成员找到包含它的结构体的起始地址。</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#define CONTAINER_OF(_PV_,_TYPE_,_MEMBER_) \
+((_TYPE_ *)((zeta_uint8_t)(_PV_) ‑ OFFSETOF(_TYPE_._MEMBER_)))</span></code></pre></figure>
+
+<p>其中，<em>PV</em> 为某一成员变量的指针，<em>TYPE</em> 为包含该变量的结构体指针， <em>MEMBER</em> 为成员名称。该宏定义内，还有一个宏定义 OFFSETOF()，它的作用是算出成员在结构体中的偏移量。</p>
+
+<p>首先，定义了一块结构体，结构体成员是顺序存储的，是以结构体地址为起始地址，结构体成员依序排列。所以，当知道了一个结构体成员的地址和它的偏移量，就可以推算出结构体的地址了。</p>
+
+<p>即成员变量地址 ‑ 偏移量 = 结构体地址。</p>
+
+<p>因为在C语言里，对指针进行减法运算，是按照减去该指针类型的倍数计算的，即对某指针进行减5操作是这样的：某类型指针 ‑ sizeof(某类型) * 5。所以需要先将 <em>PV</em> 强制类型转换为8位长度，即一字节的类型。这样对 <em>PV</em> 减去偏移量，就能得到结构体的起始地址，最后再进行 (<em>TYPE</em> *)强制类型转换就可以得到指向结构体的指针了。</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#define OFFSETOF(_TYPE_,_MEMBER_) (zeta_uint32_t)&amp;(((_TYPE_)0)‑&gt;_MEMBER_)</span></code></pre></figure>
+
+<p>对于 OFFSETOF() 的定义，<em>TYPE</em> 为包含该变量的结构体指针，<em>MEMBER</em> 为其结构体成员。在这里，有些特别的代码，((<em>TYPE</em>)0) 并不是为了操作0地址上的数据，在内存中随意操作未知地址上的数据，会使整个程序崩溃，所以这里的作用是为了求结构体成员 <em>MEMBER</em> 在内部的偏移量。类似于下面的简化程序。</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="n">_TYPE_</span> <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">//_TYPE_ 为结构体指针类型</span>
+<span class="kt">uint32_t</span> <span class="n">offset</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uint32_t</span><span class="p">)</span><span class="o">&amp;</span><span class="n">temp</span><span class="err">‑</span><span class="o">&gt;</span><span class="n">_MEMBER_</span><span class="p">;</span></code></pre></figure>
+
+<p>通过 &amp; 的操作取得 <em>MEMBER</em> 所在结构体位置的地址，最后强制转为 zeta_uint32_t 类型的数据。</p>
+
+<p>有了这些技巧，对于链表的操作只需要实现一次，就可以处处使用。</p>
+
+<p>对于链表的操作，常用的是：增加、删除。用宏定义实现这两个功能。</p>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#define LIST_INIT(_HEAD_) \
+{(_HEAD_)‑&gt;PreNode = (_HEAD_); \
+(_HEAD_)‑&gt;NextNode = (_HEAD_);}
+#define LIST_ADD(_NEW_,_HEAD_) \
+{(_NEW_)‑&gt;NextNode = (_HEAD_); \
+(_NEW_)‑&gt;PreNode = (_HEAD_)‑&gt;PreNode; \
+(_HEAD_)‑&gt;PreNode‑&gt;NextNode = (_NEW_); \
+(_HEAD_)‑&gt;PreNode = (_NEW_);}
+#define LIST_LINK(_PRE_,_NEXT_) \
+{(_PRE_)‑&gt;NextNode = (_NEXT_); \
+(_NEXT_)‑&gt;PreNode = (_PRE_);}
+#define LIST_DEL(_MEMBER_) \
+LIST_LINK((_MEMBER_)‑)PreNode,(_MEMBER_)‑&gt;NextNode)</span></code></pre></figure>
+
+<p>LIST_INIT() 初始化链表，使链表头的 PreNode 和 NextNode 均指向自己，避免无意间引用使程序出错。</p>
+
+<p>LIST_ADD() 将新节点加入链表尾。<em>NEW</em> 为新节点，<em>HEAD</em> 为链表头。因为链表为双向链表，所以 <em>HEAD</em> 的上一个节点相当于最后一个节点。即，将新节点插入到 <em>HEAD</em> 节点的前面。将_NEW_ 的下个节点指向 <em>HEAD</em>，上个节点指向 <em>HEAD</em> 的前一个节点；将 <em>HEAD</em> 的上个节点Pre 的下个节点从指向 <em>HEAD</em> 变更为指向 <em>NEW</em> 节点；最后将 <em>HEAD</em> 的上一个节点指向变更为指向 <em>NEW</em>；这样就完成一个新节点的插入。</p>
+
+<p>图2.2.1</p>
+
+<p>LIST_LINK() 链接两个节点，将 <em>PRE</em> 的下个节点指向 <em>NEXT</em>，将 <em>NEXT</em> 的上一个节点指向_PRE_。</p>
+
+<p>LIST_DEL() 将节点从链表中删除。<em>MEMBER</em> 为要删除的节点。应用宏定义 LIST_LINK()，并将_MEMBER_ 的前后指向的节点作为参数。</p>
+
+
+    </div>
+</div>
+</body>
+</html>

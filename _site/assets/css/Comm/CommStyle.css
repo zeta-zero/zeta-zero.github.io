@@ -17,19 +17,20 @@ body {
 }
 #content {
     margin-left: 280px; /* 左侧宽度 + 20px 间隔 */
-    padding: 20px;
+    padding: 10px;
 }
 #card-setting{
-    margin-bottom: 20px;
-    min-height: 200px;
-    padding: 20px;
+    margin-bottom: 10px;
+    min-height: 160px;
+    padding: 10px;
 }
 #cardfooter-setting{
     background-color: white;
 }
 #link-title{
     text-decoration: none;
-    font-size: 32px;
+    font-size: 26px;
+    font-weight: 500;
 }
 #link-info{
     margin: 10px;
