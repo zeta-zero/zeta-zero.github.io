@@ -6,7 +6,7 @@ Author:
   Name: 一个路过的假人
   Info: 一个掌握了各种技能的嵌入式软件工程师
   Intro: 总感觉你们在背着我学习
-  EXP : 30W
+  EXP : 10
   State: 存在
 
 collections:
@@ -28,3 +28,11 @@ default:
       path: ""
     values:
       layout: "default"
+
+# Markdown
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  syntax_highlighter: rouge
+
+

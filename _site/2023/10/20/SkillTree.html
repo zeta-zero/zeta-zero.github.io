@@ -23,7 +23,7 @@
             <table>
                 <tr>
                     <td>经验值: </td>
-                    <td>30W</td>
+                    <td>10</td>
                 </tr>
                 <tr>
                     <td>状态: </td>
@@ -57,19 +57,262 @@
         <div id="post-time">2023-10-20</div>
         <hr>
     
-        <p>这是关于个人技能树的记录。</p>
+        <p>这是关于个人技能知识的记录。
+包括了编程语言，程序开发技术等，文档操作等等</p>
+
+<hr />
 
 <h4 id="programming-language">Programming Language</h4>
-<h5 id="cc">C/C++</h5>
+
+<h5 id="1-cc">1. C/C++</h5>
+
+<h6 id="c99">C99</h6>
+
 <ul>
-  <li>C11</li>
-  <li>C17/C18</li>
+  <li>复数(complex.h)</li>
+  <li>定制初始化(Designated Initializers)</li>
+  <li>可变长数组(Variable Length Arrays)
+    <ul>
+      <li>val[0]/val[]</li>
+      <li>struct{…;val[0]/val[]}</li>
+    </ul>
+  </li>
 </ul>
 
-<h5 id="c">C#</h5>
-<h5 id="html">HTML</h5>
+<h6 id="c11">C11</h6>
 
-<p>####</p>
+<ul>
+  <li>字节对齐(Alignment)</li>
+  <li>无返回声明(_Noreturn)
+    <ul>
+      <li>stdnoreturn.h</li>
+      <li>attribute((noreturn))</li>
+    </ul>
+  </li>
+  <li>静态断言(_Static_assert())</li>
+  <li>原子操作(_Atomic)
+    <ul>
+      <li>stdatomic.h</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="c17c18">C17/C18</h6>
+
+<ul>
+  <li>对C11标准进行补充和修正</li>
+</ul>
+
+<h6 id="linux">Linux</h6>
+
+<ul>
+  <li>Socket(TCP/IP)
+    <ul>
+      <li>WebServer</li>
+    </ul>
+  </li>
+  <li>IO Control(/dev/*)</li>
+</ul>
+
+<h6 id="mcu">MCU</h6>
+
+<ul>
+  <li>STM32: F1/F4/BlueNRG2
+    <ul>
+      <li>CubeMX</li>
+      <li>TouchGFX Designer</li>
+      <li>Linux-GCC</li>
+      <li>Keil</li>
+    </ul>
+  </li>
+  <li>NRF52832
+    <ul>
+      <li>Keil</li>
+    </ul>
+  </li>
+  <li>ESP32
+    <ul>
+      <li>IDF(VScode)</li>
+      <li>Arduino IDE</li>
+    </ul>
+  </li>
+  <li>Base
+    <ul>
+      <li>GPDIO/IIC/UART/SPI/SDIO/USB</li>
+      <li>PWM/TIMER/ADC/FLASH/Watchdog
+        <ul>
+          <li>[PWM] Moto Control(Dead Band)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Libs
+    <ul>
+      <li>TouchGFX(STM32)</li>
+      <li>lvgl</li>
+      <li>M5Unified(EPS32)</li>
+      <li>BLE(BlueNRG2/NRF52832/ESP32)</li>
+      <li>BLE Mesh(ESP32)</li>
+      <li>USB
+        <ul>
+          <li>TinyUSB</li>
+          <li>ST USB</li>
+        </ul>
+      </li>
+      <li>WiFi</li>
+      <li>FreeRTOS</li>
+      <li>CJson</li>
+      <li>Lwip</li>
+      <li>miniLZO(Compression Algorithm)</li>
+      <li>QuickLZ(Compression Algorithm)</li>
+      <li>Bsdiff(Difference Algorithm)</li>
+      <li>Segger RTT</li>
+      <li>ThreadX(Azure RTOS)
+        <ul>
+          <li>NetX</li>
+          <li>NetX Duo</li>
+          <li>FileX</li>
+          <li>GUIX</li>
+          <li>USBX</li>
+          <li>TraceX</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="第三方库框架libs">第三方库/框架(Libs)</h6>
+
+<ul>
+  <li>OpenCV</li>
+  <li>Qt
+    <ul>
+      <li>emit/signas</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="算法algorithm">算法(Algorithm)</h6>
+
+<ul>
+  <li>BP神经网络(BP Netural Network)</li>
+  <li>Q-Learning</li>
+</ul>
+
+<h6 id="自开发组件self-create">自开发组件(Self Create)</h6>
+
+<ul>
+  <li>RTOS(STM32F1/F4)
+    <ul>
+      <li>一个用于学习RTOS知识的玩具</li>
+    </ul>
+  </li>
+  <li>OTA(STM32/NRF52832)</li>
+  <li>Button Manager</li>
+  <li>EEPROM DATA Manager
+    <ul>
+      <li>用于管理容量较大的EEPROM的数据管理</li>
+    </ul>
+  </li>
+  <li>Communication Protocol
+    <ul>
+      <li>用于芯片间/PC/手机通信</li>
+    </ul>
+  </li>
+</ul>
+
+<h5 id="2-cs">2. Cs</h5>
+
+<h6 id="base">Base</h6>
+
+<ul>
+  <li>delegate/event(委托与事件)</li>
+</ul>
+
+<h6 id="wpfuwp">WPF/UWP</h6>
+
+<ul>
+  <li>DotNet</li>
+  <li>XMAL
+    <ul>
+      <li>DataBinding</li>
+      <li>Style/Template</li>
+      <li>Command</li>
+    </ul>
+  </li>
+  <li>Libs
+    <ul>
+      <li>LiveCharts</li>
+      <li>System.IO.Ports</li>
+      <li>System.Drawing.Common</li>
+    </ul>
+  </li>
+</ul>
+
+<h6 id="通信功能">通信功能</h6>
+
+<ul>
+  <li>USB
+    <ul>
+      <li>HID</li>
+    </ul>
+  </li>
+  <li>BLE(蓝牙)</li>
+  <li>Serial Port(串口)</li>
+  <li>Internet(网络)</li>
+</ul>
+
+<h6 id="第三方库框架">第三方库/框架</h6>
+
+<h6 id="应用">应用</h6>
+
+<ul>
+  <li>Unity3D</li>
+  <li>Godot</li>
+</ul>
+
+<h5 id="3-goland">3. goland</h5>
+
+<ul>
+  <li>WebServer</li>
+</ul>
+
+<h5 id="4-python">4. Python</h5>
+
+<h5 id="5-lua">5. Lua</h5>
+
+<h5 id="6-html">6. HTML</h5>
+
+<h4 id="tool">Tool</h4>
+
+<h5 id="visual-studio">Visual Studio</h5>
+
+<h6 id="windows-install">Windows Install</h6>
+
+<ul>
+  <li>Wix Cover</li>
+</ul>
+
+<h5 id="pcb-designer">PCB Designer</h5>
+
+<ul>
+  <li>Altium Designer</li>
+  <li>立创EDA</li>
+</ul>
+
+<hr />
+
+<h5 id="文档处理document-processing">文档处理(document processing)</h5>
+
+<h6 id="vscode">VSCode</h6>
+
+<ul>
+  <li>Markmap</li>
+  <li>Mardown Preview Enhanced</li>
+  <li>Embedded Tools</li>
+</ul>
+
+<h6 id="drawio">Draw.io</h6>
 
     </div>
 </div>
