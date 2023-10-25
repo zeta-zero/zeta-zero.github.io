@@ -21,7 +21,7 @@
         <hr>
         <!-- 描述 -->
         <div margin="10px">
-            <table>
+            <table id="personal-data">
                 <tr>
                     <td>经验值: </td>
                     <td>10</td>
@@ -192,19 +192,19 @@
 PendSVHandler
     CPSID I    ;关中断
     MRS    R0, PSP                     ;用MRS指令将当前PSP的值保存到R0中
-    CBZ    R0, z_load_below          ;R0的值为零，跳转，加载下文
+    CBZ    R0, z_load_below            ;R0的值为零，跳转，加载下文
 
     SUBS    R0, R0, #0x20              ;R0=R0‑0x20，将PSP栈地址向下偏移0x20
-                                    ;给8个寄存器腾出空间，一个占4字节
+                                       ;给8个寄存器腾出空间，一个占4字节
     STM    R0, {R4‑R11}                ;保存R4‑R11到当前栈空间中
 
-    LDR    R1, =z_core_TCBp_Current ;R1=z_core_TCBp_Current
+    LDR    R1, =z_core_TCBp_Current    ;R1=z_core_TCBp_Current
     LDR    R1, [R1]                    ;R1=(*z_core_TCBp_Current)
     STR    R0, [R1]                    ;z_core_TCBp_Current‑&gt;SP=R0
 
     z_load_below
-    LDR    R0, =z_core_TCBp_Current ;R0=z_core_TCBp_Current
-    LDR    R1, =z_core_TCBp_HighRdy ;R1=z_core_TCBp_HighRdy
+    LDR    R0, =z_core_TCBp_Current    ;R0=z_core_TCBp_Current
+    LDR    R1, =z_core_TCBp_HighRdy    ;R1=z_core_TCBp_HighRdy
     LDR    R2, [R1]                    ;R2=(*z_core_TCBp_HighRdy)
     STR    R2, [R0]                    ;(*z_core_TCBp_Current)=R2
 
@@ -390,43 +390,43 @@ z_content_switch
 <figure class="highlight"><pre><code class="language-asm" data-lang="asm"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
 3
-</pre></td><td class="code"><pre>EXTERN zeta_core_ExceptStkBass
-EXTERN zeta_core_TCBp_Current
-EXTERN zeta_core_TCBp_HighRdy
+</pre></td><td class="code"><pre>EXTERN z_core_ExceptStkBass
+EXTERN z_core_TCBp_Current
+EXTERN z_core_TCBp_HighRdy
 </pre></td></tr></tbody></table></code></pre></figure>
 
-<p>它们需要在C语言中实现，其中 zeta_core_ExceptStkBass 定义一个主堆栈区，用于MSP堆栈指针；zeta_core_TCBp_Current 为当前正在执行的任务堆栈地址，zeta_core_TCBp_HighRdy 为将要执行的任务堆栈地址。
+<p>它们需要在C语言中实现，其中 z_core_ExceptStkBass 定义一个主堆栈区，用于MSP堆栈指针；z_core_TCBp_Current 为当前正在执行的任务堆栈地址，z_core_TCBp_HighRdy 为将要执行的任务堆栈地址。
 这两个具体是一个结构体:</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
 3
-</pre></td><td class="code"><pre><span class="n">zeta_STK_t</span><span class="o">*</span> <span class="n">zeta_core_ExceptStkBass</span><span class="p">;</span>
-<span class="n">zeta_core_TCBp_t</span> <span class="n">zeta_core_TCBp_Current</span><span class="p">;</span>
-<span class="n">zeta_core_TCBp_t</span> <span class="n">zeta_core_TCBp_HighRdy</span><span class="p">;</span>
+</pre></td><td class="code"><pre><span class="n">z_STK_t</span><span class="o">*</span> <span class="n">z_core_ExceptStkBass</span><span class="p">;</span>
+<span class="n">z_core_TCBp_t</span> <span class="n">z_core_TCBp_Current</span><span class="p">;</span>
+<span class="n">z_core_TCBp_t</span> <span class="n">z_core_TCBp_HighRdy</span><span class="p">;</span>
 </pre></td></tr></tbody></table></code></pre></figure>
 
-<p>其中，zeta_STK_t 在 zeta_def.h 文件中定义。</p>
+<p>其中，z_STK_t 在 z_def.h 文件中定义。</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
-</pre></td><td class="code"><pre><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">zeta_uint32_t</span><span class="p">;</span> <span class="c1">//4字节数据类型</span>
-<span class="k">typedef</span> <span class="n">zeta_uint32_t</span> <span class="n">zeta_STK_t</span><span class="p">;</span> <span class="c1">//栈类型</span>
+</pre></td><td class="code"><pre><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">z_uint32_t</span><span class="p">;</span> <span class="c1">//4字节数据类型</span>
+<span class="k">typedef</span> <span class="n">z_uint32_t</span> <span class="n">z_STK_t</span><span class="p">;</span> <span class="c1">//栈类型</span>
 </pre></td></tr></tbody></table></code></pre></figure>
 
-<p>zeta_core_TCBp_t 在 zeta_core.h 文件中定义。</p>
+<p>z_core_TCBp_t 在 z_core.h 文件中定义。</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
 3
 4
 </pre></td><td class="code"><pre><span class="c1">//任务控制块</span>
-<span class="k">typedef</span> <span class="k">struct</span> <span class="n">zeta_core_TaskControlBlock</span><span class="p">{</span>
-<span class="n">zeta_STK_t</span> <span class="o">*</span><span class="n">SP</span><span class="p">;</span> <span class="c1">//栈顶地址</span>
-<span class="p">}</span><span class="n">zeta_core_TCB_t</span><span class="p">,</span><span class="o">*</span><span class="n">zeta_core_TCBp_t</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">z_core_TaskControlBlock</span><span class="p">{</span>
+<span class="n">z_STK_t</span> <span class="o">*</span><span class="n">SP</span><span class="p">;</span> <span class="c1">//栈顶地址</span>
+<span class="p">}</span><span class="n">z_core_TCB_t</span><span class="p">,</span><span class="o">*</span><span class="n">z_core_TCBp_t</span><span class="p">;</span>
 </pre></td></tr></tbody></table></code></pre></figure>
 
-<p>在C语言中，结构体的地址，也是结构体内部的第一个变量的地址。所以当汇编中调用 zeta_core_TCBp_Current 和 zeta_core_TCBp_HighRdy 这两个时，都是调用内部 SP 的值。</p>
+<p>在C语言中，结构体的地址，也是结构体内部的第一个变量的地址。所以当汇编中调用 z_core_TCBp_Current 和 z_core_TCBp_HighRdy 这两个时，都是调用内部 SP 的值。</p>
 
 <p>利用这个特性，可以在这个结构体中添加任务相关的信息——优先级，时间片，任务名称，任务状态等等。</p>
 
@@ -446,23 +446,23 @@ EXTERN zeta_core_TCBp_HighRdy
 12
 13
 14
-</pre></td><td class="code"><pre><span class="k">extern</span> <span class="kt">void</span> <span class="nf">zeta_content_switch</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-<span class="n">zeta_core_TCB_t</span> <span class="n">TCBs</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">//定义两个任务控制快。</span>
-<span class="kt">void</span> <span class="nf">zeta_core_switch</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</pre></td><td class="code"><pre><span class="k">extern</span> <span class="kt">void</span> <span class="nf">z_content_switch</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="n">z_core_TCB_t</span> <span class="n">TCBs</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">//定义两个任务控制快。</span>
+<span class="kt">void</span> <span class="nf">z_core_switch</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">zeta_core_TCBp_Current</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">TCBs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">z_core_TCBp_Current</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">TCBs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="p">{</span>
-        <span class="n">zeta_core_TCBp_HighRdy</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">TCBs</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+        <span class="n">z_core_TCBp_HighRdy</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">TCBs</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
     <span class="p">}</span>
     <span class="k">else</span>
     <span class="p">{</span>
-        <span class="n">zeta_core_TCBp_HighRdy</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">TCBs</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+        <span class="n">z_core_TCBp_HighRdy</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">TCBs</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
     <span class="p">}</span>
-    <span class="n">zeta_content_switch</span><span class="p">();</span>
+    <span class="n">z_content_switch</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></pre></figure>
 
-<p>当前的任务控制块地址为 TCBs[0] 的地址时，将 TCBs[1] 的地址复制到 zeta_core_TCBp_HighRdy 准备进行切换；当为 TCBs[1] 的地址时，则将 TCBs[0] 的地址赋值到zeta_core_TCBp_HighRdy 进行准备切换。并调用 zeta_content_switch() 触发PendSV中断服务函数，进行上下文切换。</p>
+<p>当前的任务控制块地址为 TCBs[0] 的地址时，将 TCBs[1] 的地址复制到 z_core_TCBp_HighRdy 准备进行切换；当为 TCBs[1] 的地址时，则将 TCBs[0] 的地址赋值到z_core_TCBp_HighRdy 进行准备切换。并调用 z_content_switch() 触发PendSV中断服务函数，进行上下文切换。</p>
 
 <p>任务控制块的 SP 栈顶指针需要赋予一个具体的地址，这个地址将由数组来充当堆栈提供。堆栈里面存储相应的CPU寄存器地址和运行时变量，调用的函数等数据。</p>
 
@@ -492,27 +492,27 @@ EXTERN zeta_core_TCBp_HighRdy
 22
 23
 24
-</pre></td><td class="code"><pre><span class="kt">void</span> <span class="nf">zeta_core_add</span><span class="p">(</span><span class="n">zeta_core_TCB_t</span> <span class="o">*</span><span class="n">_tcb</span><span class="p">,</span><span class="n">entry_t</span> <span class="n">_entryfunc</span><span class="p">,</span> <span class="n">zeta_STK_t</span> <span class="o">*</span><span class="n">_stk</span><span class="p">)</span>
+</pre></td><td class="code"><pre><span class="kt">void</span> <span class="nf">z_core_add</span><span class="p">(</span><span class="n">z_core_TCB_t</span> <span class="o">*</span><span class="n">_tcb</span><span class="p">,</span><span class="n">entry_t</span> <span class="n">_entryfunc</span><span class="p">,</span> <span class="n">z_STK_t</span> <span class="o">*</span><span class="n">_stk</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">zeta_STK_t</span> <span class="o">*</span><span class="n">p_stk</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">p_stk</span> <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="o">*</span><span class="p">)(((</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">_stk</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFFFFFFF8u</span><span class="p">);</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_xPSR</span><span class="p">;</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">_entryfunc</span><span class="p">;</span>      <span class="c1">//函数进口</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">zeta_core_end</span><span class="p">;</span>	  <span class="c1">//任务结束回调程序</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R12</span><span class="p">;</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R3</span><span class="p">;</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R2</span><span class="p">;</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R1</span><span class="p">;</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R0</span><span class="p">;</span>
+    <span class="n">z_STK_t</span> <span class="o">*</span><span class="n">p_stk</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">p_stk</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="o">*</span><span class="p">)(((</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">_stk</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xFFFFFFF8u</span><span class="p">);</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_xPSR</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">_entryfunc</span><span class="p">;</span>      <span class="c1">//函数进口</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">z_core_end</span><span class="p">;</span>	  <span class="c1">//任务结束回调程序</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R12</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R3</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R2</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R1</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R0</span><span class="p">;</span>
 
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R11</span><span class="p">;</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R10</span><span class="p">;</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R9</span><span class="p">;</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R8</span><span class="p">;</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R7</span><span class="p">;</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R6</span><span class="p">;</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R5</span><span class="p">;</span>
-    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">zeta_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R4</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R11</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R10</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R9</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R8</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R7</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R6</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R5</span><span class="p">;</span>
+    <span class="o">*</span><span class="p">(</span><span class="o">--</span><span class="n">p_stk</span><span class="p">)</span>  <span class="o">=</span> <span class="p">(</span><span class="n">z_STK_t</span><span class="p">)</span><span class="n">CPU_DEFINE_R4</span><span class="p">;</span>
 
     <span class="n">_tcb</span><span class="o">-&gt;</span><span class="n">SP</span> <span class="o">=</span> <span class="n">p_stk</span><span class="p">;</span>
 <span class="p">}</span>
@@ -520,15 +520,15 @@ EXTERN zeta_core_TCBp_HighRdy
 
 <p>输入参数 _tcb 为任务控制块的地址，_entryfunc 为任务函数入口，_stk 为堆栈地址。</p>
 
-<p>entry_t 在 zeta_core.h 文件中定义。</p>
+<p>entry_t 在 z_core.h 文件中定义。</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
 </pre></td><td class="code"><pre><span class="c1">//入口函数类型</span>
-<span class="k">typedef</span> <span class="nf">zeta_err_t</span> <span class="p">(</span><span class="o">*</span><span class="n">entry_t</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span> <span class="n">_parameter</span><span class="p">);</span>
+<span class="k">typedef</span> <span class="nf">z_err_t</span> <span class="p">(</span><span class="o">*</span><span class="n">entry_t</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span> <span class="n">_parameter</span><span class="p">);</span>
 </pre></td></tr></tbody></table></code></pre></figure>
 
-<p>寄存器的宏定义部分，则在 zeta_def.h 中实现。</p>
+<p>寄存器的宏定义部分，则在 z_def.h 中实现。</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
@@ -564,7 +564,7 @@ EXTERN zeta_core_TCBp_HighRdy
 
 <p>这些基本的结构，就能实现最简易的任务切换的功能了。整体部分如下。</p>
 
-<p>zeta_def.h 文件中。</p>
+<p>z_def.h 文件中。</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
@@ -578,21 +578,21 @@ EXTERN zeta_core_TCBp_HighRdy
 10
 11
 12
-</pre></td><td class="code"><pre><span class="cp">#ifndef __ZETA_DEF_H__
-#define __ZETA_DEF_H__
+</pre></td><td class="code"><pre><span class="cp">#ifndef __Z_DEF_H__
+#define __Z_DEF_H__
 </span><span class="c1">//堆栈相关寄存器地址</span>
 <span class="cm">/* 代码实现 */</span>
 
 <span class="cm">/* 常规类型定义 */</span>
-<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">zeta_uint8_t</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">zeta_uint32_t</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">z_uint8_t</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">z_uint32_t</span><span class="p">;</span>
 
 <span class="cm">/* 内核相关类型定义 */</span>
-<span class="k">typedef</span> <span class="n">zeta_uint32_t</span> <span class="n">zeta_STK_t</span><span class="p">;</span> <span class="c1">//栈类型</span>
+<span class="k">typedef</span> <span class="n">z_uint32_t</span> <span class="n">z_STK_t</span><span class="p">;</span> <span class="c1">//栈类型</span>
 <span class="cp">#endif</span>
 </pre></td></tr></tbody></table></code></pre></figure>
 
-<p>zeta_core.h 文件中。</p>
+<p>z_core.h 文件中。</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
@@ -609,10 +609,10 @@ EXTERN zeta_core_TCBp_HighRdy
 13
 14
 15
-</pre></td><td class="code"><pre><span class="cp">#ifndef __ZETA_CORE_H__
-#define __ZETA_CORE_H__
+</pre></td><td class="code"><pre><span class="cp">#ifndef __Z_CORE_H__
+#define __Z_CORE_H__
 </span>
-<span class="cp">#include</span> <span class="cpf">"zeta_def.h"</span><span class="cp">
+<span class="cp">#include</span> <span class="cpf">"z_def.h"</span><span class="cp">
 </span>
 <span class="c1">// define ‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑‑</span>
 <span class="c1">//入口函数类型</span>
@@ -620,13 +620,13 @@ EXTERN zeta_core_TCBp_HighRdy
 
 <span class="c1">//任务控制块</span>
 <span class="k">typedef</span> <span class="k">struct</span><span class="p">{</span>
-<span class="n">zeta_STK_t</span> <span class="o">*</span><span class="n">SP</span><span class="p">;</span>      <span class="c1">//栈顶地址</span>
-<span class="p">}</span><span class="n">zeta_core_TCB_t</span><span class="p">,</span><span class="o">*</span><span class="n">zeta_core_TCBp_t</span><span class="p">;</span>
+<span class="n">z_STK_t</span> <span class="o">*</span><span class="n">SP</span><span class="p">;</span>      <span class="c1">//栈顶地址</span>
+<span class="p">}</span><span class="n">z_core_TCB_t</span><span class="p">,</span><span class="o">*</span><span class="n">z_core_TCBp_t</span><span class="p">;</span>
 
 <span class="cp">#endif</span>
 </pre></td></tr></tbody></table></code></pre></figure>
 
-<p>zeta_core.c 文件中。</p>
+<p>z_core.c 文件中。</p>
 
 <figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
 2
@@ -673,25 +673,25 @@ EXTERN zeta_core_TCBp_HighRdy
 </pre></td><td class="code"><pre><span class="c1">//任务2</span>
 <span class="kt">void</span> <span class="nf">fun2</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">zeta_uint8_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">z_uint8_t</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="p">{</span>
         <span class="n">j</span><span class="o">++</span><span class="p">;</span>
-        <span class="n">zeta_core_switch</span><span class="p">();</span>
+        <span class="n">z_core_switch</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">zeta_core_switch</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">z_core_switch</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="cm">/* 代码实现 */</span>
 <span class="p">}</span>
 
 <span class="c1">//任务结束时调用到的函数</span>
-<span class="kt">void</span> <span class="nf">zeta_core_end</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">z_core_end</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{}</span>
 
 <span class="c1">//任务添加</span>
-<span class="kt">void</span> <span class="nf">zeta_core_add</span><span class="p">(</span><span class="n">zeta_core_TCB_t</span> <span class="o">*</span><span class="n">_tcb</span><span class="p">,</span><span class="n">entry_t</span> <span class="n">_entryfunc</span><span class="p">,</span> <span class="n">zeta_STK_t</span> <span class="o">*</span><span class="n">_stk</span><span class="p">)</span>
+<span class="kt">void</span> <span class="nf">z_core_add</span><span class="p">(</span><span class="n">z_core_TCB_t</span> <span class="o">*</span><span class="n">_tcb</span><span class="p">,</span><span class="n">entry_t</span> <span class="n">_entryfunc</span><span class="p">,</span> <span class="n">z_STK_t</span> <span class="o">*</span><span class="n">_stk</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="cm">/* 代码实现 */</span>
 <span class="p">}</span>
@@ -699,14 +699,14 @@ EXTERN zeta_core_TCBp_HighRdy
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="c1">//添加第一个任务</span>
-    <span class="n">zeta_core_add</span><span class="p">(</span><span class="n">TCBs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">fun1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">FunStack1</span><span class="p">[</span><span class="mi">31</span><span class="p">]);</span>
+    <span class="n">z_core_add</span><span class="p">(</span><span class="n">TCBs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">fun1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">FunStack1</span><span class="p">[</span><span class="mi">31</span><span class="p">]);</span>
     <span class="c1">//添加第二任务</span>
-    <span class="n">zeta_core_add</span><span class="p">(</span><span class="n">TCBs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">fun2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">FunStack2</span><span class="p">[</span><span class="mi">31</span><span class="p">]);</span>
+    <span class="n">z_core_add</span><span class="p">(</span><span class="n">TCBs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">fun2</span><span class="p">,</span><span class="o">&amp;</span><span class="n">FunStack2</span><span class="p">[</span><span class="mi">31</span><span class="p">]);</span>
     <span class="c1">//准备启动第一个任务</span>
-    <span class="n">zeta_core_TCBp_HighRdy</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">TCBs</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="n">z_core_TCBp_HighRdy</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">TCBs</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 
     <span class="c1">//运行</span>
-    <span class="n">zetaOS_start</span><span class="p">();</span>
+    <span class="n">zOS_start</span><span class="p">();</span>
 
     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 
@@ -718,6 +718,10 @@ EXTERN zeta_core_TCBp_HighRdy
 
 
     </div>
+
+    <button type="menu" class="btn btn-light" id="scrollToTop">Top</button>
+
+    <script src="/assets/js/topbtn_script.js"></script>
 </div>
 </body>
 </html>
