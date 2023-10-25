@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一些知识</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/css/Comm/CommStyle.css">
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+</head>
+<body>
+    <div id="sidebar">
+        <!-- 个人信息部分 -->
+        <div id="personal-info">
+            <h3>一个路过的假人</h3>
+            <p style="font-size: 12px;color: lightgray;">一个掌握了各种技能的嵌入式软件工程师</p>
+            <p>总感觉你们在背着我学习</p>
+        </div>
+        <hr>
+        <!-- 描述 -->
+        <div margin="10px">
+            <table>
+                <tr>
+                    <td>经验值: </td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>状态: </td>
+                    <td> 存在</td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <!-- 链接 -->
+        <div id="link-info" >
+            <a href="/index.html" class="link-light" >HOME</a>
+            <a href="/about.html" class="link-light" >ABOUT</a>
+        </div>
+    </div>
+    <div id="bar-setting">
+    <div id="bar-content">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="link-info" href="/index.html">Home</a></li>
+            
+            <li class="breadcrumb-item"><a class="link-info" href="/classes/rtos_series.html">从零开始设计RTOS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">从零开始设计RTOS - 序言</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div id="content">
+    <div id="post-setting">
+        <h1>从零开始设计RTOS - 序言</h1>
+        <div id="post-time">2023-10-25</div>
+        <hr>
+    
+        <p>进入嵌入式这个领域，一般最先接触的，最先开始的，都是单片机编程，也是从裸机编程开始，从“一灯大师”（点亮第一个LED灯）开始。一步一个脚印， 学习了IO口的操作，串口的使用，中断的应用，PWM的调通等等。一边充实我们的技能，一边成长成一代大神。</p>
+
+<p>在裸机系统中，所有编写的程序，都是在一个无限大循环里运行，无论这个程序是简单——点亮一个LED灯，还是复杂——通过各种骚操作点亮一个LED灯。以这样的方式，设计出了非常多的优秀产品。
+但，慢慢地，随着功能越来越多，设计越来越复杂，渐渐需要更进一步发展，裸机可能不再满足设计需求，于是开始进入RTOS世界，即实时操作系统。通过实时操作系统，将功能拆分成一个个简单的任务，一步步降低程序设计的复杂度。</p>
+
+<p>常用的、流行的RTOS有很多，如FreeRTOS、uCOS II/III、RT‑Thread、RTX等等。</p>
+
+<p>本系列的主题是为了能更深的了解和更好的学习这些RTOS，从零构造一个简易的RTOS——zRTOS。</p>
+
+<p>本系列以STM32 Cortex‑M3/M4为目标平台，逐步构造一个实时操作系统，并将其命名为zRTOS。</p>
+
+<h3 id="1操作系统">1.操作系统</h3>
+
+<p>操作系统（operating system，简称OS），是管理计算机硬件与软件资源的系统软件。</p>
+
+<p>所熟知的，在计算机上运行的有微软的Windows，苹果的MAC OS X，各种开源的Linux系统；在手机上、平板电脑上等运行的有Android，IOS等等。</p>
+
+<p>这些都属于通用操作系统，可以适应更广泛的应用，可以支持更多的硬件与软件，没有特定的应用需求；注重每次执行的平均响应时间，平均表现性能等。</p>
+
+<p>还有一种，叫实时操作系统（Real‑time operating system，简称RTOS），它会按照排序运行、管理系统资源。</p>
+
+<p>实时操作系统的首要目标是保证任务在特定时间内、特定要求下完成，而不是提高吞吐量。</p>
+
+<p>这两种操作系统，因为特性不一样，有着不用的调度算法。</p>
+
+<p>‑ 通用操作系统，调度器对于线程优先级等方面的处理更加灵活。
+‑ 实时操作系统，追求最小的中断延时和线程切换延时。</p>
+
+<h3 id="2实时操作系统-rtos">2.实时操作系统-RTOS</h3>
+
+<p>相对于通用操作系统，衡量一个实时操作系统的重要指标，是系统从接收一个任务，到完成该任务所需要的时间，该时间的变化称为抖动。依次，可以将实时系统分为两类：软实时操作系统和硬实时操作系统。
+‑ 软实时操作系统，容忍性较大，能让绝大多数任务在确定时间内完成。
+‑ 硬实时操作系统，任务必须在确定时间内完成。</p>
+
+<p>实时操作系统的调度方式有两种：
+‑ 事件驱动型：抢占式任务处理，当有更高优先级的任务需要处理时，系统会自动切换到该任务，优先处理。
+‑ 时间触发型：每个任务在设定好的时间内轮流调度，直至任务结束。</p>
+
+    </div>
+</div>
+</body>
+</html>

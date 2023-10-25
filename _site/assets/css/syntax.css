@@ -1,0 +1,158 @@
+.highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+  font-size: 18px;
+}
+/* 命令，retrurn */
+.highlight .k, .highlight .kd, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  /*color: #cf222e;*/
+  color: blueviolet;
+}
+/* 类型 */
+.highlight .kt{
+  color: blue;
+}
+
+.highlight .gr {
+  color: #f6f8fa;
+}
+/* todo */
+.highlight .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+/* NULL */
+.highlight .nb {
+  /*color: #953800;*/
+  color:purple;
+}
+/* todo */
+.highlight .nc {
+  color: #953800;
+}
+/* todo */
+.highlight .no {
+  color: #953800;
+}
+/* todo */
+.highlight .nn {
+  color: #953800;
+}
+/* todo */
+.highlight .sr {
+  color: #116329;
+}
+/* todo */
+.highlight .na {
+  color: #116329;
+}
+/* todo */
+.highlight .nt {
+  color: #116329;
+}
+/* todo */
+.highlight .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+/* todo */
+.highlight .kc {
+  color: #0550ae;
+}
+/* 数字 */
+.highlight .l, .highlight .ld, .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: dodgerblue;
+}
+/* todo */
+.highlight .sb {
+  color: #0550ae;
+}
+/* todo */
+.highlight .bp {
+  color: #0550ae;
+}
+/* todo */
+.highlight .ne {
+  color: #0550ae;
+}
+/* 标签: */
+.highlight .nl {
+  color: grey;
+}
+/* todo */
+.highlight .py {
+  color: #0550ae;
+}
+/* todo */
+.highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi, .highlight .vm {
+  color: black;
+}
+/* 符号 */
+.highlight .o, .highlight .ow {
+  color: black;
+}
+/* todo */
+.highlight .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+/* todo */
+.highlight .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+/* 字符串 */
+.highlight .s, .highlight .sa, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .se, .highlight .sh, .highlight .sx, .highlight .s1, .highlight .ss {
+  /*color: #0a3069;*/
+  color: brown;
+}
+/* todo */
+.highlight .nd {
+  color: #8250df;
+}
+/* 函数名 */
+.highlight .nf, .highlight .fm {
+  /*color: #8250df;*/
+  color: black;
+}
+.highlight .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+/* 注释 */
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  /*color: #6e7781;*/
+  color: green;
+}
+/* #define */
+.highlight .cp{
+  color:purple;
+}
+/* 行号 */
+.highlight .gl {
+  color: #6e7781;
+}
+/* todo */
+.highlight .gt {
+  color: #6e7781;
+}
+/* todo */
+.highlight .ni {
+  color: #24292f;
+}
+/* todo */
+.highlight .si {
+  color: #24292f;
+}
+/* todo */
+.highlight .ge {
+  color: #24292f;
+  font-style: italic;
+}
+/* todo */
+.highlight .gs {
+  color: #24292f;
+  font-weight: bold;
+}
