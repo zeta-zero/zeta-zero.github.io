@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一些知识</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/css/Comm/CommStyle.css">
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+</head>
+<body>
+    <div id="sidebar">
+        <!-- 个人信息部分 -->
+        <div id="personal-info">
+            <h3>一个路过的假人</h3>
+            <p style="font-size: 12px;color: lightgray;">一个掌握了各种技能的嵌入式软件工程师</p>
+            <p>总感觉你们在背着我学习</p>
+        </div>
+        <hr>
+        <!-- 描述 -->
+        <div margin="10px">
+            <table id="personal-data">
+                <tr>
+                    <td>经验值: </td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>状态: </td>
+                    <td> 存在</td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <!-- 链接 -->
+        <div id="link-info" >
+            <a href="/index.html" class="link-light" >HOME</a>
+            <a href="/about.html" class="link-light" >ABOUT</a>
+        </div>
+    </div>
+    <div id="bar-setting">
+    <div id="bar-content">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="link-info" href="/index.html">Home</a></li>
+            
+            <li class="breadcrumb-item"><a class="link-info" href="/classes/piecemeal_techs.html">零碎的技术合集</a></li>
+            <li class="breadcrumb-item active" aria-current="page">STM32F4系列 零碎的知识点</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div id="content">
+    <div id="post-setting">
+        <h1>STM32F4系列 零碎的知识点</h1>
+        <div id="post-time">2023-10-27</div>
+        <hr>
+    
+        <p>非常非常零碎的知识点</p>
+
+<h4 id="备份sram">备份SRAM</h4>
+
+<h5 id="一介绍">一，介绍</h5>
+
+<p>当主要的 VDD 电源断电时，该 SRAM 可由 VBAT 电源供电。
+当有 VBAT （通常在电池供电应用中）时该备份 SRAM 可作为内部 EEPROM （无任何额外软件）使用，并具有以 CPU 频率进行高速存取的优势。
+而当备份 SRAM 另作他用且 / 或该应用不用 VBAT 供电时，片上 Flash（采用专门软件算法）可以用于模拟 EEPROM 存储器使用。</p>
+
+<h5 id="二操作备份sram">二，操作备份SRAM</h5>
+
+<ol>
+  <li>将 RCC_APB1ENR 寄存器中的 PWREN 位置 1，使能电源接口时钟（分别参见手册第 6.3.15 节和第 6.3.16 节了解 STM32F405xx/07xx 和 STM32F415xx/17xx 和 STM32F42xxx 和 STM32F43xxx）。</li>
+  <li>将用于 STM32F405xx/07xx 和 STM32F415xx/17xx 的 PWR 电源控制寄存器 (PWR_CR) 和用于STM32F42xxx 和 STM32F43xxx 的 PWR 电源控制寄存器 (PWR_CR) 中的 DBP 位置 1，使能对备份域的访问。</li>
+  <li>通过将 RCC AHB1 外设时钟使能寄存器 (RCC_AHB1ENR) 中的 BKPSRAMEN 位置 1，使能备份 SRAM 时钟。</li>
+</ol>
+
+<figure class="highlight"><pre><code class="language-c" data-lang="c"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre>    <span class="c1">// 备份SRAM 时钟使能</span>
+    <span class="n">__HAL_RCC_BKPSRAM_CLK_ENABLE</span><span class="p">();</span>
+    <span class="c1">// 电源 时钟使能</span>
+    <span class="n">__HAL_RCC_PWR_CLK_ENABLE</span><span class="p">();</span>
+    <span class="c1">// 使能备份SRAM调节器</span>
+    <span class="n">HAL_PWREx_EnableBkUpReg</span><span class="p">();</span>
+    <span class="c1">// 使能备份SRAM写入</span>
+    <span class="n">HAL_PWR_EnableBkUpAccess</span><span class="p">();</span>
+
+
+
+    <span class="cm">/*后备SRAM地址*/</span>  
+    <span class="cm">/*!&lt; Backup SRAM(4 KB) base address in the alias region*/</span>
+    <span class="cp">#define BKPSRAM_BASE          0x40024000UL</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+
+    </div>
+
+    <button type="menu" class="btn btn-light" id="scrollToTop">Top</button>
+
+    <script src="/assets/js/topbtn_script.js"></script>
+</div>
+</body>
+</html>
