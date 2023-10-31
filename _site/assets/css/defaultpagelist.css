@@ -1,0 +1,51 @@
+
+#container{
+    width:100%;
+    height: 60px;
+    line-height: 60px;
+    /*background-color: white;*/
+    position:relative;
+}
+#container ul{
+    display:flex;
+    padding:0;
+}
+#container li{
+    flex:1;
+    list-style:none;
+    text-align: center;
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+    transition: 0.5s ease;
+    cursor: pointer;
+    user-select: none;
+    color: white;
+}
+#container li:hover{
+    color:#f564a9;
+}
+#container li:hover:nth-of-type(1)~.bar{
+    left:0%;
+    background-color: #f564a9;
+}
+
+#container li:hover:nth-of-type(3)~.bar{
+    left:66%;
+    background-color: #f564a9;
+}
+.bar{
+    width: 33%;
+    background-color: #00000000;
+    height: 5px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transition:0.5s ease;
+}
+
+#link-setting{
+    color: inherit;
+    font-size: 14px;
+
+}

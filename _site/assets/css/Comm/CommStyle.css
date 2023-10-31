@@ -8,7 +8,7 @@ body {
     background-color: #006494;
     color: #fff;
     height: 100vh;
-    width: 280px; /* 左侧固定宽度 */
+    width: 20vw; /* 左侧固定宽度 */
     position: fixed;
     padding: 20px;
 }
@@ -21,7 +21,7 @@ body {
 }
 
 #content {
-    margin-left: 280px; /* 左侧宽度 + 20px 间隔 */
+    margin-left: 20vw; /* 左侧宽度 + 20px 间隔 */
     padding: 10px;
 }
 #card-setting{
@@ -37,11 +37,7 @@ body {
     font-size: 26px;
     font-weight: 500;
 }
-#link-info{
-    margin: 10px;
-    text-align: center;
-    font-size: 14px;
-}
+
 td{
     padding-right: 10px;
 }
