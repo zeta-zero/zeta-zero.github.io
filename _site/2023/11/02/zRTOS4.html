@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一些知识</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/css/Comm/CommStyle.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/defaultpagelist.css">
+    <link rel="stylesheet" href="/assets/css/syntax.css">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</head>
+<body>
+    <div id="sidebar">
+        <!-- 个人信息部分 -->
+        <div id="personal-info">
+            <h3>一个路过的假人</h3>
+            <p style="font-size: 12px;color: lightgray;">一个掌握了各种技能的嵌入式软件工程师</p>
+            <p>总感觉你们在背着我学习</p>
+            
+        </div>
+        <hr>
+        <!-- 描述 -->
+        <div margin="10px">
+            <table id="personal-data">
+                <tr>
+                    <td>经验值: </td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>状态: </td>
+                    <td> 存在</td>
+                </tr>
+                <tr>
+                    <td>访问量</td>
+                    <td><span id="busuanzi_value_site_uv"></span></td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <!-- 链接 -->
+        <div id="container">
+            <ul>
+                <li><a href="/index.html" id="link-setting" >HOME</a></li>
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cup-straw" viewBox="0 0 16 16">
+                        <path d="M13.902.334a.5.5 0 0 1-.28.65l-2.254.902-.4 1.927c.376.095.715.215.972.367.228.135.56.396.56.82 0 .046-.004.09-.011.132l-.962 9.068a1.28 1.28 0 0 1-.524.93c-.488.34-1.494.87-3.01.87-1.516 0-2.522-.53-3.01-.87a1.28 1.28 0 0 1-.524-.93L3.51 5.132A.78.78 0 0 1 3.5 5c0-.424.332-.685.56-.82.262-.154.607-.276.99-.372C5.824 3.614 6.867 3.5 8 3.5c.712 0 1.389.045 1.985.127l.464-2.215a.5.5 0 0 1 .303-.356l2.5-1a.5.5 0 0 1 .65.278zM9.768 4.607A13.991 13.991 0 0 0 8 4.5c-1.076 0-2.033.11-2.707.278A3.284 3.284 0 0 0 4.645 5c.146.073.362.15.648.222C5.967 5.39 6.924 5.5 8 5.5c.571 0 1.109-.03 1.588-.085l.18-.808zm.292 1.756C9.445 6.45 8.742 6.5 8 6.5c-1.133 0-2.176-.114-2.95-.308a5.514 5.514 0 0 1-.435-.127l.838 8.03c.013.121.06.186.102.215.357.249 1.168.69 2.438.69 1.27 0 2.081-.441 2.438-.69.042-.029.09-.094.102-.215l.852-8.03a5.517 5.517 0 0 1-.435.127 8.88 8.88 0 0 1-.89.17zM4.467 4.884s.003.002.005.006l-.005-.006zm7.066 0-.005.006c.002-.004.005-.006.005-.006zM11.354 5a3.174 3.174 0 0 0-.604-.21l-.099.445.055-.013c.286-.072.502-.149.648-.222z"/>
+                      </svg>
+                </li>
+                <li><a href="/about.html" id="link-setting" >ABOUT</a></li>
+                <div class="bar"></div>
+            </ul>
+        </div>
+        
+    </div>
+    <div id="bar-setting">
+    <div id="bar-content">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="link-info" href="/index.html">Home</a></li>
+            
+            <li class="breadcrumb-item"><a class="link-info" href="/classes/rtos_series.html">从零开始设计RTOS</a></li>
+            <li class="breadcrumb-item active" aria-current="page">从零开始设计RTOS - 第四章 调度器（下）</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div id="content">
+    <div id="post-setting">
+        <h1>从零开始设计RTOS - 第四章 调度器（下）</h1>
+        <div id="post-time">2023-11-02</div>
+        <hr>
+    
+        <p>调度算法从FCFS（先来先服务）算法开始，到RR（时间轮片）算法，到优先级调度算法等等一步步发展起来，性能也是越来越优秀。
+这一章，是拓展提升。</p>
+
+<p>对于实时性要求高的任务，采用固定优先级调度算法；对于一些实时性要求低的任务，一般遵循公平的原则，即每个任务都有平等调度的机会。
+平等调度算法，常采用动态优先级的方式。</p>
+
+<p>像linux2.6的内核，动态优先级采用了priority = max( 100,min( static priority – bonus + 5 , 139) ) 的公式，其中，bonus 取决于进程的平均睡眠时间，即平均睡眠时间越长，bonus 越大，从而得到更高的优先级。因为在linux中，动态优先级的范围是从100到139的，所以在max里设了上限100（最高优先级），min里设了下限139（最低优先级）。</p>
+
+<p>这种优先级也不是很理想，于是在2004年，Con Kolivas提出了第一个改进调度器设计的patch：Staircase Deadline Scheduler。为调度器设计提供了一个新的思路。</p>
+
+<hr />
+
+<h3 id="1-楼梯调度算法">1. 楼梯调度算法</h3>
+
+<p>楼梯调度算法，Staircase Deadline Scheduler，简称SD算法。再需要复杂的计算出动态优先级，不再需要通过复杂的计算来区分任务类型。楼梯调度算法的思路简单，也极大的简化了代码，性能上，更理想。
+楼梯调度算法，结合了时间轮片和优先级这两个算法的优点。楼梯调度算法不会改变任务本身的优先级，而是会随着系统的运行，将任务放到不同优先级对应的任务就绪列表中。即，对CPU和其他资源占用的时间越多的任务，它的优先级降低得越快。
+当一个优先级为p的任务，它的时间片用完了之后，任务不是放回到原来的优先级任务就绪列表中，而是加入到低一个优先级的（p+1）任务就绪列表中，但是，任务本身的优先级属性没有被改变。当任务在第二次用完时间片时，任务将被加入更低一个优先级的（p+2）任务就绪列表。整个调度过程就像下楼梯一样，如图4.1.1。</p>
+
+<p>图4.1.1</p>
+
+<p>任务下降到最低一级优先级时，时间片再次用完，任务会回到初始优先级的下一级任务队列中，同时，该任务的时间片变成原来的2倍。
+楼梯调度算法，能避免出现饥饿现象，高优先级的任务和低优先级的任务会进行竞争，使得低优先级的任务能获得执行。</p>
+
+<hr />
+
+<h3 id="2-rsdl">2. RSDL</h3>
+
+<p>RSDL也是由Con Kolivas开发的，它是对SD算法的改进。核心的思想还是“完全公平”，没有复杂的动态优先级调整策略。
+RSDL 比 SD 算法多了两个时间: 一个是优先级组时间Tg，一个是优先级组成员时间Tm，同时加多了个任务截至列表组。
+优先级组成员时间 Tm 不一定等于 任务自身的时间片的值，而是小于等于任务自身的时间片的值。当任务的 Tm 用完时，就会被降低一个等级的优先级，如图4.2.1。</p>
+
+<p>图4.2.1</p>
+
+<p>这个过程跟 SD 调度算法一样，在优先级队列中一步步降级，从最高优先级降低到最低优先级，再从次一优先级开始，再从次次一优先级开始，直到在最低优先级在时间轮片调度的方式用完自身的时间轮片。用完自身时间轮片的任务，将会放到任务截至列表组对应的优先级列表中，等待所有任务时间片用完。
+每个等级的优先级，会分配一个时间额度，相应优先级的任务共享对应优先级的时间额度，也就是在一个优先级里的无论哪个任务，在消耗自身时间片的同时，也会消耗优先级组时间，如图4.2.2。</p>
+
+<p>图4.2.2</p>
+
+<p>当一个优先级的优先级组时间Tg用完，无论该优先级的任务的Tp是不是被用完，都会强制该优先级的所有任务下降一个优先级，该级优先级的Tg恢复，降级的任务的Tm重置为下一级优先级的Tm，如图4.2.3。</p>
+
+<p>图4.2.3</p>
+
+<p>这样，处于最低优先级的任务，它们的等待时间是可以获知。</p>
+
+
+    </div>
+
+    <button type="menu" class="btn btn-light" id="scrollToTop">Top</button>
+
+    <script src="/assets/js/topbtn_script.js"></script>
+</div>
+</body>
+</html>

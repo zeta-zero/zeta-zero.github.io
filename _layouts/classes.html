@@ -22,7 +22,7 @@ layout: default
                 <div class="card-body">
                     <a class="card-text d-flex link-dark" id="link-title" href="{{ post.url }}">{{ post.title }}</a>
                     <span class="card-text d-flex justify-content-end">{{ post.date | date: "%Y-%m-%d" }}</span>
-                    <p class="card-text">{{ post.excerpt }}</p>
+                    <p class="card-text">{{ post.excerpt | truncate: 100}}</p>
                     <a href="{{ post.url }}" class="link-info">more>></a>
                 </div>
                 <div class="card-footer d-flex justify-content-end" id="cardfooter-setting">
