@@ -1,0 +1,21 @@
+- title: 2048
+  description: 通过上下左右移动方块，并将相同数字的方块合成一个更大数字的方块
+  url: /assets/web/game2048/game_2048.html
+  imgurl: /assets/web/game2048/game_2048.png
+- title: demo1
+  description: demo1
+  url: #
+  imgurl: #
+- title: demo2
+  description: demo2
+  url: #
+  imgurl: #
+- title: demo3
+  description: demo3
+  url: #
+  imgurl: #
+- title: demo4
+  description: demo4
+  url: #
+  imgurl: #
+

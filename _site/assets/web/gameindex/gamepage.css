@@ -1,0 +1,24 @@
+body{
+    background-color: lightgray;
+    height: 100vh;
+    width: 100vw;
+}
+
+#GameBody{
+    height:fit-content;
+}
+#GameContent{
+    height:fit-content;
+}
+
+.container{
+    padding: 20px;
+}
+
+#card-body-setting{
+    padding: 10px;
+}
+#card-img-setting{
+    width: fit-content;
+    align-self: center;
+}

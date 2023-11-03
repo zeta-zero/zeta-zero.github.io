@@ -1,0 +1,23 @@
+---
+layout: game
+---
+
+<div class="container">
+    <div class="row">
+        <!-- 第一列 -->
+        {% for project in site.data.gamelist %}
+        <div class="col-md-3">
+            <a href="{{ project.url }}" style="text-decoration: none;">
+                <div class="card mb-3" id="card-body-setting">
+                    <img src="{{ project.imgurl }}" class="card-img-top" id="card-img-setting" />
+                    <div class="card-body">
+                        <h2 class="card-text d-flex">{{ project.title }}</h2>
+                        <p class="card-text">{{ project.description}}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+        <!-- 添加更多的卡片列，当空间不够时会自动换行 -->
+    </div>
+</div>

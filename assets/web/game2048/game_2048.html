@@ -1,0 +1,70 @@
+---
+layout: game
+---
+<link rel="stylesheet" type="text/css" href="/assets/web/game2048/game_2048.css">
+
+<div id="back-body">
+
+    <div id="content">
+        <div class="heading">
+            <h1 class="title">2048</h1>
+            <div class="scores-container">
+                <div id="score-content">
+                    <div id="score-title">SCORE</div>
+                    <div class="score-container">0</div>
+                </div>
+                <div id="score-content">
+                    <div id="score-title">BEST</div>
+                    <div class="best-container">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="above-game">
+            <p class="game-intro">合并方块成为 <strong>2048!</strong></p>
+            <button type="button" class="btn btn-user-restart" id="btn-restart">来一把！</button>
+        </div>
+
+        <div class="game-container">
+            <div class="game-info">
+                <p></p>
+                <div class="lower">
+                    <a class="keep-playing-button">Keep going</a>
+                    <a class="retry-button">Try again</a>
+                </div>
+            </div>
+            <div class="grid-container">
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+            </div>
+
+            <div class="tile-container">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/assets/web/game2048/game_2048_mgr.js"></script>
