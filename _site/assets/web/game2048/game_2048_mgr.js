@@ -308,6 +308,7 @@ function resetGame() {
             TileMap.removeChild(TileMap.childNodes[i]);  // 从第一个元素开始删除
         }
     }
+    CurrenceScoreValue = 0;
     numberDisplay.textContent = 0;
 
 }
@@ -342,7 +343,7 @@ document.onkeydown = function (event) {
         } break;
         /* left */
         case "KeyA":
-        case "ArrowLef": {
+        case "ArrowLeft": {
             movestate = moveTile("left");
         } break;
         /* right */
