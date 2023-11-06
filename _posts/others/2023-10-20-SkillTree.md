@@ -2,6 +2,7 @@
 layout: post
 title: 技能树/Skill Tree
 series: others
+modtime: 2023/11/06
 ---
 这是关于个人技能知识的记录。
 包括了编程语言，程序开发技术等，文档操作等等
@@ -146,8 +147,9 @@ series: others
 
 - Using in STM32
 
-##### 6. HTML
+##### 6. HTML/CSS/JavaScript
 
+- Level: 3/5
 - github page
 
 #### Tool
@@ -174,3 +176,22 @@ series: others
 - Embedded Tools
 
 ###### Draw.io
+
+##### 说明
+
+###### 熟练度
+
+- 0/5：不了解，不熟悉，但听过
+- 1/5：入门，会基本语法
+- 2/5：能实现一个作业级别的项目
+- 3/5：能实现一个较复杂的项目
+- 4/5：熟练掌握高级用法
+- 5/5：...
+
+******
+
+### 导图式样
+
+ <iframe height="600px" width="100%"
+  src="/assets/web/other/skilltree.html"  
+  frameborder=0  allowfullscreen> </iframe>

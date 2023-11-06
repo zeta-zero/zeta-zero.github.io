@@ -52,13 +52,13 @@ td{
 
 #bar-setting{
     height: 5vh;
-    margin-left: 280px; /* 左侧宽度 + 20px 间隔 */
+    margin-left: 20vw; /* 左侧宽度 + 20px 间隔 */
     top:0;
     background-color: white;
 }
 #bar-content{
-    padding-left: 20px;
-    padding-top: 10px;
+    padding-left: 10px;
+    padding-top: 6px;
 }
 
 thead tr th{

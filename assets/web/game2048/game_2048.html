@@ -1,4 +1,5 @@
 ---
+title: 2048
 layout: game
 ---
 <link rel="stylesheet" type="text/css" href="/assets/web/game2048/game_2048.css">
@@ -27,10 +28,9 @@ layout: game
 
         <div class="game-container">
             <div class="game-info">
-                <p></p>
+                <div id="gameover-info">Game Over!</div>
                 <div class="lower">
-                    <a class="keep-playing-button">Keep going</a>
-                    <a class="retry-button">Try again</a>
+                    <a class="btn btn-user-retry" id="btn-retry">Try again</a>
                 </div>
             </div>
             <div class="grid-container">

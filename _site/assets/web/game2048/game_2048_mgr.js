@@ -2,6 +2,8 @@
 var numberDisplay = document.querySelector(".score-container");
 var BestScore = document.querySelector(".best-container");
 var changeNumberButton = document.getElementById("btn-restart");
+var GameInfoScreen = document.getElementsByClassName("game-info")[0];
+var RetryButton = document.getElementById("btn-retry");
 var CurrenceScoreValue = 0;
 var BestScoreValue = 0;
 var GameState = false;
@@ -107,7 +109,7 @@ function mergeTile(existdata, existindex, curdata, curindex) {
 
     // 
     var pos = CellMap[curindex];
-    curdata.tile.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
+    existdata.tile.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
 
     EmptyMap.push(CellMap[existindex]);
     WaitToDelList.push(existdata.tile);
@@ -295,6 +297,9 @@ function moveTile(direction) {
 
 
 function resetGame() {
+    if (GameInfoScreen != null) {
+        GameInfoScreen.style.display = 'none';
+    }
     EmptyMap = CellMap.slice(0);
     for (var i = 0; i < 4; i++) {
         for (var j = 0; j < 4; j++) {
@@ -310,17 +315,27 @@ function resetGame() {
     }
     CurrenceScoreValue = 0;
     numberDisplay.textContent = 0;
-
+    addNewTile();
+    addNewTile();
+    GameState = true;
 }
 
 if (changeNumberButton != null) {
     // 添加按钮点击事件的处理程序
     changeNumberButton.addEventListener("click", function () {
         resetGame();
-        addNewTile();
-        addNewTile();
-        GameState = true;
     });
+}
+
+if (RetryButton != null) {
+    // 添加按钮点击事件的处理程序
+    RetryButton.addEventListener("click", function () {
+        resetGame();
+    });
+}
+
+window.onload = function () {
+    resetGame();
 }
 
 /* 按键事件 */
@@ -351,11 +366,14 @@ document.onkeydown = function (event) {
         case "ArrowRight": {
             movestate = moveTile("right");
         } break;
+        case "KeyN": {
+            resetGame();
+        } break;
         default: break;
     }
     if (movestate == true) {
         Anima = true;
-        // 等待0.1秒后，执行
+        // 等待0.2秒后，执行
         setTimeout(function () {
             if (WaitToChange != null) {
                 for (var i = 0; i < WaitToChange.length; i++) {
@@ -380,7 +398,7 @@ document.onkeydown = function (event) {
             WaitToChange = [];
             addNewTile();
             Anima = false;
-        }, 100); // 等待0.1秒
+        }, 200); // 等待0.2秒
     }
     else{
         var full = true;
@@ -397,6 +415,9 @@ document.onkeydown = function (event) {
         }
         if(full){
             GameState = false;
+            if (GameInfoScreen != null) {
+                GameInfoScreen.style.display = 'inline';
+            }
         }
     }
 }
