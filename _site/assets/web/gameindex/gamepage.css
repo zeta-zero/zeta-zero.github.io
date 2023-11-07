@@ -1,18 +1,22 @@
-@media screen and (min-width: 800px) {
-    body {
-        background-color: white;
-        min-height: 100vh;
-        width: 100vw;
-    }
+body {
+    background-color: white;
+    min-height: 100vh;
+}
 
+#GameBody {
+    height: fit-content;
+}
+
+#GameContent {
+    height: fit-content;
+    --user-card-bgcolr-hover:#0563bb
+}
+
+@media screen and (min-width: 800px) {
     #GameBody {
         height: fit-content;
     }
 
-    #GameContent {
-        height: fit-content;
-        --user-card-bgcolr-hover:#0563bb
-    }
 
     .user-card-header{
         background-color: lightgray;
@@ -36,7 +40,8 @@
     }
 
     .card-img-setting {
-        width: 200px;
+        max-height: 200px;
+        width: inherit;
     }
 
     #bar-setting {
@@ -52,3 +57,33 @@
         padding-top: 6px;
     }
 }
+
+@media screen and (max-width: 800px) {
+    #content {
+        z-index: 0;
+        /* 左侧宽度 + 20px 间隔 */
+        padding: 60px 20px 20px 20px;
+
+        --user-card-bgcolr-hover: #0563bb
+    }
+
+    #bar-setting {
+        display: none;
+    }
+    
+    .user-card-header{
+        background-color: lightgray;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .card-body-setting {
+        padding: 6px;
+    }
+
+    .card-img-setting {
+        height: 200px;
+    }
+}
+

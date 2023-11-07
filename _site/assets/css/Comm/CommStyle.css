@@ -1,33 +1,48 @@
+/* 自定义样式 */
+body {
+    background-color: white;
+}
+
+#scrollToTop {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 16px;
+    border-color: lightgray;
+    border-width: 1px;
+}
+
+.user-content {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+#personal-info {
+    padding-top: 10vh;
+    text-align: center;
+}
+
+#personal-data table td {
+    border-width: 0px;
+}
+
+#personal-data {
+    display: flex;
+    justify-content: center;
+}
+
+#personal-data table {
+    min-width: 200px;
+}
+
 @media screen and (min-width: 800px) {
-
-    /* 自定义样式 */
-    body {
-        background-color: white;
-    }
-
     #personal-info {
         padding-top: 10vh;
         text-align: center;
     }
 
-    #personal-data {
-        display: flex;
-        justify-content: center;
-    }
 
-    #personal-data table {
-        min-width: 200px;
-    }
-
-    #personal-data table td {
-        border-width: 0px;
-    }
-
-    .user-content {
-        padding: 0;
-        margin: 0;
-        width: 100%;
-    }
 
     #content {
         z-index: 0;
@@ -109,12 +124,46 @@
         padding-left: 4px;
     }
 
-    #scrollToTop {
+}
+
+@media screen and (max-width: 800px) {
+
+    #content {
+        z-index: 0;
+        /* 左侧宽度 + 20px 间隔 */
+        padding: 60px 20px 20px 20px;
+
+        --user-card-bgcolr-hover: #0563bb
+    }
+
+    #bar-setting {
         display: none;
-        position: fixed;
-        bottom: 40px;
-        right: 16px;
-        border-color: lightgray;
-        border-width: 1px;
+    }
+
+    .user-card-setting {
+        margin-bottom: 10px;
+        min-height: 100px;
+        padding: 0;
+    }
+
+    .user-card-header {
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+            order: 2;
+        }
+    }
+    
+    .link-title {
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .cardfooter-setting {
+        background-color: white;
     }
 }

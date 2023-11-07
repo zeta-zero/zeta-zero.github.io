@@ -1,12 +1,12 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css");
 
-@media screen and (min-width: 800px) {
-    #container {
-        /* 样式代码 */
-        left: 0;
-        --user-leftbar-btn-secondry:#f72585;
-    }
+#container {
+    /* 样式代码 */
+    left: 0;
+    --user-leftbar-btn-secondry:#f72585;
+}
 
+@media screen and (min-width: 800px) {
     #sidebar {
         z-index: 1;
         color: #fff;
@@ -84,4 +84,44 @@
         left: 66%;
         background-color: var(--user-leftbar-btn-secondry);
     }
+}
+
+
+@media screen and (max-width: 800px) {
+    #sidebar {
+        z-index: 1;
+        color: #fff;
+        width: 100%;
+        top: 0;
+        padding-top: 10px;
+        background-color: #f0f0f0;
+        position: fixed;
+    }
+    
+    .user-content{
+        padding: 0;
+        margin: 0;
+        width:100%;
+    }
+    
+    .user-bar-setting {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 0;
+        list-style: none;
+        font-size: 14px;
+    }
+
+    .user-bar-setting li a {
+        text-decoration: none;
+        color: black;
+        position: relative;
+    }
+    
+    .user-bar-setting li { 
+        display: inline;   
+        padding-left: 20px;
+        padding-bottom: 0px;
+    }
+
 }
