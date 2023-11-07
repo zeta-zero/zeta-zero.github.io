@@ -12,23 +12,57 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="/assets/web/gameindex/gamepage.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/defaultpagelist.css">
 </head>
 
 <body>
-    <div id="GameBody">
-        <div id="GameTop">
-
+    <div id="sidebar">
+        <!-- 链接 -->
+        <div id="container">
+            <ul class="user-bar-setting">
+                <li>
+                    <a href="/index.html" class="link-setting">
+                        <i class="bi bi-house-door user-baritem-setting"></i>
+                        <span>HOME</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/assets/web/gameindex/gamepage.html" class="link-setting">
+                        <i class="bi bi-cup-straw user-baritem-setting"></i>
+                        <span>RELAX</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/about.html" class="link-setting">
+                        <i class="bi bi-person user-baritem-setting"></i>
+                        <span>ABOUT</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-        <div id="GameContent">
-            <div class="container">
+    </div>
+    <div class="GameContent">
+        <div id="bar-setting">
+    <div id="bar-content">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Game Lab</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div id="content">
     <div class="row">
         <!-- 第一列 -->
         
         <div class="col-md-3">
             <a href="/assets/web/game2048/game_2048.html" style="text-decoration: none;">
-                <div class="card mb-3" id="card-body-setting">
-                    <img src="/assets/web/game2048/game_2048.png" class="card-img-top" id="card-img-setting" />
-                    <div class="card-body">
+                <div class="card mb-3">
+                    <div class="card-header user-card-header d-flex align-items-center">
+                        <img src="/assets/web/game2048/game_2048.png" class="Center-block card-img-setting" />
+                    </div>
+                    <div class="card-body card-body-setting user-card-anima">
                         <h2 class="card-text d-flex">2048</h2>
                         <p class="card-text">通过上下左右移动方块，并将相同数字的方块合成一个更大数字的方块</p>
                     </div>
@@ -38,9 +72,11 @@
         
         <div class="col-md-3">
             <a href="" style="text-decoration: none;">
-                <div class="card mb-3" id="card-body-setting">
-                    <img src="" class="card-img-top" id="card-img-setting" />
-                    <div class="card-body">
+                <div class="card mb-3">
+                    <div class="card-header user-card-header d-flex align-items-center">
+                        <img src="" class="Center-block card-img-setting" />
+                    </div>
+                    <div class="card-body card-body-setting user-card-anima">
                         <h2 class="card-text d-flex">demo1</h2>
                         <p class="card-text">demo1</p>
                     </div>
@@ -50,9 +86,11 @@
         
         <div class="col-md-3">
             <a href="" style="text-decoration: none;">
-                <div class="card mb-3" id="card-body-setting">
-                    <img src="" class="card-img-top" id="card-img-setting" />
-                    <div class="card-body">
+                <div class="card mb-3">
+                    <div class="card-header user-card-header d-flex align-items-center">
+                        <img src="" class="Center-block card-img-setting" />
+                    </div>
+                    <div class="card-body card-body-setting user-card-anima">
                         <h2 class="card-text d-flex">demo2</h2>
                         <p class="card-text">demo2</p>
                     </div>
@@ -62,9 +100,11 @@
         
         <div class="col-md-3">
             <a href="" style="text-decoration: none;">
-                <div class="card mb-3" id="card-body-setting">
-                    <img src="" class="card-img-top" id="card-img-setting" />
-                    <div class="card-body">
+                <div class="card mb-3">
+                    <div class="card-header user-card-header d-flex align-items-center">
+                        <img src="" class="Center-block card-img-setting" />
+                    </div>
+                    <div class="card-body card-body-setting user-card-anima">
                         <h2 class="card-text d-flex">demo3</h2>
                         <p class="card-text">demo3</p>
                     </div>
@@ -74,9 +114,11 @@
         
         <div class="col-md-3">
             <a href="" style="text-decoration: none;">
-                <div class="card mb-3" id="card-body-setting">
-                    <img src="" class="card-img-top" id="card-img-setting" />
-                    <div class="card-body">
+                <div class="card mb-3">
+                    <div class="card-header user-card-header d-flex align-items-center">
+                        <img src="" class="Center-block card-img-setting" />
+                    </div>
+                    <div class="card-body card-body-setting user-card-anima">
                         <h2 class="card-text d-flex">demo4</h2>
                         <p class="card-text">demo4</p>
                     </div>
@@ -87,7 +129,6 @@
         <!-- 添加更多的卡片列，当空间不够时会自动换行 -->
     </div>
 </div>
-        </div>
     </div>
 </body>
 

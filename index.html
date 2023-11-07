@@ -1,17 +1,26 @@
 ---
 layout: default
 ---
+<div id="bar-setting">
+    <div id="bar-content">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Home</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
 <div id="content">
     <!-- 文章列表部分 -->
     <div class="row">
         {% for class in site.classes %}
         <div class="col-md-12">
             <a href="{{ class.url }}" style="text-decoration: none;">
-                <div class="card" id="card-setting">
+                <div class="card  user-card-setting user-card-anima">
                     <div class="card-body">
-                        <h2 class="card-text d-flex">{{ class.title }}</h2>
+                        <h2 class="card-text">{{ class.title }}</h2>
                         <p class="card-text">{{ class.content | markdownify }}</p>
-                        <span class="card-text d-flex justify-content-end">---------------</span>
                         <span class="card-text d-flex justify-content-end">{{ class.time }}</span>
                     </div>
                 </div>

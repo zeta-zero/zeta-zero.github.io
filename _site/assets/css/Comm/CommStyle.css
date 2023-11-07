@@ -1,85 +1,120 @@
+@media screen and (min-width: 800px) {
 
-/* 自定义样式 */
-body {
-    background-color: #E0E0E0;
-}
+    /* 自定义样式 */
+    body {
+        background-color: white;
+    }
 
-#sidebar {
-    background-color: #006494;
-    color: #fff;
-    height: 100vh;
-    width: 20vw; /* 左侧固定宽度 */
-    position: fixed;
-    padding: 20px;
-}
-#personal-info {
-    padding-top:24vh;
-    text-align: center;
-}
-#personal-data td{
-    border-width: 0px;
-}
+    #personal-info {
+        padding-top: 10vh;
+        text-align: center;
+    }
 
-#content {
-    margin-left: 20vw; /* 左侧宽度 + 20px 间隔 */
-    padding: 10px;
-}
-#card-setting{
-    margin-bottom: 10px;
-    min-height: 160px;
-    padding: 10px;
-}
-#cardfooter-setting{
-    background-color: white;
-}
-#link-title{
-    text-decoration: none;
-    font-size: 26px;
-    font-weight: 500;
-}
+    #personal-data {
+        display: flex;
+        justify-content: center;
+    }
 
-td{
-    padding-right: 10px;
-}
+    #personal-data table {
+        min-width: 200px;
+    }
 
-#post-setting{
-    background-color: white;
-    padding: 40px;
-}
-#post-time{
-    text-align: right;
-}
+    #personal-data table td {
+        border-width: 0px;
+    }
 
-#bar-setting{
-    height: 5vh;
-    margin-left: 20vw; /* 左侧宽度 + 20px 间隔 */
-    top:0;
-    background-color: white;
-}
-#bar-content{
-    padding-left: 10px;
-    padding-top: 6px;
-}
+    .user-content {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
 
-thead tr th{
-    border-width: 1px;
-    border-color: gray;
-    background-color: lightgray;
-}
-table tr td:not(.gutter, .gl, .code){
-    border-width: 1px;
-    border-color:gray;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 4px;
-}
+    #content {
+        z-index: 0;
+        /* 左侧宽度 + 20px 间隔 */
+        padding: 20px 20px 20px 100px;
 
-#scrollToTop {
-    display: none;
-    position: fixed;
-    bottom: 40px;
-    right: 16px;
-    border-color: lightgray;
-    border-width: 1px;
-}
+        --user-card-bgcolr-hover: #0563bb
+    }
 
+    .user-card-setting {
+        margin-bottom: 10px;
+        min-height: 160px;
+        padding: 0;
+    }
+
+    .user-card-anima:hover {
+        background-color: var(--user-card-bgcolr-hover);
+        color: white;
+    }
+
+    .cardfooter-setting {
+        background-color: white;
+    }
+
+    .user-card-header {
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+            order: 2;
+        }
+    }
+
+    .link-title {
+        text-decoration: none;
+        font-size: 26px;
+        font-weight: 500;
+    }
+
+    td {
+        padding-right: 10px;
+    }
+
+    #post-setting {
+        background-color: white;
+        padding: 40px;
+    }
+
+    #post-time {
+        text-align: right;
+    }
+
+    #bar-setting {
+        height: 5vh;
+        padding-left: 100px;
+        /* 左侧宽度 + 20px 间隔 */
+        top: 0;
+        background-color: #F0F0F0;
+    }
+
+    #bar-content {
+        padding-left: 10px;
+        padding-top: 6px;
+    }
+
+    thead tr th {
+        border-width: 1px;
+        border-color: gray;
+        background-color: lightgray;
+    }
+
+    table tr td:not(.gutter, .gl, .code) {
+        border-width: 1px;
+        border-color: gray;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 4px;
+    }
+
+    #scrollToTop {
+        display: none;
+        position: fixed;
+        bottom: 40px;
+        right: 16px;
+        border-color: lightgray;
+        border-width: 1px;
+    }
+}

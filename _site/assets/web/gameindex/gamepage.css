@@ -1,24 +1,54 @@
-body{
-    background-color: lightgray;
-    height: 100vh;
-    width: 100vw;
-}
+@media screen and (min-width: 800px) {
+    body {
+        background-color: white;
+        min-height: 100vh;
+        width: 100vw;
+    }
 
-#GameBody{
-    height:fit-content;
-}
-#GameContent{
-    height:fit-content;
-}
+    #GameBody {
+        height: fit-content;
+    }
 
-.container{
-    padding: 20px;
-}
+    #GameContent {
+        height: fit-content;
+        --user-card-bgcolr-hover:#0563bb
+    }
 
-#card-body-setting{
-    padding: 10px;
-}
-#card-img-setting{
-    width: fit-content;
-    align-self: center;
+    .user-card-header{
+        background-color: lightgray;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        
+    }
+
+    .user-card-anima:hover{
+        background-color: var(--user-card-bgcolr-hover);
+        color: white;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .card-body-setting {
+        padding: 10px;
+    }
+
+    .card-img-setting {
+        width: 200px;
+    }
+
+    #bar-setting {
+        height: 5vh;
+        padding-left: 100px;
+        /* 左侧宽度 + 20px 间隔 */
+        top: 0;
+        background-color: #F0F0F0;
+    }
+
+    #bar-content {
+        padding-left: 10px;
+        padding-top: 6px;
+    }
 }

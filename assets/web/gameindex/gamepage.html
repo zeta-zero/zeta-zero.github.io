@@ -2,16 +2,27 @@
 title: Game Center
 layout: game
 ---
+<div id="bar-setting">
+    <div id="bar-content">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Game Lab</li>
+            </ol>
+        </nav>
+    </div>
+</div>
 
-<div class="container">
+<div id="content">
     <div class="row">
         <!-- 第一列 -->
         {% for project in site.data.gamelist %}
         <div class="col-md-3">
             <a href="{{ project.url }}" style="text-decoration: none;">
-                <div class="card mb-3" id="card-body-setting">
-                    <img src="{{ project.imgurl }}" class="card-img-top" id="card-img-setting" />
-                    <div class="card-body">
+                <div class="card mb-3">
+                    <div class="card-header user-card-header d-flex align-items-center">
+                        <img src="{{ project.imgurl }}" class="Center-block card-img-setting" />
+                    </div>
+                    <div class="card-body card-body-setting user-card-anima">
                         <h2 class="card-text d-flex">{{ project.title }}</h2>
                         <p class="card-text">{{ project.description}}</p>
                     </div>

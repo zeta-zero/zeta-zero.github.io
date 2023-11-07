@@ -1,51 +1,87 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css");
 
-#container{
-    width:100%;
-    height: 60px;
-    line-height: 60px;
-    /*background-color: white;*/
-    position:relative;
-}
-#container ul{
-    display:flex;
-    padding:0;
-}
-#container li{
-    flex:1;
-    list-style:none;
-    text-align: center;
-    position: relative;
-    font-size: 20px;
-    font-weight: bold;
-    transition: 0.5s ease;
-    cursor: pointer;
-    user-select: none;
-    color: white;
-}
-#container li:hover{
-    color:#f564a9;
-}
-#container li:hover:nth-of-type(1)~.bar{
-    left:0%;
-    background-color: #f564a9;
-}
+@media screen and (min-width: 800px) {
+    #container {
+        /* 样式代码 */
+        left: 0;
+        --user-leftbar-btn-secondry:#f72585;
+    }
 
-#container li:hover:nth-of-type(3)~.bar{
-    left:66%;
-    background-color: #f564a9;
-}
-.bar{
-    width: 33%;
-    background-color: #00000000;
-    height: 5px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    transition:0.5s ease;
-}
+    #sidebar {
+        z-index: 1;
+        color: #fff;
+        height: 100vh;
+        left: 0;
+        /* 左侧固定宽度 */
+        position: fixed;
+        padding: 10px;
+        display: flex;
+        align-items: center; /* 垂直居中 */
+    }
+    
+    .user-content{
+        padding: 0;
+        margin: 0;
+        width:100%;
+    }
 
-#link-setting{
-    color: inherit;
-    font-size: 14px;
+    #content {
+        z-index: 0;
+        /* 左侧宽度 + 20px 间隔 */
+        padding: 20px 20px 20px 100px;
 
+        --user-card-bgcolr-hover:#0563bb
+    }
+
+    .user-bar-setting {
+        padding: 0;
+        list-style: none;
+    }
+
+    .user-bar-setting li {
+        list-style: none;
+        padding-bottom: 30px;
+    }
+
+    .user-bar-setting li a {
+        text-decoration: none;
+        color: black;
+        position: relative;
+        width: 0;
+        cursor: pointer;
+        user-select: none;
+        padding: 16px;
+        border-radius: 60px;
+        /* 添加圆形背景 */
+        background-color: #F0F0F0;
+        /* 圆形背景的颜色 */
+        
+    }
+
+    .user-bar-setting li .user-baritem-setting {
+        font-size: 24px;
+    }
+
+    .user-bar-setting li span {
+        display: none;
+    }
+
+    .user-bar-setting li:hover a{
+        color: white;
+        background-color: var(--user-leftbar-btn-secondry);
+    }
+
+    .user-bar-setting li:hover span {
+        display: inline;
+    }
+
+    .user-bar-setting li:hover:nth-of-type(1)~.bar {
+        left: 0%;
+        background-color: var(--user-leftbar-btn-secondry);
+    }
+
+    .user-bar-setting li:hover:nth-of-type(3)~.bar {
+        left: 66%;
+        background-color: var(--user-leftbar-btn-secondry);
+    }
 }

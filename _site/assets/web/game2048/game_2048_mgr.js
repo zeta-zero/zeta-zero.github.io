@@ -11,7 +11,7 @@ var Anima = false;
 /* 2,4,8,16,32,64,
    128,256,512,1024,2048 */
 var TileColors = ["#eee4da", "#eee1c9", "#f3b27a", "#f69664", "#f77c5f", "#f75f3b",
-    "#edd073", "#edcc62", "#edc950", "#edc53f", "#edc22e"];
+    "#edd073", "#edcc62", "#edc950", "#edc53f", "#edc22e","#00f5d4"];
 
 function getCellMap() {
     var CellMap = document.getElementsByClassName("grid-cell");
@@ -128,11 +128,9 @@ function moveTile(direction) {
             for (var col = 0; col < 4; col++) {
                 var current_tile = DataMap[row][col];
                 letbreak = false;
-
                 if (current_tile.val === 0) {
                     for (var row_buf = row + 1; row_buf < 4; row_buf++) {
                         var exist_tile = DataMap[row_buf][col];
-
                         if (exist_tile.val !== 0 && exist_tile.tile !== null) {
                             changeTile(exist_tile, row_buf * 4 + col, current_tile, row * 4 + col);
                             ret = true;
@@ -387,6 +385,9 @@ document.onkeydown = function (event) {
                     }
                     WaitToChange[i].tile.childNodes[0].style.backgroundColor = TileColors[index];
                     WaitToChange[i].tile.childNodes[0].textContent = scorevalue;
+                    if (scorevalue > 999) {
+                        WaitToChange[i].tile.childNodes[0].style.fontSize = '32px';
+                    }
                 }
             }
             if (WaitToDelList != null && WaitToDelList.length > 0) {
