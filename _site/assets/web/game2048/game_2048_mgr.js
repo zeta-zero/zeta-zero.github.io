@@ -146,8 +146,6 @@ function moveTile(direction) {
                         if (exist_tile.val == current_tile.val && exist_tile.tile !== null) {
                             mergeTile(exist_tile, row_buf * 4 + col, current_tile, row * 4 + col);
                             ret = true;
-                            row--;
-                            letbreak = true;
                             break;
                         }
                         else if(exist_tile.val == 0){
@@ -187,8 +185,6 @@ function moveTile(direction) {
                         if (exist_tile.val == current_tile.val && exist_tile.tile !== null) {
                             mergeTile(exist_tile, row_buf * 4 + col, current_tile, row * 4 + col);
                             ret = true;
-                            row++;
-                            letbreak = true;
                             break;
                         }
                         else if(exist_tile.val == 0){
@@ -229,8 +225,6 @@ function moveTile(direction) {
                         if (exist_tile.val == current_tile.val && exist_tile.tile !== null) {
                             mergeTile(exist_tile, row * 4 + col_buf, current_tile, row * 4 + col);
                             ret = true;
-                            col--;
-                            letbreak = true;
                             break;
                         }
                         else if(exist_tile.val == 0){
@@ -271,8 +265,6 @@ function moveTile(direction) {
                         if (exist_tile.val == current_tile.val && exist_tile.tile !== null) {
                             mergeTile(exist_tile, row * 4 + col_buf, current_tile, row * 4 + col);
                             ret = true;
-                            col++;
-                            letbreak = true;
                             break;
                         }
                         else if(exist_tile.val == 0){
