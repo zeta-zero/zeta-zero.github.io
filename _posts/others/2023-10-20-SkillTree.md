@@ -151,6 +151,8 @@ modtime: 2023/11/06
 
 - Level: 3/5
 - github page
+- Vue.js
+- Bootstrap
 
 #### Tool
 

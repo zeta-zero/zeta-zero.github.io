@@ -3,7 +3,8 @@
 #container {
     /* 样式代码 */
     left: 0;
-    --user-leftbar-btn-secondry:#f72585;
+    --user-leftbar-btn-secondry:#ffbe0b;
+    --user-leftbar-btn-slected:#ffd970;
 }
 
 @media screen and (min-width: 800px) {
@@ -19,20 +20,51 @@
         align-items: center; /* 垂直居中 */
     }
     
+    #sidebar #container .user-li{
+        margin-bottom: 30px;
+    }
+
+    #sidebar #container .user-li .user-router-link {
+        text-decoration: none;
+        color: black;
+        position: relative;
+        cursor: pointer;
+        user-select: none;
+        padding: 16px;
+        border-radius: 60px;
+        background-color: #F0F0F0;
+    }
+
+    #sidebar #container .user-li .user-router-link.router-link-exact-active {
+        color: white;
+        background-color: var(--user-leftbar-btn-slected);
+    }
+
+    #sidebar #container .user-li .user-baritem-setting {
+        font-size: 24px;
+    }
+
+    #sidebar #container .user-li .user-router-link span {
+        padding: 10px;
+        display: none;
+    }
+
+    #sidebar #container .user-li:hover .user-router-link {
+        color: white;
+        background-color: var(--user-leftbar-btn-secondry);
+    }
+    
+    #sidebar #container .user-li :hover span {
+        display: inline;
+    }
+    
     .user-content{
         padding: 0;
         margin: 0;
         width:100%;
     }
 
-    #content {
-        z-index: 0;
-        /* 左侧宽度 + 20px 间隔 */
-        padding: 20px 20px 20px 100px;
-
-        --user-card-bgcolr-hover:#0563bb
-    }
-
+    /* ------------------------- */
     .user-bar-setting {
         padding: 0;
         list-style: none;
@@ -93,11 +125,36 @@
         color: #fff;
         width: 100%;
         top: 0;
-        padding-top: 10px;
         background-color: #f0f0f0;
         position: fixed;
+        padding: 0;
     }
-    
+
+    #sidebar #container{
+        display: flex;
+        justify-content: center;
+        list-style: none;
+        font-size: 14px;
+    }
+
+    #sidebar #container .user-li{
+        display: inline;   
+        padding: 10px;
+    }
+
+    #sidebar #container .user-li .user-router-link {
+        text-decoration: none;
+        color: var(--user-leftbar-btn-secondry);
+        position: relative;
+        padding: 4px;
+    }
+
+    #sidebar #container .user-li .user-router-link.router-link-exact-active {
+        color: white;
+        border-radius: 20px;
+        background-color: var(--user-leftbar-btn-slected);
+    }
+
     .user-content{
         padding: 0;
         margin: 0;
@@ -110,18 +167,6 @@
         padding-bottom: 0;
         list-style: none;
         font-size: 14px;
-    }
-
-    .user-bar-setting li a {
-        text-decoration: none;
-        color: var(--user-leftbar-btn-secondry);
-        position: relative;
-    }
-    
-    .user-bar-setting li { 
-        display: inline;   
-        padding-right: 20px;
-        padding-bottom: 0px;
     }
 
 }

@@ -1,6 +1,7 @@
 /* 自定义样式 */
 body {
     background-color: white;
+    min-height: 100vh;
 }
 
 #scrollToTop {
@@ -36,12 +37,31 @@ body {
     min-width: 200px;
 }
 
+.user-slide-fade-enter-active, .user-slide-fade-leave-active {
+     /* 这里设置过渡的持续时间为1秒，你可以根据需要调整 */
+  /*  transition: transform 1s ease-in-out; */
+    transition: all 1s ease-in-out;
+}
+  
+.user-slide-fade-enter, .user-slide-fade-leave-to {
+    /* 初始和最终状态，将内容向右移动100% */
+    /* transform: ease-in-out; */
+    background-color: #000; /* 背景颜色为黑色 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10; /* 位于页面之上 */
+}
+
 @media screen and (min-width: 800px) {
     #personal-info {
         padding-top: 10vh;
         text-align: center;
     }
-
 
 
     #content {
