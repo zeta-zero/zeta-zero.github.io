@@ -5,10 +5,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 
 
-import Home from './Components/home.vue'
-import Blog from './Components/blog.vue'
-import Relax from './Components/relax.vue'
-import About from './Components/about.vue'
+import Home from './components/home.vue'
+import Blog from './components/blog.vue'
+import Relax from './components/relax.vue'
+import About from './components/about.vue'
 
 import SwitchOver from './components/switchover.vue'
 
