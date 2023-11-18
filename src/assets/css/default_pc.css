@@ -1,0 +1,80 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css");
+
+/* 自定义样式 */
+body {
+    background-color: white;
+    --z-leftbar-btn-secondry:#ffbe0b;
+    --z-leftbar-btn-slected:#ffd970;
+}
+
+html,body,#app{
+    height: 100%;
+}
+
+
+@media screen and (min-width: 800px) {
+    #z-sidebar {
+        z-index: 10;
+        color: #fff;
+        height: 100vh;
+        left: 0;
+        /* 左侧固定宽度 */
+        position: fixed;
+        padding: 10px;
+        display: flex;
+        align-items: center; /* 垂直居中 */
+    }
+
+    #z-sidebar #z-container {
+        /* 样式代码 */
+        left: 0;
+        height: auto;
+    }
+
+    
+    #z-sidebar #z-container .z-li{
+        margin-bottom: 30px;
+    }
+
+    #z-sidebar #z-container .z-li .z-router-link {
+        text-decoration: none;
+        color: black;
+        position: relative;
+        cursor: pointer;
+        padding: 16px;
+        border-radius: 60px;
+        background-color: #F0F0F0;
+    }
+
+    #z-sidebar #z-container .z-li .z-router-link.router-link-exact-active {
+        color: white;
+        background-color: var(--z-leftbar-btn-slected);
+    }
+
+    #z-sidebar #z-container .z-li .z-baritem-setting {
+        font-size: 24px;
+    }
+
+    #z-sidebar #z-container .z-li .z-router-link span {
+        padding: 10px;
+        display: none;
+    }
+
+    #z-sidebar #z-container .z-li:hover .z-router-link {
+        color: white;
+        background-color: var(--z-leftbar-btn-secondry);
+    }
+    
+    #z-sidebar #z-container .z-li :hover span {
+        display: inline;
+    }
+
+    #z-content {
+        z-index: 0;
+        /* 左侧宽度 + 20px 间隔 */
+        padding: 20px 20px 20px 100px;
+        height: 100%;
+
+        --user-card-bgcolr-hover: #0563bb
+    }
+}

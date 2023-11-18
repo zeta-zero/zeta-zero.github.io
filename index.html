@@ -1,68 +1,55 @@
----
-
----
-<!DOCTYPE html>
+<!doctype html>
 <html lang="cn">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{site.title}}</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <!-- 访问量统计 -->
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <!-- vue.js -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.3.8/dist/vue.global.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-router@4.2.5/dist/vue-router.global.min.js"></script>
-    <script type="module" src="{{ site.baseurl }}/assets/js/index.js"></script>
+    <meta charset="UTF-8" />
+    <!--<link rel="icon" type="image/svg+xml" href="/vite.svg" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Vue</title>
+    
+    <script type="module" src="/src/main.js"></script>
     <!-- 引入 Bootstrap CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <!-- 自定义样式 -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/Comm/CommStyle.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/defaultpagelist.css">
-    <link rel="stylesheet" href="{{ " /assets/css/syntax.css" | prepend: site.baseurl }}">
+    <link rel="stylesheet" type="text/css" href="/src/assets/css/default_pc.css">
 </head>
-
 <body>
-    <div id="app">
-        <div id="sidebar">
-            <div id="container">
-                <div class="user-li">
-                    <router-link to="/" class="user-router-link">
-                        <i class="bi bi-house-door user-baritem-setting"></i>
+    <div id="app" >
+        <div id="z-sidebar">
+            <div id="z-container">
+                <div class="z-li">
+                    <router-link to="/" class="z-router-link">
+                        <i class="bi bi-house-door z-baritem-setting"></i>
                         <span>HOME</span>
                     </router-link>
                 </div>
-                <div class="user-li">
-                    <router-link class="user-router-link" to="/blog">
-                        <i class="bi bi-book user-baritem-setting"></i>
+                <div class="z-li">
+                    <router-link class="z-router-link" to="/blog">
+                        <i class="bi bi-book z-baritem-setting"></i>
                         <span>BLOG</span>
                     </router-link>
                 </div>
-                <div class="user-li">
-                    <router-link class="user-router-link" to="/relax">
-                        <i class="bi bi-cup-straw user-baritem-setting"></i>
+                <div class="z-li">
+                    <router-link class="z-router-link" to="/relax">
+                        <i class="bi bi-cup-straw z-baritem-setting"></i>
                         <span>RELAX</span>
                     </router-link>
                 </div>
-                <div class="user-li">
-                    <router-link class="user-router-link" to="/about">
-                        <i class="bi bi-person user-baritem-setting"></i>
+                <div class="z-li">
+                    <router-link class="z-router-link" to="/about">
+                        <i class="bi bi-person z-baritem-setting"></i>
                         <span>ABOUT</span>
                     </router-link>
                 </div>
             </div>
         </div>
 
-        <div id="content">
-            <transition name="user-slide-fade">
-                <router-view />
-            </template>
+        <div id="z-content">
+            <router-view />
         </div>
-
     </div>
 </body>
 
