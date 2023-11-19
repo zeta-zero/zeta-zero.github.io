@@ -20,6 +20,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@mojs/core": "^1.7.1",
     "highlight.js": "^11.9.0",
     "markdown-it": "^13.0.2",
     "prism-themes": "^1.9.0",

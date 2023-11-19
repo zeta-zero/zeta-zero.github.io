@@ -3,10 +3,11 @@ import { ref,shallowRef } from 'vue'
 import  AboutMe  from './about-detial/aboutme.vue'
 import AboutState from './about-detial/ablutstate.vue'
 import AboutCreating from './about-detial/aboutcreating.vue'
+import AboutFunyView from './about-detial/aboutfunyview.vue'
 
 const ItemsTitle = shallowRef([
     { Title: 'Me',Content: AboutMe }, 
-    { Title: 'Description',Content: AboutCreating  }, 
+    { Title: 'Description',Content: AboutFunyView  }, 
     { Title: 'Skill',Content: AboutCreating  },
     { Title: 'State',Content: AboutState  }, 
     { Title: 'Empty 2',Content: AboutCreating  }, 

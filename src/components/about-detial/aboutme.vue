@@ -12,7 +12,7 @@ const PersonalInfo = ref({
     <div class="am-body">
         <div id="am-photo">
             <div id="circle">
-                <img src="/src/assets/imgs/profilephoto.png" class="am-photo-img" />
+                <img alt="me" src="/src/assets/imgs/profilephoto.png" class="am-photo-img" />
             </div>
         </div>
         <div class="am-info">
