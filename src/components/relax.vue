@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-import Game2048 from '/src/assets/web/game/game2048/game_2048.html?url'
 </script>
 
 <template>
@@ -8,10 +7,10 @@ import Game2048 from '/src/assets/web/game/game2048/game_2048.html?url'
     <div class="row">
         <!-- 第一列 -->
         <div class="col-md-3">
-            <a :href="Game2048" style="text-decoration: none;">
+            <a href="/relax/game2048" style="text-decoration: none;">
                 <div class="card mb-3">
                     <div class="card-header user-card-header d-flex align-items-center">
-                        <img src="/src/assets/web/game/game2048/game_2048.png" class="card-img-setting" />
+                        <img src="/src/pages/game/game2048/game_2048.png" class="card-img-setting" />
                     </div>
                     <div class="card-body card-body-setting user-card-anima">
                         <h2 class="card-text d-flex"> 2048 </h2>

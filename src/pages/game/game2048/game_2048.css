@@ -1,4 +1,7 @@
 #back-body {
+    position: absolute;
+    top:0;
+    left: 0;
     padding: 0;
     background: #faf8ef;
     color: #776E65;

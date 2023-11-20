@@ -15,7 +15,7 @@ var TileColors = ["#eee4da", "#eee1c9", "#f3b27a", "#f69664", "#f77c5f", "#f75f3
 
 function getCellMap() {
     var CellMap = document.getElementsByClassName("grid-cell");
-    ret = [];
+    var ret = [];
     for (var i = 0; i < CellMap.length; i++) {
         ret.push({ x: CellMap[i].offsetLeft, y: CellMap[i].offsetTop });
     }

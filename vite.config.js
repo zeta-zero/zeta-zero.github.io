@@ -15,7 +15,7 @@ export default defineConfig({
         }),
         // 为了解决 Error [ERR_PACKAGE_PATH_NOT_EXPORTED], 在package.json增加 "type": "module"
         Markdown({
-            builders: [meta(),code(),link()],
+            builders: [meta(), code(), link()],
         }),
     ],
     resolve: {
@@ -23,5 +23,5 @@ export default defineConfig({
             'vue': 'vue/dist/vue.esm-bundler.js'
         },
     },
-    base:'/',
+    base: '/',
 })

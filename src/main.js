@@ -21,6 +21,8 @@ const routes = [
   { path: '/relax', component: Relax },
   { path: '/about', component: About },
   // Add more routes as needed
+  
+  { path: '/relax/game2048', component: () => import('/src/pages/game/game2048/Game2048Component.vue'), },
 ];
 
 // Create the router instance
