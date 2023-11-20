@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <!--<link rel="icon" type="image/svg+xml" href="/vite.svg" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Vue</title>
+
+    <script type="module" src="/src/main.js"></script>
+    <!-- 引入 Bootstrap CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/src/assets/css/default_pc.css">
+    <link rel="stylesheet" type="text/css" href="/src/assets/web/game/game2048/game_2048.css">
+
+</head>
+
+<body>
+
+    <div id="back-body">
+
+        <div id="content">
+            <div class="heading">
+                <h1 class="title">2048</h1>
+                <div class="scores-container">
+                    <div id="score-content">
+                        <div id="score-title">SCORE</div>
+                        <div class="score-container">0</div>
+                    </div>
+                    <div id="score-content">
+                        <div id="score-title">BEST</div>
+                        <div class="best-container">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="above-game">
+                <p class="game-intro">合并方块成为 <strong>2048!</strong></p>
+                <button type="button" class="btn btn-user-restart" id="btn-restart">来一把！</button>
+            </div>
+
+            <div class="game-container">
+                <div class="game-info">
+                    <div id="gameover-info">Game Over!</div>
+                    <div class="lower">
+                        <a class="btn btn-user-retry" id="btn-retry">Try again</a>
+                    </div>
+                </div>
+                <div class="grid-container">
+                    <div class="grid-row">
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                    </div>
+                </div>
+
+                <div class="tile-container">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/src/assets/web/game/game2048/game_2048_mgr.js"></script>
+</body>
+
+</html>
