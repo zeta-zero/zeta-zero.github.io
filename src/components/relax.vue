@@ -7,7 +7,7 @@ import { ref } from 'vue'
     <div class="row">
         <!-- 第一列 -->
         <div class="col-md-3">
-            <a href="/relax/game2048" style="text-decoration: none;">
+            <a href="/relax-game2048" style="text-decoration: none;">
                 <div class="card mb-3">
                     <div class="card-header user-card-header d-flex align-items-center">
                         <img src="/src/pages/game/game2048/game_2048.png" class="card-img-setting" />
