@@ -379,6 +379,7 @@ export default {
     name: 'GameCtrl',
     data() {
         return {
+            TouchStartPos: {X:0,Y:0},
             GameState : false,
             Anima : false,
             CurScoreVal: 0,
@@ -406,6 +407,36 @@ export default {
         keydownevent(_event){
             DirectionCtrl(this,_event);
         },
+        touchstartevent(_e) {
+            this.TouchStartPos.X = _e.touches[0].clientX;
+            this.TouchStartPos.Y = _e.touches[0].clientY;
+        },
+        touchendevent(_e) {
+            let direction = 0;
+            const x_offset = _e.touches[0].clientX - this.TouchStartPos.X;
+            const y_offset = _e.touches[0].clientY - this.TouchStartPos.Y;
+            const x_abs = Math.abs(x_offset);
+            const y_abs = Math.abs(y_offset);
+            if (x_abs > y_abs) {
+                direction = 1;
+            }
+            if (direction == 1) {
+                if (x_offset > 50) {
+                    console.log('right');
+                }
+                else if(x_offset < -50) {
+                    console.log('left');
+                }
+            }
+            else {
+                if (y_offset > 50) {
+                    console.log('down');
+                }
+                else if(y_offset < -50) {
+                    console.log('up');
+                }
+            }
+        }
     },
     created() {
       // 在组件创建时添加全局键盘按键监听器

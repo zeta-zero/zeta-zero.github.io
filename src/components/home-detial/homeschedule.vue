@@ -5,7 +5,7 @@ const ProjectSchedule = shallowRef([
     { Title: 'Total', Progress: 0,DoProgress:0 },
     { Title: 'Home', Progress: 1,DoProgress:9 },
     { Title: 'Blog', Progress: 90,DoProgress:1 },
-    { Title: 'Releax', Progress: 1,DoProgress:0 },
+    { Title: 'Releax', Progress: 10,DoProgress:5 },
     { Title: 'About', Progress: 30,DoProgress:15 },
 ])
 

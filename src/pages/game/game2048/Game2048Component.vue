@@ -24,7 +24,7 @@
                 <button type="button" class="btn btn-user-restart" id="btn-restart" @click="restart">来一把！</button>
             </div>
 
-            <div class="game-container">
+            <div class="game-container" @touchstart="touchstartevent" @touchend="touchendevent">
                 <div class="game-info" ref="GameInfo">
                     <div id="gameover-info">Game Over!</div>
                     <div class="lower">
