@@ -1,4 +1,5 @@
-<script src="./gamectrl.js"></script>
+<script src="./gamectrl.js">
+</script>
 
 <template>
     <div id="back-body">

@@ -24,4 +24,12 @@ export default defineConfig({
         },
     },
     base: '/',
+    pages: {
+        relax_game2048: {
+          entry: 'src/pages/page1/main.js',
+          filename: 'game2048.html',
+          title: '2048',
+        },
+        // Add more pages as needed
+      },
 })
