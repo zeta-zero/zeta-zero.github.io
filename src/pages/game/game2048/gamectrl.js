@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref,toRaw } from 'vue'
 
 /* 2,4,8,16,32,64,
    128,256,512,1024,2048 */
@@ -6,13 +6,13 @@ var TileColors = ["#eee4da", "#eee1c9", "#f3b27a", "#f69664", "#f77c5f", "#f75f3
     "#edd073", "#edcc62", "#edc950", "#edc53f", "#edc22e", "#00f5d4"];
 
 function getCellMap(_ins) {
-    var CellMap = _ins.GCells.value;
+    var cellmap = _ins.$refs.GCells;
     var ret = [];
-    if(CellMap == null){
+    if (cellmap == null) {
         return ret;
     }
-    for (var i = 0; i < _ins.CellMap.length; i++) {
-        ret.push({ x: CellMap[i].offsetLeft, y: CellMap[i].offsetTop });
+    for (var i = 0; i < cellmap.length; i++) {
+        ret.push({ x: cellmap[i].offsetLeft, y: cellmap[i].offsetTop });
     }
     return ret;
 }
@@ -73,7 +73,7 @@ function changeTile(_ins,existdata, existindex, curdata, curindex) {
 
     var index = _ins.EmptyMap.indexOf(pos);
     if (index !== -1) {
-        pos = CellMap[existindex];
+        pos = _ins.CellMap[existindex];
         _ins.EmptyMap[index] = pos;
     }
 
@@ -92,7 +92,7 @@ function mergeTile(_ins,existdata, existindex, curdata, curindex) {
     var pos = _ins.CellMap[curindex];
     existdata.tile.style.transform = `translate(${pos.x}px, ${pos.y}px)`;
 
-    _ins.EmptyMap.push(CellMap[existindex]);
+    _ins.EmptyMap.push(_ins.CellMap[existindex]);
     _ins.WaitToDelList.push(existdata.tile);
     _ins.WaitToChange.push(curdata);
 
@@ -125,7 +125,7 @@ function moveTile(_ins,direction) {
                     for (var row_buf = row + 1; row_buf < 4; row_buf++) {
                         var exist_tile = _ins.DataMap[row_buf][col];
                         if (exist_tile.val == current_tile.val && exist_tile.tile !== null) {
-                            mergeTile(_insexist_tile, row_buf * 4 + col, current_tile, row * 4 + col);
+                            mergeTile(_ins,exist_tile, row_buf * 4 + col, current_tile, row * 4 + col);
                             ret = true;
                             break;
                         }
@@ -152,7 +152,7 @@ function moveTile(_ins,direction) {
                     for (var row_buf = row - 1; row_buf > -1; row_buf--) {
                         var exist_tile = _ins.DataMap[row_buf][col];
                         if (exist_tile.val !== 0 && exist_tile.tile !== null) {
-                            changeTile(exist_tile, row_buf * 4 + col, current_tile, row * 4 + col);
+                            changeTile(_ins,exist_tile, row_buf * 4 + col, current_tile, row * 4 + col);
                             ret = true;
                             row++;
                             letbreak = true;
@@ -164,7 +164,7 @@ function moveTile(_ins,direction) {
                     for (var row_buf = row - 1; row_buf > -1; row_buf--) {
                         var exist_tile = _ins.DataMap[row_buf][col];
                         if (exist_tile.val == current_tile.val && exist_tile.tile !== null) {
-                            mergeTile(_insexist_tile, row_buf * 4 + col, current_tile, row * 4 + col);
+                            mergeTile(_ins,exist_tile, row_buf * 4 + col, current_tile, row * 4 + col);
                             ret = true;
                             break;
                         }
@@ -191,7 +191,7 @@ function moveTile(_ins,direction) {
                     for (var col_buf = col + 1; col_buf < 4; col_buf++) {
                         var exist_tile = _ins.DataMap[row][col_buf];
                         if (exist_tile.val !== 0 && exist_tile.tile !== null) {
-                            _ins.DataMap(_insexist_tile, row * 4 + col_buf, current_tile, row * 4 + col);
+                            changeTile(_ins,exist_tile, row * 4 + col_buf, current_tile, row * 4 + col);
                             ret = true;
                             col--;
                             letbreak = true;
@@ -204,7 +204,7 @@ function moveTile(_ins,direction) {
                         var exist_tile = _ins.DataMap[row][col_buf];
                         letbreak = false;
                         if (exist_tile.val == current_tile.val && exist_tile.tile !== null) {
-                            mergeTile(_insexist_tile, row * 4 + col_buf, current_tile, row * 4 + col);
+                            mergeTile(_ins,exist_tile, row * 4 + col_buf, current_tile, row * 4 + col);
                             ret = true;
                             break;
                         }
@@ -231,7 +231,7 @@ function moveTile(_ins,direction) {
                     for (var col_buf = col - 1; col_buf > -1; col_buf--) {
                         var exist_tile = _ins.DataMap[row][col_buf];
                         if (exist_tile.val !== 0 && exist_tile.tile !== null) {
-                            _ins.DataMap(_insexist_tile, row * 4 + col_buf, current_tile, row * 4 + col);
+                            changeTile(_ins,exist_tile, row * 4 + col_buf, current_tile, row * 4 + col);
                             ret = true;
                             col++;
                             letbreak = true;
@@ -244,7 +244,7 @@ function moveTile(_ins,direction) {
                         var exist_tile = _ins.DataMap[row][col_buf];
                         letbreak = false;
                         if (exist_tile.val == current_tile.val && exist_tile.tile !== null) {
-                            mergeTile(_insexist_tile, row * 4 + col_buf, current_tile, row * 4 + col);
+                            mergeTile(_ins,exist_tile, row * 4 + col_buf, current_tile, row * 4 + col);
                             ret = true;
                             break;
                         }
@@ -267,8 +267,8 @@ function moveTile(_ins,direction) {
 }
 
 function resetGame(_ins) {
-    if (_ins.GameInfo != null && _ins.GameInfo.value != null) {
-        _ins.GameInfo.value.style.display = 'none';
+    if (_ins.$refs.GameInfo != null ) {
+        _ins.$refs.GameInfo.style.display = 'none';
     }
     _ins.EmptyMap = _ins.CellMap.slice(0);
     for (var i = 0; i < 4; i++) {
@@ -278,7 +278,6 @@ function resetGame(_ins) {
         }
     }
     if (_ins.TileMap != null) {
-        console.log(_ins.TileMap);
         var len = _ins.TileMap.childNodes.length;  // 子元素的个数
         for (var i = len - 1; i > 0; i--) {       // 遍历
             _ins.TileMap.removeChild(_ins.TileMap.childNodes[i]);  // 从第一个元素开始删除
@@ -323,7 +322,7 @@ function DirectionCtrl(_ins,_event){
         default: break;
     }
     if (movestate == true) {
-        Anima = true;
+        _ins.Anima = true;
         // 等待0.2秒后，执行
         setTimeout(function () {
             if (_ins.WaitToChange != null) {
@@ -351,7 +350,7 @@ function DirectionCtrl(_ins,_event){
             }
             _ins.WaitToChange = [];
             addNewTile(_ins);
-            Anima = false;
+            _ins.Anima = false;
         }, 200); // 等待0.2秒
     }
     else{
@@ -369,8 +368,8 @@ function DirectionCtrl(_ins,_event){
         }
         if(full){
             _ins.GameState = false;
-            if (_ins.GameInfo.value != null) {
-                _ins.GameInfo.value.style.display = 'inline';
+            if (_ins.$refs.GameInfo != null) {
+                _ins.$refs.GameInfo.value.style.display = 'inline';
             }
         }
     }
@@ -384,9 +383,6 @@ export default {
             Anima : false,
             CurScoreVal: 0,
             BestScoreVal: 0,
-            GCells: ref([]),
-            TileContainer:ref([]),
-            GameInfo:ref(null),
             CellMap:[],
             EmptyMap:[],
             TileMap:[],
@@ -421,9 +417,9 @@ export default {
     },
     mounted(){
         this.$nextTick(()=>{
-            this.TileMap = this.TileContainer.val;
+            this.TileMap = this.$refs.TileContainer;
             this.CellMap = getCellMap(this);
-            this.EmptyMap = this.CellMap.slice(0);
+            this.EmptyMap = toRaw(this.CellMap);
     
             resetGame(this);
         });

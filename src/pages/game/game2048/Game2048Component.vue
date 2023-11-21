@@ -43,7 +43,7 @@
     </div>
 </template>
 
-<style scoped>
+<style>
 @import './game_2048.css';
 </style>
 
