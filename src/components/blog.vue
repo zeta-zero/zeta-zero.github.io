@@ -42,14 +42,47 @@ async function recvBlogContent(_value) {
     font-weight: bold;
 }
 
+.blog-item-content .markdown-body h6 {
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #555;
+}
+
+.blog-item-content .markdown-body table  {
+    margin: 20px;
+    min-width: 40vw;
+}
+
+
 .blog-item-content .markdown-body table tbody tr td, thead tr th{
-    padding-left: 6px;
+    padding: 6px;
     border: 1px solid black;
 }
 
 .blog-item-content .markdown-body table thead tr th {
     background-color: skyblue;
     color: white;
+}
+
+
+.blog-item-content .markdown-body ul {
+    padding-top: 0px;
+    padding-bottom: 10px;
+}
+
+
+.blog-item-content .markdown-body ul > li {
+    list-style-type: disc;
+}
+
+.blog-item-content .markdown-body ul li > ul li {
+    list-style-type: circle;
+}
+
+
+.blog-item-content .markdown-body ol > li {
+    list-style-type:decimal;
 }
 
 @media screen and (min-width:800px) {
