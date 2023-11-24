@@ -87,6 +87,10 @@ modtime: 2023/11/06
 - OpenCV
 - Qt
   - emit/signas
+- OpenSSL
+  - 同类：Libsodium/Botan/Crypto++/GnuTLS
+- mbedtls(轻量级加密库)
+
 
 ###### 算法(Algorithm)
 
@@ -153,6 +157,7 @@ modtime: 2023/11/06
 - github page
 - Vue.js
 - Bootstrap
+- crypto-js
 
 #### Tool
 

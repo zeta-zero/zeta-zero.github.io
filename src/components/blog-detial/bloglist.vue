@@ -2,29 +2,6 @@
 import { cons } from 'fp-ts/lib/ReadonlyNonEmptyArray';
 import { ref, shallowRef, markRaw, onMounted } from 'vue'
 
-const BlogTechs = markRaw([
-    { BlogName: 'Lua In Mcu', Content: null },
-    { BlogName: 'AC5 To AC6', Content: null },
-    { BlogName: 'STM32', Content: null },
-]);
-
-const BlogRTOSList = markRaw([
-    { BlogName: '从零开始设计RTOS - 序章', Content: null },
-    { BlogName: '从零开始设计RTOS - 第一章', Content: null },
-    { BlogName: '从零开始设计RTOS - 第二章', Content: null },
-    { BlogName: '从零开始设计RTOS - 第三章', Content: null },
-    { BlogName: '从零开始设计RTOS - 第四章', Content: null },
-]);
-
-const BlogOtherList = [shallowRef(null)];
-
-const BolgCollection = markRaw([
-    { ClassName: '零碎的技术合集', ClassList: BlogTechs },
-    { ClassName: '从零开始设计RTOS', ClassList: BlogRTOSList },
-    { ClassName: '万象', ClassList: BlogOtherList },
-
-]);
-
 const Property = { BlogSeries: 'series' };
 const BlogSets = shallowRef(new Map());
 const BlogList = shallowRef([]);

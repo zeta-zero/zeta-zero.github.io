@@ -1,6 +1,6 @@
 ---
 title: BLE MESH 的相关信息
-series: techs
+series: ble
 modtime: 2023/11/21
 ---
 
@@ -189,8 +189,8 @@ FCS：计算方式 - X8 + x2 + x1 + 1
 
 |数值(bit)|名称|
 |---|---|
-|0x01(0 bit)|BTM_ECDH_P256_CMAC_AES128_AES_CCM|
-|0x02(1 bit)|BTM_ECDH_P256_HMAC_SHA256_AES_CCM|
+|0x0001(0 bit)|BTM_ECDH_P256_CMAC_AES128_AES_CCM|
+|0x0002(1 bit)|BTM_ECDH_P256_HMAC_SHA256_AES_CCM|
 |0xFFFC|保留|
 
 3.2.2-3 Public Key Type / 公钥类型
@@ -254,7 +254,7 @@ FCS：计算方式 - X8 + x2 + x1 + 1
 |0x01|BTM_ECDH_P256_HMAC_SHA256_AES_CCM|
 |0x02-0xFF|保留|
 
-其中，[BTM_ECDH_P256_CMAC_AES128_AES_CCM](https://www.bluetooth.com/mesh-feature-enhancements-summary/#_Toc143179305)使用了基于RFC 4493规范中的FIPS P-256(NIST P-456/secp256r1)参数。
+其中，[BTM_ECDH_P256_CMAC_AES128_AES_CCM](https://www.bluetooth.com/mesh-feature-enhancements-summary/#_Toc143179305)使用了基于RFC 4493规范中的FIPS P-256(NIST P-256/secp256r1)参数。
 
 3.2.3-2 Public Key / 公钥
 

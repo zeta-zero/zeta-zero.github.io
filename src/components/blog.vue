@@ -78,8 +78,13 @@ async function recvBlogContent(_value) {
 
 .blog-item-content .markdown-body ul li > ul li {
     list-style-type: circle;
+    margin-left: -10px;
 }
 
+.blog-item-content .markdown-body ul li > ul li > ul li {
+    list-style-type: '- ';
+    margin-left: -20px;
+}
 
 .blog-item-content .markdown-body ol > li {
     list-style-type:decimal;
