@@ -39,7 +39,6 @@ const PersonalState = ref({
 .as-table{
     height: 100%;
     padding: 10px;
-    padding-top:10%;
     border-width: 0px;
     display: inline;
     background-color: rgb(253, 141, 169);
@@ -54,7 +53,7 @@ const PersonalState = ref({
 
 .as-table td{
     padding-right: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 

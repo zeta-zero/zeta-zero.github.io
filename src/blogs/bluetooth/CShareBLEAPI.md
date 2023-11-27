@@ -54,6 +54,8 @@ NET 7中特定API:
 <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
 ```
 
+******
+
 ### 2. API 使用
 
 #### 2.1 引用
@@ -188,7 +190,7 @@ private void watcherStoppedEvent(BluetoothLEAdvertisementWatcher sender,
 }
 ```
 
-##### 2.2.1 BluetoothLEAdvertisementWatcher类功能
+##### 2.2.1 BluetoothLEAdvertisementWatcher 类功能
 
 2.2.1-1 基本属性
 
@@ -216,9 +218,9 @@ AdvertisementFilter 参数
     - LocalName
       - 字符串，设置想要查找的蓝牙设备名称
     - ManufacturerData (只读)
-      - Add() > BluetoothLEManufacturerData > 2.2.1-2
+      - Add() > BluetoothLEManufacturerData > 参考 2.2.1-2
     - BytePatterns (只读)
-      - Add() > BluetoothLEAdvertisementBytePattern > 2.2.1-2
+      - Add() > BluetoothLEAdvertisementBytePattern > 参考 2.2.1-2
     - DataSections (获取原始数据节的列表)
       - [] >  2.2.1-2
 
@@ -264,7 +266,7 @@ BluetoothLEAdvertisementDataSection 参数 - (参考链接2 - Page 12 of 397 / �
 
 2.2.1-3 基本事件
 
-**Received**
+**Received** 设备广告接收事件
   - BluetoothLEAdvertisementWatcher：调用该事件的广告接收器
   - BluetoothLEAdvertisementReceivedEventArgs：接收事件参数
 
@@ -420,7 +422,7 @@ end:
 
 ```
 
-##### 2.3.1 BluetoothLEDevice类功能
+##### 2.3.1 BluetoothLEDevice 类功能
 
 2.3.1-1 基本属性
 
@@ -534,10 +536,143 @@ WasSecureConnectionUsedForPairing 参数
   - object：对象
 
 
+##### 2.3.2 GattDeviceService 类功能
+
+2.3.2-1 基本属性
+
+|属性|描述|
+|---|---|
+|AttributeHandle|用于唯一标识蓝牙 LE 设备上声明的基于 GATT 的服务属性的句柄|
+|~~Device~~|~~获取 BluetoothLEDevice 对象，该对象描述与当前 GattDeviceService 对象关联的设备~~|
+|DeviceAccessInformation|与当前 GattDeviceService 对象关联的设备访问信息|
+|DeviceId|表示用于实例化 GattDeviceService 的 GATT 服务实例路径的字符串|
+|~~ParentServices~~|~~此服务的父服务的只读列表~~|
+|Session|GATT 设备服务实例的会话|
+|SharingMode|GATT 设备服务实例的共享模式|
+|Uuid| GattDeviceService 关联的 GATT 服务 UUID|
+
+AttributeHandle 参数
+  - UInt16：特征属性的句柄
+
+DeviceAccessInformation 参数
+  - CurrentStatus
+    - Unspecified：未指定设备访问权限
+    - Allowed：允许访问设备
+    - DeniedByUser：用户已禁止访问设备
+    - DeniedBySystem：系统已禁止访问设备
+  - AccessChanged (事件)
+    - 当对设备的访问权限发生更改时引发
+
+DeviceId 参数
+  - string：用于实例化 GattDeviceService 的 GATT 服务实例路径的字符串
+
+Session 参数
+  - GattSession：用属性配置文件 (GATT) 会话 > 参考 2.3.2-2
+
+SharingMode 参数
+  - Unspecified：共享模式未指定
+  - Exclusive：共享模式未指定
+  - SharedReadOnly：共享模式是只读的
+  - SharedReadAndWrite：共享模式为读取和写入
+
+Uuid 参数
+  - [Guid：GattCharacteristic 的 GATT 特征 UUID](https://learn.microsoft.com/zh-cn/dotnet/api/system.guid?view=net-8.0)
+
+
+2.3.2-2 详细介绍
+
+a. Session - GattSession
+
+|属性|描述|
+|---|---|
+|CanMaintainConnection|指示是否可以维护连接|
+|DeviceId|获取设备 ID|
+|MaintainConnection|指示是否应维护连接|
+|MaxPduSize|最大协议数据单位 (PDU) 大小。 此指标也称为最大 传输单元 (MTU) 大小|
+|SessionStatus|获取会话状态|
+|Close()|关闭 GattSession|
+|Dispose()|	执行与释放或重置非托管资源关联的应用程序定义的任务|
+|FromDeviceIdAsync(BluetoothDeviceId)|从指定的 deviceId 创建新的 GattSession 对象|
+
+CanMaintainConnection 参数
+  - true：表示可以保持连接
+  - false：表示不可以保持连接
+
+DeviceId 参数
+  - Id
+    - string：蓝牙设备ID
+  - IsClassicDevice
+    - true：表示设备具有经典蓝牙功能
+    - false：表示设备没有经典蓝牙功能
+  - IsLowEnergyDevice
+    - true：表示设备具有低功耗蓝牙的功能
+    - false：表示设备没有低功耗蓝牙的功能
+
+MaintainConnection 参数
+ - true：设置为可以保持连接
+ - false：设置不可以保持连接
+
+MaxPduSize 参数
+ - UInt16：最大协议数据单位 (PDU) 大小
+
+SessionStatus 参数
+  - Closed：GATT 会话已关闭
+  - Active：GATT 会话处于活动状态
+
+
+**MaxPduSizeChanged** 当最大协议数据单位 (PDU) 大小更改时引发的事件
+  - GattSession：调用该事件的GATT会话
+  - object：对象
+
+**SessionStatusChanged** GATT 会话状态更改时触发的事件
+  - GattSession
+  - GattSessionStatusChangedEventArgs
+    - Error
+      - |类型|描述|
+        |---|---|
+        |Success|操作已成功完成或已提供服务|
+        |RadioNotAvailable|蓝牙无线电不可用。 当蓝牙无线电已关闭时，会发生此错误|
+        |ResourceInUse|无法为操作提供服务，因为当前正在使用必要的资源|
+        |ResourceInUse|无法完成操作，因为远程设备未连接|
+        |OtherError|发生意外错误|
+        |DisabledByPolicy|操作被策略禁用|
+        |NotSupported|操作被策略禁用|
+        |DisabledByUser|操作被用户禁用|
+        |ConsentRequired|操作需要同意|
+        |TransportNotSupported|操作需要同意|
+    - Status
+      - Closed：GATT 会话已关闭
+      - Active：GATT 会话处于活动状态
+
+2.3.2-3 基本方法
+
+|方法|描述|
+|---|---|
+|Close()|释放与 GattDeviceService 类关联的资源|
+|~~ConvertShortIdToUuid(UInt16)~~|~~将蓝牙 SIG 定义的短 ID 转换为完整的 GATT UUID~~|
+|Dispose()|执行与释放或重置非托管资源关联的应用程序定义的任务|
+|FromIdAsync(...)|从设备 ID 实例化新的 GattDeviceService|
+|~~GetAllCharacteristics()~~|~~获取属于此 GattDeviceService 实例的所有特征的集合~~|
+|~~GetAllIncludedServices()~~|~~获取属于此 GattDeviceService 实例的所有包含服务的集合~~|
+|~~GetCharacteristics(Guid)~~|~~返回由指定的 UUID 标识并属于此 GattDeviceService 实例的特征向量~~|
+|GetCharacteristicsAsync(...)|获取属于此 GattDeviceService 实例的特征|
+|GetCharacteristicsForUuidAsync(...)|获取属于此 GattDeviceService 实例并与特征Uuid 关联的字符|
+|GetDeviceSelectorForBluetoothDeviceId(...)|从 BluetoothDeviceId 创建合适的 AQS 筛选器字符串，以便与 CreateWatcher 方法一起使用|
+|GetDeviceSelectorForBluetoothDeviceIdAndUuid(...)|从 BluetoothDeviceId 和 serviceUuid 创建合适的 AQS 筛选器字符串，以便与 CreateWatcher 方法一起使用|
+|~~GetDeviceSelectorFromShortId(UInt16)~~|~~从 16 位蓝牙 GATT 服务 UUID 创建合适的 AQS 筛选器字符串，以便与 CreateWatcher 方法一起使用~~|
+|GetDeviceSelectorFromUuid(Guid)|从蓝牙服务 UUID 创建合适的 AQS 筛选器字符串，以便与 CreateWatcher 方法一起使用|
+|~~GetIncludedServices(Guid)~~|~~返回包含的服务的向量，这些服务由指定的 UUID 标识并属于此 GattDeviceService 实例~~|
+|GetIncludedServicesAsync(...)|获取与此 GattDeviceService 实例关联的包含的服务|
+|GetIncludedServicesForUuidAsync(...)|从与此 GattDeviceService 实例关联的 serviceUuid 获取包含的服务|
+|OpenAsync(GattSharingMode)|使用指定的 sharingMode 打开 GATT 设备服务|
+|RequestAccessAsync()|请求访问 GattDeviceService|
+
+
 #### 2.4 通信相关
 
 ```cs
-public byte[] readData(gattcharacteristic val)
+/* 从设备的特征属性读取数据 - 同步 */
+public byte[] readData(GattCharacteristic val)
 {
     byte[] res = null;
     if((val.CharacteristicProperties & GattCharacteristicProperties.Read) == 0){
@@ -558,7 +693,8 @@ end:
     return res;
 }
 
-public async Task<byte[]> readDataAsync(gattcharacteristic val)
+/* 从设备的特征属性读取数据 - 异步 */
+public async Task<byte[]> readDataAsync(GattCharacteristic val)
 {
     byte[] res = null;
     if((val.CharacteristicProperties & GattCharacteristicProperties.Read) == 0){
@@ -579,25 +715,178 @@ end:
     return res;
 }
 
-public bool writeData(gattcharacteristic val,)
+/* 从特征属性写入数据到设备 - 同步 */
+public bool writeData(GattCharacteristic val,byte[] data)
 {
     bool res = false;
     if((val.CharacteristicProperties & GattCharacteristicProperties.Write) == 0){
         goto end;
     }
     GattCommunicationStatus sta = GattCommunicationStatus.Unreachable;
-    sta = val.WriteValueAsync(CryptographicBuffer.CreateFromByteArray(_data), GattWriteOption.WriteWithResponse)
-
+    sta = val.WriteValueAsync(CryptographicBuffer.CreateFromByteArray(data), GattWriteOption.WriteWithResponse).AsTask().GetAwaiter().GetResult();
+    if(sta != GattCommunicationStatus.Success){
+        goto end;
+    }
+    res = true;
 end:
     return res;
 }
 
+/* 从特征属性写入数据到设备 - 异步 */
+public async Task<bool> writeDataAsync(GattCharacteristic val,byte[] data)
+{
+    bool res = false;
+    if((val.CharacteristicProperties & GattCharacteristicProperties.Write) == 0){
+        goto end;
+    }
+    GattCommunicationStatus sta = GattCommunicationStatus.Unreachable;
+    sta = await val.WriteValueAsync(CryptographicBuffer.CreateFromByteArray(data), GattWriteOption.WriteWithResponse);
+    if(sta != GattCommunicationStatus.Success){
+        goto end;
+    }
+    res = true;
+end:
+    return res;
+}
+
+/* 开启或关闭设备的通知功能 - 同步 */
+public bool enableNotify(GattCharacteristic val，bool enable)
+{
+    bool res = false;
+    if((val.CharacteristicProperties & GattCharacteristicProperties.Notify) == 0){
+        goto end;
+    }
+    GattCommunicationStatus sta = GattCommunicationStatus.Unreachable;
+    GattClientCharacteristicConfigurationDescriptorValue cfgval = enable?GattClientCharacteristicConfigurationDescriptorValue.Notify:GattClientCharacteristicConfigurationDescriptorValue.None;
+    val.ValueChanged += notifyValueChangedEvent;
+    sta = val.WriteClientCharacteristicConfigurationDescriptorAsync(cfgval).AsTask().GetAwaiter().GetResult();
+    if(sta != GattCommunicationStatus.Success){
+        goto end;
+    }
+    res = true;
+end:
+    return res;
+}
+
+/* 开启或关闭设备的通知功能 - 异步 */
+public async Task<bool> enableNotifyAsync(GattCharacteristic val，bool enable)
+{
+    bool res = false;
+    if((val.CharacteristicProperties & GattCharacteristicProperties.Notify) == 0){
+        goto end;
+    }
+    GattCommunicationStatus sta = GattCommunicationStatus.Unreachable;
+    GattClientCharacteristicConfigurationDescriptorValue cfgval = GattClientCharacteristicConfigurationDescriptorValue.None;
+    if(enable == true){
+        cfgval = GattClientCharacteristicConfigurationDescriptorValue.Notify;
+        val.ValueChanged += notifyValueChangedEvent;
+    }
+    else{
+        cfgval = GattClientCharacteristicConfigurationDescriptorValue.None;
+        val.ValueChanged -= notifyValueChangedEvent;
+    }
+    sta = await val.WriteClientCharacteristicConfigurationDescriptorAsync(cfgval);
+    if(sta != GattCommunicationStatus.Success){
+        goto end;
+    }
+    res = true;
+end:
+    return res;
+}
+
+private void notifyValueChangedEvent(GattCharacteristic sender, GattValueChangedEventArgs args)
+{
+    DataReader datreader = DataReader.FromBuffer(args.CharacteristicValue);
+    byte[] buf = new byte[args.CharacteristicValue.Length];
+    datreader.ReadBytes(buf);
+
+    console.WriteLine(buf);
+}
+
 ```
 
+2.4.1 GattCharacteristic 类功能
 
+2.4.1-1 基本属性
 
+|属性|描述|
+|---|---|
+|AttributeHandle|用于唯一标识蓝牙 LE 设备上声明的基于 GATT 的特征属性的句柄|
+|CharacteristicProperties| GATT 配置文件定义的 GATT 特征属性。如果 ExtendedProperties 标志存在，则它还表示扩展特征属性描述符的属性|
+|PresentationFormats|按聚合格式描述符指定的顺序获取与此 GattCharacteristic 关联的表示格式描述符的列表。如果未找到 PresentationFormat 或聚合格式描述符，则列表应为空|
+|ProtectionLevel|获取或设置与设备的无线通信所需的 GATT 安全选项|
+|Service|此特征所属的 GattDeviceService |
+|UserDescription|如果存在用户描述符，则获取此 GattCharacteristic 的用户友好说明，否则将为空字符串|
+|Uuid|此 GattCharacteristic 的 GATT 特征 UUID|
 
+AttributeHandle 参数
+  - UInt16：特征属性的句柄
+  
+GattCharacteristicProperties 参数
+  - None：没有任何适用的属性
+  - Broadcast：支持广播
+  - Read：可读的
+  - WriteWithoutResponse：支持无响应写入
+  - Write：可写的
+  - Notify：可通知的
+  - Indicate：可指示的
+  - AuthenticatedSignedWrites：支持有符号写入
+  - ExtendedProperties：ExtendedProperties 描述符存在
+  - ReliableWrites：支持可靠写入
+  - WritableAuxiliaries：具有可写辅助
 
+PresentationFormats 参数 - 只读List
+  - BluetoothSigAssignedNumbers
+    - Byte：蓝牙 SIG 分配号码命名空间的值
+  - Description
+    - UInt16：GattPresentationFormat 对象的 Description
+  - Exponent
+    - Int32：GattPresentationFormat 对象的 Description
+  - FormatType
+    - Byte：格式类型
+  - Namespace
+    - Byte：命名空间
+  - Unit
+    - UInt16：单位
+
+ProtectionLevel 参数
+  - Plain：默认保护级别
+  - AuthenticationRequired：对链接进行加密
+  - EncryptionRequired：对链接进行加密
+  - EncryptionAndAuthenticationRequired：对链接进行加密和身份验证
+
+Service 参数
+  - GattDeviceService：蓝牙 LE 设备上的 GATT 服务 > 参考 2.3.1
+
+UserDescription 参数
+  - string：如果存在用户描述描述符，则此 GattCharacteristic 的用户友好说明，否则将为空字符串
+
+Uuid 参数
+  - [Guid：GattCharacteristic 的 GATT 特征 UUID](https://learn.microsoft.com/zh-cn/dotnet/api/system.guid?view=net-8.0)
+
+2.4.1-2 基本方法
+
+|属性|描述|
+|---|---|
+|~~ConvertShortIdToUuid(UInt16)~~|~~将蓝牙 SIG 定义的短 ID 转换为完整的 GATT UUID~~|
+|~~GetAllDescriptors()~~|~~此 GattCharacteristic 实例的所有描述符的集合~~|
+|~~GetDescriptors(Guid)~~|~~返回由指定的 UUID 标识并属于此 GattCharacteristic 实例的描述符向量~~|
+|GetDescriptorsAsync(...)|返回此 GattCharacteristic 实例的描述符|
+|GetDescriptorsForUuidAsync(...)|返回其匹配的描述符|
+|ReadClientCharacteristicConfigurationDescriptorAsync()|读取 CCCD 的当前值|
+|ReadValueAsync(...)|从 Windows 维护的值缓存或直接从设备执行特征值读取|
+|WriteClientCharacteristicConfigurationDescriptorAsync<br>(GattClientCharacteristicConfigurationDescriptorValue)|将 ClientCharacteristicConfigurationDescriptor 写入蓝牙 LE 设备，如果要写入的值表示指示或通知，并且注册了 ValueChanged 事件处理程序，则启用从设备接收 ValueChanged 事件|
+|WriteClientCharacteristicConfigurationDescriptorWithResultAsync<br>(GattClientCharacteristicConfigurationDescriptorValue)|将 ClientCharacteristicConfigurationDescriptor 写入蓝牙 LE 设备，如果要写入的值表示指示或通知，并且注册了 ValueChanged 事件处理程序，则启用从设备接收 ValueChanged 事件|
+|WriteValueAsync(...)|对蓝牙 LE 设备执行特征值写入|
+|WriteValueWithResultAsync(...)|对蓝牙 LE 设备执行特征值写入|
+
+2.4.1-3 基本事件
+
+**ValueChanged** - 从设备收到通知或指示的接收事件
+  - GattCharacteristic：调用该事件的特征属性对象
+  - GattValueChangedEventArgs
+    - CharacteristicValue：获取到的新的特征值
+    - Timestamp：获取系统收到“特征值”更改通知的时间
 
 
 ******

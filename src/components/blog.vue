@@ -42,6 +42,10 @@ async function recvBlogContent(_value) {
     font-weight: bold;
 }
 
+.blog-item-content .markdown-body h3{
+    padding-bottom: 10px;
+}
+
 .blog-item-content .markdown-body h6 {
     font-weight: bold;
     padding-top: 10px;
@@ -53,7 +57,6 @@ async function recvBlogContent(_value) {
     margin: 20px;
     min-width: 40vw;
 }
-
 
 .blog-item-content .markdown-body table tbody tr td, thead tr th{
     padding: 6px;
