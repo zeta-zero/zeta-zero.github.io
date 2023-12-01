@@ -14,6 +14,108 @@ modtime: 2023/11/21
 
 ******
 
+### MESH 公式与数据定义
+
+#### 1. 公式
+
+##### 1.1 AES-CCM 公式
+
+$chiphertext,mic = AES-CCM_k(n,m,a)$
+  - k：128bit Key
+  - n：104bit nonce
+  - m：要加密和验证的数据
+  - a：附加数据，可为0
+  - chiphertext：加密后的数据
+  - mic：m和a的消息完整性检查值
+
+##### 1.2 s1 ‘盐’产生函数
+
+$s1(M) = AES-CMAC_{ZERO}(M)$
+  - ZERO：0 of 128 bit
+
+##### 1.3 s2 ‘盐’产生函数
+
+$s2(M) = HMAC-SHA-256_{ZERO}(M)$
+  - ZERO：0 of 256 bit
+
+##### 1.4 k1 推导函数
+
+$T = AES-CMAC_{SALT}(N)$
+
+$K1(N,SALT,P) = AES-CMAC_T(P)$
+  - N：0或更多数据
+  - SLAT：128 bit
+  - P：0或更多数据
+
+##### 1.5 K2 推导函数
+
+$SALT = s1("smk2")$
+
+$T = AES-CMAC_{SALT}(N)$
+  - N：128 bit的数据
+
+P：至少1个字节的数据
+$T0 = empty string(zero length)$
+$T1 = AES-CMAC_T(T0 || P || 0x01)$
+$T2 = AES-CMAC_T(T1 || P || 0x02)$
+$T3 = AES-CMAC_T(T2 || P || 0x03)$
+$k2(N,P) = (T1 || T2 || T3)mod 2^{263}$
+
+##### 1.6 K3 推导函数
+
+$SALT = s1("smk3")$
+
+$T = AES-CMAC_{SALT}(N)$
+  - N：128 bits的数据
+
+$k3(N) = AES-CMAC_T("id64"||0x01)mod 2^{64}$
+
+##### 1.7 K4 推导函数
+
+$SALT = s1("smk4")$
+
+$T = AES-CMAC_{SALT}(N)$
+  - N：128 bits的数据
+
+$k4(N) = AES-CMAC_T("id6" || 0x01) mod 2^(6)$
+
+##### 1.8 K5 推导函数
+
+$T = HMAC-SHA-256_{SALT}(N)$
+
+$k5(N,SALT,P) = HMAC-SHA-256_T(P)$
+
+#### 2 数据定义
+
+##### 2.1 Sequence Number / 序号
+
+网络PDU的SEQ字段中包含的序列号是一个24位的值，主要设计用于防止重放攻击。同一节点内的元素可能共享也可能不共享序列号空间。每个消息源（由SRC字段中的单播地址标识）在每个新的网络PDU中都有一个不同的序列号，对于BLE MESH的安全性至关重要。 
+使用24位序号，一个元素可以在重复一个nonce之前传输16,777,216条消息。如果一个元素平均每五秒传输一条消息（代表已知用例的相当高频消息），那么该元素可以在nonce重复之前传输2.6年。 
+每个元素应该对其生成的网络PDU使用严格递增的序列号。在序列号接近最大值（0xFFFFFF）之前，元素应该使用IV更新程序更新IV索引。这样做是为了确保序列号不会重复。
+
+#### 2.2 IV Index / IV 索引
+
+IV索引是一个32位的值，是一个共享的网络资源（即，BLE MESH中的所有节点共享同一个IV索引值，并用它来表示他们所属的所有子网）。 
+IV索引从0x00000000开始，在IV更新过程中递增。值增加的时机不必精确，因为最不重要的位在每个网络PDU中都会通信。由于IV索引值是一个32位的值，一个BLE MESH可以运行大约5万亿年，直到IV索引包裹。 
+IV索引通过安全网络信标或网状私有信标在网络内共享。在子网上接收到的IV更新被处理并传播到该子网。传播是通过设备传输带有该特定子网更新的IV索引的安全网络信标或网状私有信标来实现的。
+如果主子网上的设备在主子网上接收到更新，它应该将IV更新传播到所有其他子网。如果主子网上的设备在任何其他子网上接收到IV更新，该更新应被忽略。 如果一个节点在一段时间内从BLE MESH中缺席，它可以扫描安全网络信标或网状私有信标，或者它可以使用IV索引恢复程序，因此可以自主设置IV索引值。
+
+#### 2.3 Nonce / 临时标志
+
+Nonce是一个13字节的值，对于每次新的消息加密都是唯一的。这使用了四种不同的nonce。nonce的类型由nonce的第一个字节确定，称为Nonce类型。
+
+|值|类型|说明|
+|---|---|---|
+|0x00|网络临时标志(Network Nonce)|与EncryptionKey一起用于网络身份验证和加密|
+|0x01|应用临时标志(Application Nonce)|与应用程序密钥一起使用，用于上层传输身份验证和加密|
+|0x02|设备临时标志(Device Nonce)|Used with a device key for upper transport authentication and
+encryption|
+|0x03|代理临时标志(Proxy Nonce)|与EncryptionKey一起使用，用于代理身份验证和加密|
+|0x04|代理请求临时标志(Proxy Aolicitation Nonce)|与EncryptionKey一起使用，用于代理请求身份验证和加密|
+|0x05-0xFF|RFU|保留|
+
+******
+
 ### MESH网络信息帧格式
 
 #### 1. 未配网Beacon格式
@@ -256,6 +358,17 @@ FCS：计算方式 - X8 + x2 + x1 + 1
 
 其中，[BTM_ECDH_P256_CMAC_AES128_AES_CCM](https://www.bluetooth.com/mesh-feature-enhancements-summary/#_Toc143179305)使用了基于RFC 4493规范中的FIPS P-256(NIST P-256/secp256r1)参数。
 
+公式：$ y^2 = x^3 + ax + b(mod p) , a = mod(-3,p) $
+  - p = 115792089210356248762697446949407573530086143415290314195533631308867097853951
+  - r = 115792089210356248762697446949407573529996955224135760342422259061068512044369
+  - b = 0x 5ac635d8 aa3a93e7 b3ebbd55 769886bc 651d06b0 cc53b0f6 3bce3c3e 27d2604b
+
+- BTM_ECDH_P256_CMAC_AES128_AES_CCM:
+  ConfirmationSalt = s1([配网邀请 : 1 Byte][入网配置 : 11 Byte][开始配网 : 5 Byte][本地配网公钥 : 64 Byte][设备配网公钥 : 64 Byte])
+
+- BTM_ECDH_P256_HMAC_SHA256_AES_CCM
+  ConfirmationSalt = s2([配网邀请 : 1 Byte][入网配置 : 11 Byte][开始配网 : 5 Byte][本地配网公钥 : 64 Byte][设备配网公钥 : 64 Byte])
+
 3.2.3-2 Public Key / 公钥
 
 |数值(Byte)|描述|
@@ -305,6 +418,8 @@ FCS：计算方式 - X8 + x2 + x1 + 1
 |---|---|---|
 |Confirmtion|16 / 32 Byte|到目前为止交换的值包括OOB信息等验证值|
 
+Confirmtion中的数据格式：[配网邀请 : 1 Byte][入网配置 : 11 Byte][开始配网 : 5 Byte][本地配网公钥 : 64 Byte][设备配网公钥 : 64 Byte]
+
 ###### 3.2.7 Provisioning Random / 配网随机数
 
 配网设备或入网设备发送配网随机数PDU，以使其对等设备能够验证确认信息。
@@ -322,7 +437,7 @@ FCS：计算方式 - X8 + x2 + x1 + 1
 |Encrypted Provisioning Data|25 Byte|经过加密和认证的网络密钥、NetKey索引、密钥刷新标志、IV更新标志、IV索引的当前值和主元素的单播地址。|
 |Provisioning Data MIC|8 Byte|PDU完整性校验|
 
-3.2.7-1 Provisioning Data/配网数据格式
+3.2.8-1 Provisioning Data/配网数据格式
 
 |名称|大小|描述|
 |---|---|---|
@@ -336,6 +451,16 @@ Flags数据：
 Key Refresh (bit 0)：0 - Phase0 | 1 - Phase2
 IV Update (bit 1)：0 - 常规操作 | 1 - 正在经行VI更新
 0xFD：保留
+
+3.2.8-2 加密过程
+
+Salt = s1(ConfirmationSalt || RandomProvisioner || RandomDevice)
+SessionKey = k1(ECDHSecret,Salt,"prsk")
+SessionNonce = K1(ECDHSecret, Salt,"prsn")
+
+ProvisioningData = NetWorkKey || KeyIndex || Flags || IVIndex || Unicast Address
+
+$Encrypted = AES-CCM_{SessoinKey}(SessionNonce,ProvisiongData)$
 
 ###### 3.2.9 Provisioning Complete / 配网完成
 
@@ -500,7 +625,7 @@ IV Update (bit 1)：0 - 常规操作 | 1 - 正在经行VI更新
     - <font color="#55AA00" >3.2</font>
   - 0x v0[32 Byte]
     - 参考：<font color="#55AA00" >3.2.6</font>
-    - v0[32 Byte]：使用了ECDH秘钥、配网交互数据包及OOB认证信息进行计算得到的数据
+    - v0[32 Byte]：*05* 01 0001 00 00 00 00 00 00 00 00 *00 00 00 00 00* x0 y0 x1 y1
 
 3.2 入网设备发送[配网确认]指令：0x03 05 v1[32 Byte]
   - 一共34个Byte
@@ -512,7 +637,7 @@ IV Update (bit 1)：0 - 常规操作 | 1 - 正在经行VI更新
     - <font color="#55AA00" >3.2</font>
   - 0x v1[32 Byte]
     - 参考：<font color="#55AA00" >3.2.6</font>
-    - v1[32 Byte]：根据v0生成的数据
+    - v1[32 Byte]：*05* 01 0001 00 00 00 00 00 00 00 00 *00 00 00 00 00* x0 y0 x1 y1
 
 
 3.3 配网设备发送[配网随机数]指令：0x03 06 v2[32 Byte]
@@ -525,7 +650,7 @@ IV Update (bit 1)：0 - 常规操作 | 1 - 正在经行VI更新
     - <font color="#55AA00" >3.2</font>
   - 0x v2[32 Byte]
     - 参考：<font color="#55AA00" >3.2.7</font>
-    - v2[32 Byte]：使用了ECDH秘钥、配网交互数据包及OOB认证信息进行计算得到的数据
+    - v2[32 Byte]：随机数
 
 
 3.3 入网设备发送[配网随机数]指令：0x03 06 v3[32 Byte]
@@ -538,7 +663,7 @@ IV Update (bit 1)：0 - 常规操作 | 1 - 正在经行VI更新
     - <font color="#55AA00" >3.2</font>
   - 0x v3[32 Byte]
     - 参考：<font color="#55AA00" >3.2.7</font>
-    - v3[32 Byte]：根据v2生成的数据
+    - v3[32 Byte]：随机数
 
 4 配网数据
 

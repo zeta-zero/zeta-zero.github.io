@@ -43,7 +43,7 @@ async function recvBlogContent(_value) {
 }
 
 .blog-item-content .markdown-body h3{
-    padding-bottom: 10px;
+    padding: 10px 0;
 }
 
 .blog-item-content .markdown-body h6 {
@@ -51,6 +51,19 @@ async function recvBlogContent(_value) {
     padding-top: 10px;
     padding-bottom: 10px;
     color: #555;
+}
+
+.blog-item-content .markdown-body p {
+    margin-left: 20px;
+}
+
+.blog-item-content .markdown-body .md-blog-details{
+    padding: 0px;
+}
+
+.blog-item-content .markdown-body .md-blog-details .md-blog-summary{
+    padding: 0px 10px 10px 10px;
+    color: gray;
 }
 
 .blog-item-content .markdown-body table  {
@@ -70,8 +83,7 @@ async function recvBlogContent(_value) {
 
 
 .blog-item-content .markdown-body ul {
-    padding-top: 0px;
-    padding-bottom: 10px;
+    margin-left: 16px;
 }
 
 
