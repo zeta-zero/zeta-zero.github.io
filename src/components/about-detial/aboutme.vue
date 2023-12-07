@@ -32,7 +32,7 @@ const PersonalInfo = ref({
     padding: 10px;
     width: 100%;
     height: auto;
-    background-color: #60bae4;
+    background-color: #00b4d8;
     padding: 0;
     margin: 0;
 }

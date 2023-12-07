@@ -256,3 +256,96 @@ Q 参数
 
 
 Chilkat for .Net - AES-CMAC
+
+
+## AES-CMAC 消息认证算法
+
+AES-CMAC可以用于验证消息的完整性和身份验证。它使用一个密钥来生成一个固定长度的标记，该标记可以用于验证消息的完整性。与其他消息认证码算法相比，CMAC更加安全，因为它可以抵御各种攻击，包括长度扩展攻击和碰撞攻击。但是，它的计算速度较慢。
+
+该算法在[RFC4493](https://www.rfc-editor.org/rfc/rfc4493)中有很好的描述。
+
+### 在编程语言中实现
+
+#### &nbsp;使用C#实现相关功能
+
+```cs
+using System.Security.Cryptography;
+
+byte[] encryptAES(byte[] key, byte[] iv, byte[] data)
+{
+    byte[] res = null;
+    using (MemoryStream ms = new MemoryStream()) {
+        Aes aesvalue = Aes.Create();
+
+        aesvalue.Mode = CipherMode.CBC;
+        aesvalue.Padding = PaddingMode.None;
+
+        using (CryptoStream cs = new CryptoStream(ms, aesvalue.CreateEncryptor(key, iv), CryptoStreamMode.Write)) {
+            cs.Write(data, 0, data.Length);
+            cs.FlushFinalBlock();
+
+            res = ms.ToArray();
+        }
+    }
+    return res;
+}
+
+byte[] moveRol(byte[] b)
+{
+    byte[] r = new byte[b.Length];
+    byte carry = 0;
+    for (int i = b.Length - 1; i >= 0; i--) {
+        ushort u = (ushort)(b[i] << 1);
+        r[i] = (byte)((u & 0xff) + carry);
+        carry = (byte)((u & 0xff00) >> 8);
+    }
+    return r;
+}
+
+byte[] calAESCMAC(byte[] key, byte[] data)
+{
+    // SubKey generation
+    // step 1, AES-128 with key K is applied to an all-zero input block.
+    byte[] L = encryptAES(key, new byte[16], new byte[16]);
+
+    // step 2, K1 is derived through the following operation:
+    byte[] FirstSubkey = moveRol(L); //If the most significant bit of L is equal to 0, K1 is the left-shift of L by 1 bit.
+    if ((L[0] & 0x80) == 0x80)
+        FirstSubkey[15] ^= 0x87; // Otherwise, K1 is the exclusive-OR of const_Rb and the left-shift of L by 1 bit.
+
+    // step 3, K2 is derived through the following operation:
+    byte[] SecondSubkey = moveRol(FirstSubkey); // If the most significant bit of K1 is equal to 0, K2 is the left-shift of K1 by 1 bit.
+    if ((FirstSubkey[0] & 0x80) == 0x80)
+        SecondSubkey[15] ^= 0x87; // Otherwise, K2 is the exclusive-OR of const_Rb and the left-shift of K1 by 1 bit.
+
+    // MAC computing
+    if (((data.Length != 0) && (data.Length % 16 == 0)) == true) {
+        // If the size of the input message block is equal to a positive multiple of the block size (namely, 128 bits),
+        // the last block shall be exclusive-OR'ed with K1 before processing
+        for (int j = 0; j < FirstSubkey.Length; j++)
+            data[data.Length - 16 + j] ^= FirstSubkey[j];
+    }
+    else {
+        // Otherwise, the last block shall be padded with 10^i
+        byte[] padding = new byte[16 - data.Length % 16];
+        padding[0] = 0x80;
+
+        data = data.Concat<byte>(padding.AsEnumerable()).ToArray();
+
+        // and exclusive-OR'ed with K2
+        for (int j = 0; j < SecondSubkey.Length; j++)
+            data[data.Length - 16 + j] ^= SecondSubkey[j];
+    }
+
+    // The result of the previous process will be the input of the last encryption.
+    byte[] encResult = encryptAES(key, new byte[16], data);
+
+    byte[] HashValue = new byte[16];
+    Array.Copy(encResult, encResult.Length - HashValue.Length, HashValue, 0, HashValue.Length);
+
+    return HashValue;
+}
+
+```
+
+以上代码来源于[stackoverflow](https://stackoverflow.com/questions/29163493/aes-cmac-calculation-c-sharp)。

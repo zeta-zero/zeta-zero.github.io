@@ -38,8 +38,9 @@ async function recvBlogContent(_value) {
     padding: 0px;
     padding-top: 6px;
     border-bottom: 1px solid black;
-    background-color:oldlace;
+    background-color:#6a994e;
     font-weight: bold;
+    color: white;
 }
 
 .blog-item-content .markdown-body h3{
@@ -77,7 +78,7 @@ async function recvBlogContent(_value) {
 }
 
 .blog-item-content .markdown-body table thead tr th {
-    background-color: skyblue;
+    background-color: #219ebc;
     color: white;
 }
 

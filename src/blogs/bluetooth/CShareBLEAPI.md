@@ -34,7 +34,7 @@ modtime: 2023/11/24
 |net6.0-windows10.0.18362.0|Windows 10 版本 1903|
 |net6.0-windows10.0.19041.0|Windows 10 版本 2004|
 |net6.0-windows10.0.22000.0|Windows 11|
-| -windows11.0.22621.0|Windows 11|
+|net6.0-windows10.0.22621.0|Windows 11|
 | -windows11.0.29541.0|Windows 11|
 |net7.0|所有受支持的操作系统|
 |net8.0|所有受支持的操作系统|

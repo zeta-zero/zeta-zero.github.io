@@ -55,10 +55,10 @@ $T = AES-CMAC_{SALT}(N)$
   - N：128 bit的数据
 
 P：至少1个字节的数据
-$T0 = empty string(zero length)$
-$T1 = AES-CMAC_T(T0 || P || 0x01)$
-$T2 = AES-CMAC_T(T1 || P || 0x02)$
-$T3 = AES-CMAC_T(T2 || P || 0x03)$
+$T0 = empty string(zero length)$  
+$T1 = AES-CMAC_T(T0 || P || 0x01)$  
+$T2 = AES-CMAC_T(T1 || P || 0x02)$  
+$T3 = AES-CMAC_T(T2 || P || 0x03)$  
 $k2(N,P) = (T1 || T2 || T3)mod 2^{263}$
 
 ##### 1.6 K3 推导函数
@@ -89,16 +89,16 @@ $k5(N,SALT,P) = HMAC-SHA-256_T(P)$
 
 ##### 2.1 Sequence Number / 序号
 
-网络PDU的SEQ字段中包含的序列号是一个24位的值，主要设计用于防止重放攻击。同一节点内的元素可能共享也可能不共享序列号空间。每个消息源（由SRC字段中的单播地址标识）在每个新的网络PDU中都有一个不同的序列号，对于BLE MESH的安全性至关重要。 
-使用24位序号，一个元素可以在重复一个nonce之前传输16,777,216条消息。如果一个元素平均每五秒传输一条消息（代表已知用例的相当高频消息），那么该元素可以在nonce重复之前传输2.6年。 
-每个元素应该对其生成的网络PDU使用严格递增的序列号。在序列号接近最大值（0xFFFFFF）之前，元素应该使用IV更新程序更新IV索引。这样做是为了确保序列号不会重复。
+网络PDU的SEQ字段中包含的序列号是一个24位的值，主要设计用于防止重放攻击。同一节点内的元素可能共享也可能不共享序列号空间。每个消息源（由SRC字段中的单播地址标识）在每个新的网络PDU中都有一个不同的序列号，对于BLE MESH的安全性至关重要。   
+使用24位序号，一个元素可以在重复一个nonce之前传输16,777,216条消息。如果一个元素平均每五秒传输一条消息（代表已知用例的相当高频消息），那么该元素可以在nonce重复之前传输2.6年。   
+每个元素应该对其生成的网络PDU使用严格递增的序列号。在序列号接近最大值（0xFFFFFF）之前，元素应该使用IV更新程序更新IV索引。这样做是为了确保序列号不会重复。  
 
 #### 2.2 IV Index / IV 索引
 
-IV索引是一个32位的值，是一个共享的网络资源（即，BLE MESH中的所有节点共享同一个IV索引值，并用它来表示他们所属的所有子网）。 
-IV索引从0x00000000开始，在IV更新过程中递增。值增加的时机不必精确，因为最不重要的位在每个网络PDU中都会通信。由于IV索引值是一个32位的值，一个BLE MESH可以运行大约5万亿年，直到IV索引包裹。 
-IV索引通过安全网络信标或网状私有信标在网络内共享。在子网上接收到的IV更新被处理并传播到该子网。传播是通过设备传输带有该特定子网更新的IV索引的安全网络信标或网状私有信标来实现的。
-如果主子网上的设备在主子网上接收到更新，它应该将IV更新传播到所有其他子网。如果主子网上的设备在任何其他子网上接收到IV更新，该更新应被忽略。 如果一个节点在一段时间内从BLE MESH中缺席，它可以扫描安全网络信标或网状私有信标，或者它可以使用IV索引恢复程序，因此可以自主设置IV索引值。
+IV索引是一个32位的值，是一个共享的网络资源（即，BLE MESH中的所有节点共享同一个IV索引值，并用它来表示他们所属的所有子网）。  
+IV索引从0x00000000开始，在IV更新过程中递增。值增加的时机不必精确，因为最不重要的位在每个网络PDU中都会通信。由于IV索引值是一个32位的值，一个BLE MESH可以运行大约5万亿年，直到IV索引包裹。  
+IV索引通过安全网络信标或网状私有信标在网络内共享。在子网上接收到的IV更新被处理并传播到该子网。传播是通过设备传输带有该特定子网更新的IV索引的安全网络信标或网状私有信标来实现的。  
+如果主子网上的设备在主子网上接收到更新，它应该将IV更新传播到所有其他子网。如果主子网上的设备在任何其他子网上接收到IV更新，该更新应被忽略。 如果一个节点在一段时间内从BLE MESH中缺席，它可以扫描安全网络信标或网状私有信标，或者它可以使用IV索引恢复程序，因此可以自主设置IV索引值。 
 
 #### 2.3 Nonce / 临时标志
 
@@ -452,11 +452,11 @@ Key Refresh (bit 0)：0 - Phase0 | 1 - Phase2
 IV Update (bit 1)：0 - 常规操作 | 1 - 正在经行VI更新
 0xFD：保留
 
-3.2.8-2 加密过程
+3.2.8-2 消息认证
 
-Salt = s1(ConfirmationSalt || RandomProvisioner || RandomDevice)
-SessionKey = k1(ECDHSecret,Salt,"prsk")
-SessionNonce = K1(ECDHSecret, Salt,"prsn")
+Salt = s1(ConfirmationSalt || RandomProvisioner || RandomDevice)  
+SessionKey = k1(ECDHSecret,Salt,"prsk")  
+SessionNonce = K1(ECDHSecret, Salt,"prsn")  
 
 ProvisioningData = NetWorkKey || KeyIndex || Flags || IVIndex || Unicast Address
 
@@ -698,3 +698,5 @@ $Encrypted = AES-CCM_{SessoinKey}(SessionNonce,ProvisiongData)$
 ### 参考链接
 1. PDF文件：[BLE Mesh Protocol1.1](https://www.bluetooth.org/DocMan/handlers/DownloadDoc.ashx?doc_id=574298)
 2. 网页：[Assigned Numbers](https://www.bluetooth.com/wp-content/uploads/Files/Specification/Assigned_Numbers.pdf?id=3)
+
+- END -

@@ -30,7 +30,8 @@ const ItemsTitle = shallowRef([
     border-bottom: 2px solid #bbb;
     padding-top: 6px;
     margin: 0;
-    background-color: #d9ed92;
+    color: white;
+    background-color: #a7c957;
 }
 
 @media screen and (min-width:1000px) {
