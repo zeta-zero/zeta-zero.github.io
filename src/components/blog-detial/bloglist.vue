@@ -70,15 +70,49 @@ async function onLoad() {
         await Promise.all(promises);
         SortOfBlog();
         BlogList.value = BlogSets.value.values();
-        console.log(BlogSets.value.values());
     } catch (error) {
         console.error(error);
     }
 }
 
 
+async function onLoadByToml() {
+    try {
+        const serialListModule = import.meta.glob("/src/blogs/**/serialinfo.toml");
+        Object.values(serialListModule).map((serial) => {
+            serial().then((info) => {
+                SetBlogSerial(info.default.Type,info.default.Title);
+            });
+        });
+
+        const srcbloginfolist = import.meta.glob("/src/blogs/**/bloginfo.toml");
+        const srcblogdatalist = import.meta.glob("/src/blogs/**/blog.md");
+        const promises = Object.values(srcbloginfolist).map((bloginfo) => {
+            const blogfile = bloginfo.name.replace('bloginfo.toml', 'blog.md');
+            let blogdata = shallowRef();
+            for (const element of Object.values(srcblogdatalist)) {
+                if (element.name === blogfile) {
+                    blogdata.value = element;
+                    break;
+                }
+            }
+            return bloginfo().then((info) => {
+                const content = info.default;
+                AddToBlog(content, blogdata.value);
+            });
+        });
+
+        await Promise.all(promises);
+        SortOfBlog();
+        BlogList.value = BlogSets.value.values();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 onMounted(async () => {
-    onLoad();
+    onLoadByToml();
+    //onLoad();
 });
 
 

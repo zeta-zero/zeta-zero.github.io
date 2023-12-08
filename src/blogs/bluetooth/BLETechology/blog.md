@@ -696,6 +696,7 @@ $Encrypted = AES-CCM_{SessoinKey}(SessionNonce,ProvisiongData)$
 ******
 
 ### 参考链接
+
 1. PDF文件：[BLE Mesh Protocol1.1](https://www.bluetooth.org/DocMan/handlers/DownloadDoc.ashx?doc_id=574298)
 2. 网页：[Assigned Numbers](https://www.bluetooth.com/wp-content/uploads/Files/Specification/Assigned_Numbers.pdf?id=3)
 

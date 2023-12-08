@@ -5,6 +5,9 @@ import Markdown from 'vite-plugin-md';
 import code from '@yankeeinlondon/code-builder'
 import meta from '@yankeeinlondon/meta-builder'
 import link from '@yankeeinlondon/link-builder'
+import { ViteToml } from 'vite-plugin-toml'
+import mdkatex from 'markdown-it-katex'
+import xKatex from 'katex'
 
 
 // https://vitejs.dev/config/
@@ -16,7 +19,13 @@ export default defineConfig({
         // 为了解决 Error [ERR_PACKAGE_PATH_NOT_EXPORTED], 在package.json增加 "type": "module"
         Markdown({
             builders: [meta(), code(), link()],
+            // markdownItSetup(md) {
+            //     md.use(mdkatex, {
+            //         katex: xKatex
+            //     });
+            // },
         }),
+        ViteToml(),
     ],
     resolve: {
         alias: {

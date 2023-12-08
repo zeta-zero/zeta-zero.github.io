@@ -1,6 +1,7 @@
 <script setup>
 import { ref, shallowRef, defineAsyncComponent } from 'vue'
 import BlogList from './blog-detial/bloglist.vue'
+import BncRect from './BncRect.vue'
 
 const ItemsTitle = shallowRef([
     { Title: 'Content', Content: null },
@@ -11,7 +12,14 @@ const blogcontent = shallowRef(null);
 
 async function recvBlogContent(_value) {
     BlogTitle = _value.Info.get('title');
-    blogcontent.value = _value.Blog;
+    let flag = false;
+    _value.Blog().then((data) => {
+        flag = true;
+        blogcontent.value = data.default;
+    })
+    if (flag == false) {
+        blogcontent.value = BncRect;
+    }
 }
 
 </script>
