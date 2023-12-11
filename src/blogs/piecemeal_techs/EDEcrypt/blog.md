@@ -4,28 +4,25 @@ series: techs
 modtime: 2023/11/28
 ---
 
-## ECDH - 匿名密匙互换协议
+## 1. ECDH - 匿名密匙互换协议
 
 ECDH全称是椭圆曲线迪菲-赫尔曼秘钥交换（Elliptic Curve Diffie–Hellman key Exchange），主要是用来在一个不安全的通道中建立起安全的共有加密资料，一般来说交换的都是私钥，这个密钥一般作为“对称加密”的密钥而被双方在后续数据传输中使用。
 
-### 曲线类型
+### 1.1 曲线类型
 
-#### &nbsp;  NIST P-256 / prime256v1(ANSIX9.62) / secp256r1(SEGC)
+#### &nbsp;  1.1.1 NIST P-256 / prime256v1(ANSIX9.62) / secp256r1(SEGC)
 
-### BLE MESH
+### 1.2 BLE MESH
 
 在BLE MESH中，使用的是P-256椭圆曲线。
 
-### 在编程语言中使用方式
+### 1.3 在编程语言中使用方式
 
-#### &nbsp;  C\# - ECDiffieHellman
+#### &nbsp;  1.3.1 C\# - ECDiffieHellman
 
 在C\#中，ECDiffieHellman类实现了匿名密匙互换协议的功能，可以很方便的利用该类实现密匙互换。
 
-<details class="md-blog-details">
-<summary class="md-blog-summary">more...</summary>
-
-##### 1. 创建一个 NIST P-256 的加解密方式，并获得X和Y值
+##### 1.3.1 - 1. 创建一个 NIST P-256 的加解密方式，并获得X和Y值
 
 ```cs
 using System.Security.Cryptography;
@@ -258,15 +255,15 @@ Q 参数
 Chilkat for .Net - AES-CMAC
 
 
-## AES-CMAC 消息认证算法
+## 2. AES-CMAC 消息认证算法
 
 AES-CMAC可以用于验证消息的完整性和身份验证。它使用一个密钥来生成一个固定长度的标记，该标记可以用于验证消息的完整性。与其他消息认证码算法相比，CMAC更加安全，因为它可以抵御各种攻击，包括长度扩展攻击和碰撞攻击。但是，它的计算速度较慢。
 
 该算法在[RFC4493](https://www.rfc-editor.org/rfc/rfc4493)中有很好的描述。
 
-### 在编程语言中实现
+### 2.1 在编程语言中实现
 
-#### &nbsp;使用C#实现相关功能
+#### &nbsp;2.1.1 使用C#实现相关功能
 
 ```cs
 using System.Security.Cryptography;

@@ -51,8 +51,10 @@ async function recvBlogContent(_value) {
     color: white;
 }
 
+.blog-item-content .markdown-body h1,
+.blog-item-content .markdown-body h2,
 .blog-item-content .markdown-body h3{
-    padding: 10px 0;
+    padding:10px 0px;
 }
 
 .blog-item-content .markdown-body h6 {
