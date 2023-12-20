@@ -249,10 +249,75 @@ Q 参数
 
 
 
-</details>
+#### &nbsp;  1.3.2 C\# - BouncyCastle
 
 
-Chilkat for .Net - AES-CMAC
+在C\#中，使用BouncyCastle第三方库实现匿名密匙互换协议的功能，可以很方便的利用该类实现密匙互换。
+
+通过 NuGet 包管理器安装 Portable.BouncyCastle 第三方库
+
+##### 1.3.2 - 1. 创建一个 NIST P-256 实例
+
+1. 使用到的类。
+
+```cs
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.EC;
+using Org.BouncyCastle.Security;
+```
+
+2. 创建实例
+
+```cs
+// 创建ECDH实例
+IAsymmetricCipherKeyPairGenerator localkeygen = GeneratorUtilities.GetKeyPairGenerator("ECDH");
+// 设置ECDH参数
+ECDomainParameters ecParams = ECNamedCurveTable.GetByName("secp256r1");
+ECKeyGenerationParameters localkeygenparam = new ECKeyGenerationParameters(ecParams, new SecureRandom());
+
+localkeygen.Init(localkeygenparam);
+AsymmetricCipherKeyPair localkeypair = localkeygen.GenerateKeyPair();
+```
+
+3. 导出公匙
+
+```cs
+byte[] key = SubjectPublicKeyInfoFactory.CreateSubjectPublicKeyInfo(localkeypair.Public).PublicKeyData.GetBytes();
+byte[] x_key = key[1..32];
+byte[] y_key = key[33..];
+```
+
+4. 通过 byte[] 或 string 创建对接设备的公钥实例
+
+```cs
+private static ECPublicKeyParameters GetECPublicKey(byte[] _x, byte[] _y)
+{
+    X9ECParameters x9ecp = ECNamedCurveTable.GetByName("secp256r1");
+    Org.BouncyCastle.Math.EC.ECCurve curve = x9ecp.Curve;
+    Org.BouncyCastle.Math.EC.ECPoint point = curve.CreatePoint(new Org.BouncyCastle.Math.BigInteger(1,_x), 
+                                                               new Org.BouncyCastle.Math.BigInteger(1,_y));
+    return new ECPublicKeyParameters("ECDH", point, new ECDomainParameters(x9ecp));
+}
+private static ECPublicKeyParameters GetECPublicKey(string _x, string _y)
+{
+    X9ECParameters x9ecp = ECNamedCurveTable.GetByName("secp256r1");
+    Org.BouncyCastle.Math.EC.ECCurve curve = x9ecp.Curve;
+    Org.BouncyCastle.Math.EC.ECPoint point = curve.CreatePoint(new Org.BouncyCastle.Math.BigInteger(_x),
+                                                               new Org.BouncyCastle.Math.BigInteger(_y));
+    return new ECPublicKeyParameters("ECDH", point, new ECDomainParameters(x9ecp));
+}
+```
+
+5. 计算出共享密匙
+
+```cs
+byte[] publickeyx = new byte[16];
+byte[] publickeyy = new byte[16];
+
+IBasicAgreement agreementDevice = AgreementUtilities.GetBasicAgreement("ECDH");
+agreementDevice.Init(localkeypair,Private);
+byte[] sharekey = localkeygen.CalculateAgreement(GetECPublicKey(publickeyx,publickeyy)).ToByteArrayUnsigned();
+```
 
 
 ## 2. AES-CMAC 消息认证算法
