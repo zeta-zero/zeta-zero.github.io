@@ -272,7 +272,7 @@ using Org.BouncyCastle.Security;
 // 创建ECDH实例
 IAsymmetricCipherKeyPairGenerator localkeygen = GeneratorUtilities.GetKeyPairGenerator("ECDH");
 // 设置ECDH参数
-ECDomainParameters ecParams = ECNamedCurveTable.GetByName("secp256r1");
+ECDomainParameters ecParams = new ECDomainParameters(ECNamedCurveTable.GetByName("secp256r1"));
 ECKeyGenerationParameters localkeygenparam = new ECKeyGenerationParameters(ecParams, new SecureRandom());
 
 localkeygen.Init(localkeygenparam);

@@ -1,0 +1,121 @@
+<mxfile host="Electron" modified="2023-12-27T00:17:22.245Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.11 Chrome/114.0.5735.289 Electron/25.9.8 Safari/537.36" etag="pqk1T8u3UBuXeeJplDXO" version="22.1.11" type="device">
+  <diagram name="第 1 页" id="60HPmYtd-5so6PEApeRl">
+    <mxGraphModel dx="473" dy="273" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="10000" pageHeight="5000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-1" target="zaGMkCG-aYDxy_3N5J1q-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-1" value="Connected To BLE" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="120" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-2" target="zaGMkCG-aYDxy_3N5J1q-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-2" value="Open Provisioning Server&lt;br&gt;0x1827" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="200" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-4" target="zaGMkCG-aYDxy_3N5J1q-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-4" value="Get Write Characterisitic&lt;br&gt;0x2ADB" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="280" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-6" target="zaGMkCG-aYDxy_3N5J1q-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-6" value="Listen Notify Characterisitic&lt;br&gt;0x2ADC" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="360" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-8" target="zaGMkCG-aYDxy_3N5J1q-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-8" value="Send Provisioning Invite&lt;br&gt;0x03 00 05" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="440" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-10" target="zaGMkCG-aYDxy_3N5J1q-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-10" value="Get Provisioning Capabilities&lt;br&gt;0x03 01 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="520" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-12" target="zaGMkCG-aYDxy_3N5J1q-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-12" value="Send Provisioning Start&lt;br&gt;0x03 02 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="600" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-14" target="zaGMkCG-aYDxy_3N5J1q-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-14" value="Send Provisioning PublicKey&lt;br&gt;0x03 03 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="680" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-16" target="zaGMkCG-aYDxy_3N5J1q-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-16" value="Get Device Provisioning PublicKey&lt;br&gt;0x03 03 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="760" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-18" target="zaGMkCG-aYDxy_3N5J1q-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-18" value="Send Provisioning Confirmation&lt;br&gt;0x03 05 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="840" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-20" target="zaGMkCG-aYDxy_3N5J1q-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-20" value="Get Provisioning Confirmation&lt;br&gt;0x03 05 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="920" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-22" target="zaGMkCG-aYDxy_3N5J1q-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-22" value="Send Provisioning Random&lt;br&gt;0x03 06 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1000" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-24" target="zaGMkCG-aYDxy_3N5J1q-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-24" value="Get Provisioning Random&lt;br&gt;0x03 06 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1080" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-26" target="zaGMkCG-aYDxy_3N5J1q-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-26" value="Send Provisioning Data That Include NetworkKey, KeyIndex, IVIndex, UnicastAddr&lt;br&gt;0x03 07 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1160" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-28" target="zaGMkCG-aYDxy_3N5J1q-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-28" value="Get Provisioning Complete&lt;br&gt;0x03 08" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1280" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-30" target="zaGMkCG-aYDxy_3N5J1q-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-30" value="Disconnected BLE Device&lt;br&gt;Reconnected BLE Device" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1360" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-32" target="zaGMkCG-aYDxy_3N5J1q-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-32" value="Open Proxy Server&lt;br&gt;0x1828" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1440" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-34" target="zaGMkCG-aYDxy_3N5J1q-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-34" value="Get Write Characterisitic&lt;br&gt;0x2ADD" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1520" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-36" value="Listen Notify Characterisitic&lt;br&gt;0x2ADE" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1600" width="200" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,267 @@
+<mxfile host="Electron" modified="2023-12-27T06:34:03.906Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.11 Chrome/114.0.5735.289 Electron/25.9.8 Safari/537.36" etag="EQVGvZxLgdmICa8ql5ki" version="22.1.11" type="device">
+  <diagram name="第 1 页" id="60HPmYtd-5so6PEApeRl">
+    <mxGraphModel dx="1105" dy="654" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="10000" pageHeight="5000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-1" target="zaGMkCG-aYDxy_3N5J1q-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-1" value="Connected To BLE" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="120" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-2" target="zaGMkCG-aYDxy_3N5J1q-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-2" value="Open Provisioning Server&lt;br&gt;0x1827" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="200" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-4" target="zaGMkCG-aYDxy_3N5J1q-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-4" value="Get Write Characterisitic&lt;br&gt;0x2ADB" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="280" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-6" target="zaGMkCG-aYDxy_3N5J1q-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-6" value="Listen Notify Characterisitic&lt;br&gt;0x2ADC" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="360" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-8" target="zaGMkCG-aYDxy_3N5J1q-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-8" value="Send Provisioning Invite&lt;br&gt;0x03 00 05" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="440" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-10" target="zaGMkCG-aYDxy_3N5J1q-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-10" value="Get Provisioning Capabilities&lt;br&gt;0x03 01 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="520" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-12" target="zaGMkCG-aYDxy_3N5J1q-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-12" value="Send Provisioning Start&lt;br&gt;0x03 02 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="600" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-14" target="zaGMkCG-aYDxy_3N5J1q-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=oval;endFill=1;startArrow=oval;startFill=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-14" target="zaGMkCG-aYDxy_3N5J1q-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-14" value="Send Provisioning PublicKey&lt;br&gt;0x03 03 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="680" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-16" target="zaGMkCG-aYDxy_3N5J1q-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=oval;startFill=1;endArrow=oval;endFill=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-16" target="zaGMkCG-aYDxy_3N5J1q-42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-16" value="Get Device Provisioning PublicKey&lt;br&gt;0x03 03 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="760" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-18" target="zaGMkCG-aYDxy_3N5J1q-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-45" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=oval;startFill=1;endArrow=oval;endFill=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-18" target="zaGMkCG-aYDxy_3N5J1q-44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-18" value="Send Provisioning Confirmation&lt;br&gt;0x03 05 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="840" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-20" target="zaGMkCG-aYDxy_3N5J1q-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-20" value="Get Provisioning Confirmation&lt;br&gt;0x03 05 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="920" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-22" target="zaGMkCG-aYDxy_3N5J1q-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-22" value="Send Provisioning Random&lt;br&gt;0x03 06 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1000" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-24" target="zaGMkCG-aYDxy_3N5J1q-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-24" value="Get Provisioning Random&lt;br&gt;0x03 06 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1080" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-26" target="zaGMkCG-aYDxy_3N5J1q-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-47" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-26" target="zaGMkCG-aYDxy_3N5J1q-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-26" value="Send Provisioning Data That Include NetworkKey, KeyIndex, IVIndex, UnicastAddr&lt;br&gt;0x03 07 ..." style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1160" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-28" target="zaGMkCG-aYDxy_3N5J1q-30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-28" value="Get Provisioning Complete&lt;br&gt;0x03 08" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1280" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-30" target="zaGMkCG-aYDxy_3N5J1q-32">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="1380" />
+              <mxPoint x="640" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-30" value="Disconnected BLE Device&lt;br&gt;Reconnected BLE Device" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="1360" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-32" target="zaGMkCG-aYDxy_3N5J1q-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-32" value="Open Proxy Server&lt;br&gt;0x1828" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="200" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-34" target="zaGMkCG-aYDxy_3N5J1q-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-34" value="Get Write Characterisitic&lt;br&gt;0x2ADD" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="280" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-36" value="Listen Notify Characterisitic&lt;br&gt;0x2ADE" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="360" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-40" value="Generate Local ECDH Key" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="680" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-42" value="Drive Share Key" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="760" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-44" value="Generate Device Key And Add It in Local" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="840" width="160" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-46" value="Send Netwrok Key And Key Index" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="1160" width="160" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-61" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-48" target="zaGMkCG-aYDxy_3N5J1q-60">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-48" value="Config AppKey Source Message" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="120" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-52" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-49" target="zaGMkCG-aYDxy_3N5J1q-51">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-64" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=oval;startFill=1;endArrow=oval;endFill=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-49" target="zaGMkCG-aYDxy_3N5J1q-58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-49" value="Add Key of A Type &amp;amp; Nonce of A Type" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="280" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-54" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-51" target="zaGMkCG-aYDxy_3N5J1q-53">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-66" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=oval;startFill=1;endArrow=oval;endFill=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-51" target="zaGMkCG-aYDxy_3N5J1q-65">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-51" value="Generate UpperTransportPDU By AES-CCM&lt;br&gt;Include EncAccessMessage &amp;amp; TransMIC(4 Byte)" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="360" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-68" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=oval;startFill=1;endArrow=oval;endFill=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-53" target="zaGMkCG-aYDxy_3N5J1q-67">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-70" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-53" target="zaGMkCG-aYDxy_3N5J1q-69">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-53" value="Add&amp;nbsp;Segmented Accesss Message Data" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="440" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-63" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=oval;startFill=1;endArrow=oval;endFill=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-60" target="zaGMkCG-aYDxy_3N5J1q-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-55" value="[&lt;font color=&quot;#99ccff&quot;&gt;Access Message Header&lt;/font&gt;][Source Message]" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="200" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-58" value="[Key] / [Nonce]" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="280" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-62" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-60" target="zaGMkCG-aYDxy_3N5J1q-49">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-60" value="Add Access Type Data" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="200" width="200" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-65" value="Encry([Key],[Nonce],[&lt;font style=&quot;border-color: var(--border-color);&quot; color=&quot;#99ccff&quot;&gt;Access Message Header&lt;/font&gt;][Source Message]) =&amp;nbsp;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;[&lt;font color=&quot;#97d077&quot;&gt;EncAccessMessage&lt;/font&gt;][&lt;font color=&quot;#97d077&quot;&gt;TransMIC&lt;/font&gt;]" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="360" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-67" value="[&lt;font color=&quot;#99ccff&quot;&gt;SAM Head&lt;/font&gt;][EncAcessMessage][TransMIC]" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="440" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-72" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-69" target="zaGMkCG-aYDxy_3N5J1q-71">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-78" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=oval;endFill=1;startArrow=oval;startFill=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-69" target="zaGMkCG-aYDxy_3N5J1q-77">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-69" value="Generate NID / EncryptionKey / PrivacyKey By&lt;br&gt;NetKey" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="520" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-74" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=oval;startFill=1;endArrow=oval;endFill=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-71" target="zaGMkCG-aYDxy_3N5J1q-73">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-76" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-71" target="zaGMkCG-aYDxy_3N5J1q-75">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-71" value="Add Network Nonce &amp;amp; Generate EncData" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="600" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-73" value="Encry([DST],[EncryptionKey],[Network Nonce],[&lt;font style=&quot;border-color: var(--border-color);&quot; color=&quot;#99ccff&quot;&gt;SAM Head&lt;/font&gt;][EncAcessMessage][TransMIC]) =&amp;nbsp;&lt;br&gt;[&lt;font color=&quot;#97d077&quot;&gt;EncDST&lt;/font&gt; &lt;font color=&quot;#97d077&quot;&gt;|| EncTransportPDU&lt;/font&gt;][&lt;font color=&quot;#97d077&quot;&gt;NetMIC&lt;/font&gt;]" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="600" width="520" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-80" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=oval;endFill=1;startArrow=oval;startFill=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-75" target="zaGMkCG-aYDxy_3N5J1q-79">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-82" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-75" target="zaGMkCG-aYDxy_3N5J1q-81">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-75" value="Encry Data for PECB" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="680" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-77" value="Calculate([Net Key],[0x00]) =&amp;nbsp;&lt;br&gt;[&lt;font color=&quot;#97d077&quot;&gt;NID&lt;/font&gt;] [&lt;font color=&quot;#97d077&quot;&gt;EncryptionKey&lt;/font&gt;] [&lt;font color=&quot;#97d077&quot;&gt;PrivacyKey&lt;/font&gt;]" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="520" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-79" value="Encry([PrivateKey],[0x0000000000 || IVIndex || Privacy Random])=&amp;nbsp;&lt;br&gt;[&lt;font color=&quot;#97d077&quot;&gt;PECB&lt;/font&gt;]" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="680" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-84" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=oval;startFill=1;endArrow=oval;endFill=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-81" target="zaGMkCG-aYDxy_3N5J1q-83">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-86" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-81" target="zaGMkCG-aYDxy_3N5J1q-85">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-81" value="Generate Obfuscation Data" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="760" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-83" value="Calculate([CTL || TTL || SEQ || SRC],[PECB]) =&amp;nbsp;&lt;br&gt;[&lt;font color=&quot;#97d077&quot;&gt;ObfuscatedData&lt;/font&gt;]" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="760" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-88" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=oval;endFill=1;startArrow=oval;startFill=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-85" target="zaGMkCG-aYDxy_3N5J1q-87">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-90" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="zaGMkCG-aYDxy_3N5J1q-85" target="zaGMkCG-aYDxy_3N5J1q-89">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-85" value="Add Obfuscation Data To Message" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="840" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-87" value="[&lt;font style=&quot;border-color: var(--border-color);&quot; color=&quot;#97d077&quot;&gt;ObfuscatedData&lt;/font&gt;][&lt;font style=&quot;border-color: var(--border-color);&quot;&gt;EncDST&lt;/font&gt;&amp;nbsp;&lt;font style=&quot;border-color: var(--border-color);&quot;&gt;|| EncTransportPDU&lt;/font&gt;][&lt;font style=&quot;border-color: var(--border-color);&quot;&gt;NetMIC&lt;/font&gt;]" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="840" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="zaGMkCG-aYDxy_3N5J1q-89" value="Complete" style="ellipse;whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="920" width="120" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

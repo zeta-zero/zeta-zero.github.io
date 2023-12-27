@@ -4,13 +4,38 @@ series: ble
 modtime: 2023/11/21
 ---
 
-### GATT信息
+### MESH信息
 
-1.基本信息
+1. GATT基本信息
 
-|特征服务|数据写入特性|数据通知特性|
+|类型|特征服务|数据写入特性|数据通知特性|
+|---|---|---|---|
+|Provisioning|1827|0x2ADB|0x2ADC|
+|Proxy|1828|0x2ADD|0x2ADE|
+
+2. 广播信息
+
+2.1 广告类型
+
+|名称|类型|描述|
 |---|---|---|
-|1827|0x2ADB|0x2ADC|
+|PB-ADV|0x29||
+|Mesh Message|0x2A||
+|Mesh Beacon|0x2B||
+
+2.2 广告数据格式
+
+2.2.1 Mesh Beacon
+
+未配网设备
+
+|名称|大小|描述|
+|---|---|---|
+|Beacon Type|1 Byte|未配网为 0x01|
+|Device UUID|16 Byte|设备UUID|
+|OOB Information|2 Byte|蓝牙之外的配网方式|
+|URI Hash|4 Byte|使用URI AD类型发布的关联URI的哈希值|
+
 
 ******
 
@@ -84,6 +109,17 @@ $k4(N) = AES-CMAC_T("id6" || 0x01) mod 2^(6)$
 $T = HMAC-SHA-256_{SALT}(N)$
 
 $k5(N,SALT,P) = HMAC-SHA-256_T(P)$
+
+##### 1.9 Network layer encryption
+
+可管理的泛洪安全材料使用以下公式从可管理的泛洪安全凭证中导出:  
+$NID || EncryptionKey || PrivacyKey = k2(NetKey,0x00)$
+
+定向安全材料由定向安全凭证导出，公式如下:
+$NID || EncryptionKey || PrivacyKey = k2(NetKey,0x02)$
+
+
+$EncDst || EncTransportPDU,NetMIC = AES-CCM_EncryptionKey(networkt nonce,DST || TransportPDU)$
 
 #### 2 数据定义
 
@@ -537,9 +573,9 @@ $Encrypted = AES-CCM_{SessoinKey}(SessionNonce,ProvisiongData)$
 
 ******
 
-### 配网流程
+##### 3.3 配网流程
 
-1 配网邀请：
+###### 3.3.1 配网邀请：
 
 1.1. 发送[配网邀请指令]：0x03 00 05
   - 0x03：
@@ -570,7 +606,7 @@ $Encrypted = AES-CCM_{SessoinKey}(SessionNonce,ProvisiongData)$
     - 0x00：  输入OOB大小 - 0
     - 0x00：  支持的输入OOB操作 - 没有
 
-2 配网开始：
+###### 3.3.2 配网开始：
 
 2.1 配网设备发送[配网开始]指令：0x03 02 00 00 00 00 00
   - 0x03：
@@ -613,7 +649,7 @@ $Encrypted = AES-CCM_{SessoinKey}(SessionNonce,ProvisiongData)$
     - x1[32 Byte]：P-256椭圆曲线公钥的X分量
     - y1[32 Byte]：P-256椭圆曲线公钥的y分量
 
-3 身份认证
+###### 3.3.3 身份认证
 
 3.1 配网设备发送[配网确认]指令：0x03 05 v0[32 Byte]
   - 一共34个Byte
@@ -665,7 +701,7 @@ $Encrypted = AES-CCM_{SessoinKey}(SessionNonce,ProvisiongData)$
     - 参考：<font color="#55AA00" >3.2.7</font>
     - v3[32 Byte]：随机数
 
-4 配网数据
+###### 3.3.4 配网数据
 
 4.1 配网设备发送[配网数据]指令：0x03 07 nk[16 Byte] ki[2 Byte] f[1 Byte] ii[4 Byte] ua[2 Byte] d[8 Byte]
   - 一共37个Byte
@@ -692,6 +728,84 @@ $Encrypted = AES-CCM_{SessoinKey}(SessionNonce,ProvisiongData)$
   - 0x08：
     - 配网完成指令
     - <font color="#55AA00" >3.2</font>
+
+******
+
+#### 2. 配网后
+
+##### 2.1 Network PDU
+
+|名称|大小|描述|
+|---|---|---|
+|IVI|1 bit|IV指数最低有效位|
+|NID|7 bit|来自NetKey的值，用于标识用于保护该PDU的EncryptionKey和PrivacyKey|
+|CTL|1 bit|网络控制表示|
+|TTL|7 bit|可转发次数|
+|SEQ|3 byte|序列号|
+|SRC|2 byte|源地址|
+|DST|2 byte|目标地址|
+|TransportPDU|1byte - 16 byte|传输协议数据单元|
+|NetMIC|4 byte 或 8 byte|网络消息完整性检查|
+
+###### 2.1.1 CTL
+
+用来确定网络PDU是传输控制消息还是访问消息的一部分。
+  - 0x00 : Access Message / NetMIC Size = 4 byte
+  - 0x01 : Transport Control Message / NetMIC Size = 8 byte
+
+###### 2.1.2 TTL
+
+|值|说明|
+|---|---|
+|0|网络PDU没有被转发，也不会被转发|
+|1|网络PDU已被转发，不会被转发|
+|2-126|网络PDU已中继或网络PDU未中继，网络PDU可以中继|
+|127|网络PDU没有被中继，可以被中继|
+
+###### 2.1.3 NetMIC
+
+NetMIC字段是一个32位或64位的字段(取决于CTL字段的值)，用来验证DST和TransportPDU字段没有改变。  
+当CTL字段的值为0时，NetMIC字段的大小为32位。当CTL字段的值为1时，NetMIC字段的大小为64位。  
+NetMIC字段值由发送或中继该network PDU的每个节点的网络层设置。  
+
+##### 2.2 Nonce
+
+|名称|值|描述|
+|---|---|---|
+|Network Nonce|0x00|与EncryptionKey一起用于网络身份验证和加密|
+|Application Nonce|0x01|与应用程序密钥一起使用，用于上层传输身份验证和加密|
+|Device Nonce|0x02|与设备密钥一起使用，用于上层传输认证和加密|
+|Proxy Nonce|0x03|与EncryptionKey一起使用，用于代理身份验证和加密|
+|Proxy Solicatation Nonce|0x04|与EncryptionKey一起使用，用于代理请求身份验证和加密|
+
+
+###### 2.2.1 Network Nonce
+
+###### 2.2.2 Application Nonce
+
+###### 2.2.3 Device Nonce
+
+|名称|大小(Byte)|描述|
+|---|---|---|
+|Nonce Type|1|0x02|
+|ASZMIC and Pad|1||
+|SEQ|3|访问消息的序列号(分段消息上下文中SeqAuth的最低24位)|
+|SRC|2|源地址|
+|DST|2|目标地址|
+|IV Index|4|IV 序号|
+
+关于 ASZMIC and Pad
+
+|名称|大小(bit)|描述|
+|---|---|---|
+|ASZMIC|1|如果是分段访问消息，则为SZMIC字段值;对于所有其他消息格式，则为0|
+|Pad|7|0b0000000|
+
+
+###### 2.2.4 Proxy Nonce
+
+###### 2.2.4 Proxy Solicatation Nonce
+
 
 ******
 
