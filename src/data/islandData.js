@@ -24,18 +24,20 @@ function parseBlogPath(path) {
 
 // 构建系列列表 — 合并 serialinfo.toml 数据与 blogcfg UI 配置
 export const blogSeries = Object.entries(serialModules).map(([path, mod]) => {
-  const { Type, Title } = mod
+  const data = mod.default || mod
+  const { Type, Title } = data
   const cfg = blogcfg[Type] || { hall: Title, desc: '', icon: 'others' }
   return { id: Type, name: Title, hall: cfg.hall, desc: cfg.desc }
 })
 
 // 构建文章列表 — 从所有 bloginfo.toml 提取
 export const blogArticles = Object.entries(blogModules).map(([path, mod]) => {
+  const data = mod.default || mod
   const { seriesDir, blogDir } = parseBlogPath(path)
   return {
     slug: `${seriesDir}/${blogDir}`,
-    title: mod.title,
-    series: mod.series,
+    title: data.title,
+    series: data.series,
   }
 })
 
