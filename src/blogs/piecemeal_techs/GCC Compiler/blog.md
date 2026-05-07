@@ -187,5 +187,3 @@ print:
 	@echo "STARTUP_OBJ : $(STARTUP_OBJ)"
 ```
 
-
-

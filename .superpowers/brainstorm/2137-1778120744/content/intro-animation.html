@@ -1,0 +1,39 @@
+<h2>🏝️ 开场过渡动画</h2>
+<p class="subtitle">首次打开网站时的「登岛仪式」——像动森开局，飞机/小船驶向岛屿</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>🌊 潮汐浮现（推荐）</h3>
+      <p><strong>2秒，纯CSS</strong>：页面从下往上被一层「海水」覆盖，然后海水像退潮一样向下退去，露出岛屿地图。配合一个柔和的弹入效果。适合清晨森林的宁静氛围。</p>
+      <p style="font-size:13px;color:#666">流程：白色 → 海水退潮(1.5s) → 岛屿浮现(0.5s) → 可交互</p>
+    </div>
+  </div>
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>🍃 落叶入场</h3>
+      <p><strong>2.5秒，CSS+少量JS</strong>：一片SVG大叶子从屏幕外飘入，旋转着落在画面中央，然后「化开」变成岛屿地图。落叶是动森最标志性的视觉符号。</p>
+      <p style="font-size:13px;color:#666">流程：黑屏 → 叶子飘入(1.5s) → 展开为岛屿(1s) → 可交互</p>
+    </div>
+  </div>
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>✨ 星点汇聚</h3>
+      <p><strong>3秒，SVG动画</strong>：随机散布的SVG光点（像萤火虫/星星）逐渐汇聚，勾勒出岛屿地图的轮廓线，然后填充颜色。神秘感拉满，更像「被召唤到这个岛屿」。</p>
+      <p style="font-size:13px;color:#666">流程：暗绿背景 → 光点汇聚(2s) → 岛屿成型(1s) → 可交互</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px">
+  <div class="label">附加细节</div>
+  <p>无论哪种方案，开场动画结束后都加上：</p>
+  <ul>
+    <li>一个轻微的「弹跳」效果让角色图标落在岛上</li>
+    <li>一句随机的欢迎语气泡：「哩哈！欢迎来到我的岛～」</li>
+    <li>如果用户之前来过（localStorage），则跳过动画直接显示岛屿</li>
+  </ul>
+</div>

@@ -13,6 +13,10 @@ modtime: 2023/11/06
 强制恢复本地代码为修改前：
 git reset --hard [branch name]
 
+将本地代码替换成远程的最新版本
+git reset --hard origin/master
+
+
 #### checkout
 
 临时切换版本

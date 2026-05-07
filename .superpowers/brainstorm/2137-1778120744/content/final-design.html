@@ -1,0 +1,81 @@
+<h2>🌿 最终设计方案</h2>
+<p class="subtitle">一座清晨森林中的「动物森友会」风格个人知识岛屿</p>
+
+<div class="section">
+  <h3>🍃 开场：落叶登岛</h3>
+  <ul>
+    <li>页面加载 → 暗绿背景 → 一片 SVG 大叶子从左上飘旋而入</li>
+    <li>叶子落于画面中央 → 「化开」扩散为岛屿地图</li>
+    <li>角色图标弹跳落在岛上 → 随机欢迎语气泡：「哩哈！欢迎来到我的岛～」</li>
+    <li>二次访问（localStorage记录）→ 跳过动画直接显示</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h3>🗺️ 岛屿地图 · 六区探索</h3>
+  <div class="mockup">
+    <div class="mockup-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:12px;background:#D4E7C5;border-radius:12px;font-size:13px;text-align:center;color:#5D7A4A">
+        <div style="background:rgba(255,255,255,0.85);padding:10px;border-radius:8px">🌳<br>广场大树<br><small>首页 · 动态</small></div>
+        <div style="background:rgba(255,255,255,0.85);padding:10px;border-radius:8px">🏠<br>我的小屋<br><small>关于我</small></div>
+        <div style="background:rgba(255,255,255,0.85);padding:10px;border-radius:8px">🏛️<br>博物馆<br><small>博客收藏</small></div>
+        <div style="background:rgba(255,255,255,0.85);padding:10px;border-radius:8px">🔧<br>工坊<br><small>技能卡片</small></div>
+        <div style="background:rgba(255,255,255,0.85);padding:10px;border-radius:8px">🏕️<br>露营地<br><small>项目展示</small></div>
+        <div style="background:rgba(255,255,255,0.85);padding:10px;border-radius:8px">🏖️<br>沙滩<br><small>放松/2048</small></div>
+      </div>
+    </div>
+  </div>
+  <p>SVG 手绘风地图，小径连接各区域。悬停建筑有微动效，点击进入。</p>
+</div>
+
+<div class="section">
+  <h3>🎬 动效系统（加强版）</h3>
+  <ul>
+    <li><strong>全局氛围</strong>：缓缓飘动的云朵、偶尔飞过的蝴蝶 SVG、微风吹拂的草浪</li>
+    <li><strong>大树</strong>：叶片摇摆 + 随机落叶（CSS animation + JS interval）</li>
+    <li><strong>博物馆</strong>：萤火虫光点漂浮（SVG circle 动画）</li>
+    <li><strong>工坊</strong>：齿轮缓慢旋转 + 卡片翻转 3D 效果</li>
+    <li><strong>沙滩</strong>：海浪波纹来回拍打（CSS wave animation）</li>
+    <li><strong>小屋</strong>：烟囱炊烟袅袅 + 窗户暖光呼吸</li>
+    <li><strong>小径</strong>：页面切换时「走过小径」过渡，角色沿路径移动到目标</li>
+    <li><strong>悬停</strong>：建筑弹跳、卡片微微浮起、按钮膨胀</li>
+    <li><strong>彩蛋</strong>：点击特定位置出现摇晃的树、挖出化石的惊喜</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h3>🎨 配色 · 清晨森林</h3>
+  <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <div style="text-align:center"><div style="width:48px;height:48px;border-radius:50%;background:#D4E7C5;border:2px solid #ccc"></div>主背景</div>
+    <div style="text-align:center"><div style="width:48px;height:48px;border-radius:50%;background:#BFD8AF;border:2px solid #ccc"></div>卡片</div>
+    <div style="text-align:center"><div style="width:48px;height:48px;border-radius:50%;background:#99BC85;border:2px solid #ccc"></div>强调</div>
+    <div style="text-align:center"><div style="width:48px;height:48px;border-radius:50%;background:#E1F0DA;border:2px solid #ccc"></div>浅色区</div>
+    <div style="text-align:center"><div style="width:48px;height:48px;border-radius:50%;background:#FFF8D6;border:2px solid #ccc"></div>阳光</div>
+    <div style="text-align:center"><div style="width:48px;height:48px;border-radius:50%;background:#5D7A4A;border:2px solid #ccc"></div>正文</div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🔧 技能 · DIY配方卡片</h3>
+  <p>工坊中排列六大类「配方卡片」：嵌入式 / 蓝牙&RTOS / 桌面应用 / Web / 脚本工具 / 硬件设计</p>
+  <p>正面：类别名 + 趣味描述 | 背面（翻转后）：具体技能点 + 熟练度条 + 关联项目</p>
+</div>
+
+<div class="section">
+  <h3>✍️ 文字 · 轻幽默</h3>
+  <p style="background:#E1F0DA;padding:12px;border-radius:8px;color:#4A6B3A">「十年嵌入式经验，至今仍在问这个寄存器为什么叫这个名字。」</p>
+</div>
+
+<div class="section">
+  <h3>📦 保留 vs 重建</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div style="background:#E1F0DA;padding:12px;border-radius:8px">
+      <strong>保留</strong>
+      <ul><li>/assets (CSS+图片)</li><li>/blogcfg (博客配置)</li><li>/blogs (28篇博文)</li><li>/pages (2048游戏)</li></ul>
+    </div>
+    <div style="background:#FFF8D6;padding:12px;border-radius:8px">
+      <strong>重建</strong>
+      <ul><li>全部 Vue 组件</li><li>路由系统</li><li>CSS 主题</li><li>SVG 岛屿地图</li></ul>
+    </div>
+  </div>
+</div>

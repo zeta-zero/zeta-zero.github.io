@@ -1,0 +1,96 @@
+<h2>🌿 岛屿设计方案总览</h2>
+<p class="subtitle">一座清晨森林中的个人知识岛屿</p>
+
+<div class="section">
+  <h3>核心隐喻</h3>
+  <p>网站是一座<strong>清晨森林中的个人岛屿</strong>。访客像动森玩家一样「登岛参观」，通过一张 SVG 岛屿地图自由探索六个区域。知识=岛上的资源，技能=能制作的东西，博客=博物馆收藏。</p>
+</div>
+
+<div class="section">
+  <h3>六区地图</h3>
+  <div class="mockup">
+    <div class="mockup-header">岛屿鸟瞰图示意</div>
+    <div class="mockup-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:16px;background:#D4E7C5;border-radius:12px;font-size:13px;text-align:center;color:#5D7A4A">
+        <div style="background:white;padding:12px;border-radius:8px">🌳<br>广场大树<br><small>首页入口</small></div>
+        <div style="background:white;padding:12px;border-radius:8px">🏠<br>我的小屋<br><small>关于我</small></div>
+        <div style="background:white;padding:12px;border-radius:8px">🏛️<br>博物馆<br><small>博客收藏</small></div>
+        <div style="background:white;padding:12px;border-radius:8px">🔧<br>工坊<br><small>技能卡片</small></div>
+        <div style="background:white;padding:12px;border-radius:8px">🏕️<br>露营地<br><small>项目展示</small></div>
+        <div style="background:white;padding:12px;border-radius:8px">🏖️<br>沙滩<br><small>放松/2048</small></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>视觉系统</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div>
+      <div class="label">配色</div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <div style="width:40px;height:40px;border-radius:50%;background:#D4E7C5" title="主背景"></div>
+        <div style="width:40px;height:40px;border-radius:50%;background:#BFD8AF" title="卡片背景"></div>
+        <div style="width:40px;height:40px;border-radius:50%;background:#99BC85" title="强调色"></div>
+        <div style="width:40px;height:40px;border-radius:50%;background:#E1F0DA" title="浅色区"></div>
+        <div style="width:40px;height:40px;border-radius:50%;background:#FFF8D6" title="高亮/阳光"></div>
+      </div>
+      <p style="font-size:12px;color:#666;margin-top:8px">清晨森林：草绿→嫩绿→鹅黄，自然清新</p>
+    </div>
+    <div>
+      <div class="label">字体</div>
+      <p>默认系统字体（如你所要求）。标题可用圆体增加友好感——<span style="font-family:system-ui;font-weight:600;color:#5D7A4A">system-ui 600</span></p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>动画策略</h3>
+  <ul>
+    <li><strong>每个区域独立场景动画</strong>：CSS keyframes 驱动</li>
+    <li>大树：叶片微微摇摆 + 偶有落叶飘下</li>
+    <li>博物馆：蝴蝶/萤火虫飞舞（SVG 元素）</li>
+    <li>工坊：齿轮缓慢转动</li>
+    <li>沙滩：海浪波纹 CSS 动画</li>
+    <li>小屋：烟囱飘出炊烟</li>
+    <li><strong>页面切换</strong>：「走过小径」过渡，地图上角色移动到目标建筑</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h3>技能展示 — 工坊制作台</h3>
+  <p>技能以「DIY 配方卡片」形式展示，六大类：</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:13px">
+    <div style="background:white;padding:8px;border-radius:8px;text-align:center">🔌 嵌入式<br><small>C/C++/STM32/NRF/ESP32</small></div>
+    <div style="background:white;padding:8px;border-radius:8px;text-align:center">📡 蓝牙 & RTOS<br><small>BLE/BLE Mesh/FreeRTOS</small></div>
+    <div style="background:white;padding:8px;border-radius:8px;text-align:center">🖥️ 桌面应用<br><small>C#/WPF/Avalonia/Unity</small></div>
+    <div style="background:white;padding:8px;border-radius:8px;text-align:center">🌐 Web<br><small>Vue.js/HTML/CSS/JS</small></div>
+    <div style="background:white;padding:8px;border-radius:8px;text-align:center">🐍 脚本 & 工具<br><small>Python/Lua/Git/CI</small></div>
+    <div style="background:white;padding:8px;border-radius:8px;text-align:center">📐 硬件设计<br><small>PCB/Altium/立创EDA</small></div>
+  </div>
+  <p style="margin-top:12px;font-size:13px;color:#666">每张卡片背面：熟练度+具体技术点+趣味描述。翻转交互。</p>
+</div>
+
+<div class="section">
+  <h3>文字基调</h3>
+  <p style="background:#E1F0DA;padding:12px;border-radius:8px;color:#4A6B3A">
+    「这个岛民精通 C/C++，能在 STM32 上徒手写 RTOS——虽然大部分时候只是在和指针搏斗。他的蓝牙栈比你前任的承诺还稳定。十年嵌入式经验，至今仍在问『这个寄存器为什么叫这个名字』？」
+  </p>
+</div>
+
+<div class="section">
+  <h3>技术实现</h3>
+  <ul>
+    <li>Vue 3 + Vite + vue-router（保留现有框架）</li>
+    <li>单页应用，SVG 地图作为主路由视图</li>
+    <li>CSS 变量驱动全局主题</li>
+    <li>markdown-it 继续渲染博客内容</li>
+    <li>尽量零贴图（仅保留现有 profilephoto.png）</li>
+    <li>所有装饰元素用 CSS/SVG 绘制</li>
+  </ul>
+</div>
+
+<div class="pros-cons">
+  <div class="pros"><h4>保留内容</h4><ul><li>/assets（CSS + 图片）</li><li>/blogcfg（博客配置）</li><li>/blogs（全部28篇博文）</li><li>/pages（游戏2048）</li></ul></div>
+  <div class="cons"><h4>删除并重建</h4><ul><li>所有现有 Vue 组件</li><li>路由结构重新设计</li><li>全新的 SVG 岛屿地图系统</li><li>全新的 CSS 主题体系</li></ul></div>
+</div>

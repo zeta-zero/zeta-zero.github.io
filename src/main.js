@@ -1,46 +1,35 @@
 import { createApp } from 'vue'
-import { createRouter, createWebHistory } from 'vue-router';
-// 引入 Prism 样式
- import './assets/css/prism-vs.min.css';
+import { createRouter, createWebHistory } from 'vue-router'
+import './style.css'
+import App from './App.vue'
 
+// Lazy-load route components
+const PlazaView = () => import('./components/views/PlazaView.vue')
+const HouseView = () => import('./components/views/HouseView.vue')
+const MuseumView = () => import('./components/views/MuseumView.vue')
+const WorkshopView = () => import('./components/views/WorkshopView.vue')
+const CampsiteView = () => import('./components/views/CampsiteView.vue')
+const BeachView = () => import('./components/views/BeachView.vue')
 
-
-import Home from './components/home.vue'
-import Blog from './components/blog.vue'
-import Relax from './components/relax.vue'
-import About from './components/about.vue'
-
-import SwitchOver from './components/switchover.vue'
-
-const app = createApp({ /* your app options */ });
-
-// Define your routes
 const routes = [
-  { path: "/", component: Home },
-  { path: '/blog', component: Blog },
-  { path: '/relax', component: Relax },
-  { path: '/about', component: About },
-  // Add more routes as needed
-  
-  { path: '/relax/game2048', component: () => import('./pages/game/game2048/Game2048Component.vue'), },
-];
+  { path: '/', component: PlazaView },
+  { path: '/about', component: HouseView },
+  { path: '/blog', component: MuseumView },
+  { path: '/skills', component: WorkshopView },
+  { path: '/projects', component: CampsiteView },
+  { path: '/relax', component: BeachView },
+  {
+    path: '/relax/game2048',
+    component: () => import('./pages/game/game2048/Game2048Component.vue'),
+  },
+]
 
-// Create the router instance
 const router = createRouter({
   history: createWebHistory(),
   routes,
-});
+  scrollBehavior() { return { top: 0 } },
+})
 
-app.use(router); // Use the router in your Vue app
-
-// 注册组件
-app.component('Home', Home);
-app.component('Blog', Blog);
-app.component('Relax', Relax);
-app.component('About', About);
-
-app.component('SwitchOver',SwitchOver);
-
-app.mount('#app');
-
-
+const app = createApp(App)
+app.use(router)
+app.mount('#app')

@@ -7,7 +7,7 @@ modtime: 2023/11/06
 这是关于个人技能知识的记录。
 包括了编程语言，程序开发技术等，文档操作等等
 
-******
+---
 
 #### Programming Language
 
@@ -91,7 +91,6 @@ modtime: 2023/11/06
   - 同类：Libsodium/Botan/Crypto++/GnuTLS
 - mbedtls(轻量级加密库)
 
-
 ###### 算法(Algorithm)
 
 - BP神经网络(BP Netural Network)
@@ -114,7 +113,7 @@ modtime: 2023/11/06
 
 - delegate/event(委托与事件)
 
-###### WPF/UWP
+###### WPF/UWP/AVALONIA
 
 - DotNet
 - XMAL
@@ -172,7 +171,7 @@ modtime: 2023/11/06
 - Altium Designer
 - 立创EDA
 
-******
+---
 
 ##### 文档处理(document processing)
 
@@ -195,10 +194,10 @@ modtime: 2023/11/06
 - 4/5：熟练掌握高级用法
 - 5/5：...
 
-******
+---
 
 ### 导图式样
 
- <iframe height="600px" width="100%"
+<iframe height="600px" width="100%"
   src="/assets/web/other/skilltree.html"  
   frameborder=0  allowfullscreen> </iframe>

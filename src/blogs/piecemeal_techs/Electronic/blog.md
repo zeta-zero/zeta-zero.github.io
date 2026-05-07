@@ -40,3 +40,4 @@ Vc = Vcc - Ie * Rc
 Vgs 与 Von 成反比
 
 
+柏林少女

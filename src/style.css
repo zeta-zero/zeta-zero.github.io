@@ -1,89 +1,517 @@
+/* ============================================================
+   Animal Crossing: New Horizons Island — Design System v2
+   Based on animal-island-ui DESIGN_PROMPT
+   ============================================================ */
+
+/* --- Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
+/* ============================================================
+   CSS Custom Properties — Warm Parchment Palette
+   ============================================================ */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Core colors — NEVER pure white #fff or pure black #000 */
+  --c-bg-page: #f8f8f0;
+  --c-bg-content: rgb(247, 243, 223);
+  --c-bg-warm: #F8F4E8;
+  --c-text-body: #725d42;
+  --c-text-heading: #794f27;
+  --c-text-muted: #9f927d;
+  --c-text-light: #b8a890;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Accent */
+  --c-accent-mint: #19c8b9;
+  --c-accent-yellow: #ffcc00;
+  --c-focus: #ffcc00;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  /* Semantic */
+  --c-success: #82b96e;
+  --c-warning: #e5a44e;
+  --c-error: #e06c5c;
+
+  /* 3D Button shadows */
+  --c-shadow-btn: #bdaea0;
+  --c-border-input: #d4c9b4;
+  --c-border-card: #e0d5c0;
+
+  /* Sidebar */
+  --c-sidebar-active: #B7C6E5;
+  --c-sidebar-hover: rgba(183, 198, 229, 0.4);
+
+  /* NookPhone Card Palette (13 colors) */
+  --card-default: rgb(247, 243, 223);
+  --card-pink: #f8a6b2;
+  --card-purple: #b77dee;
+  --card-blue: #889df0;
+  --card-yellow: #f7cd67;
+  --card-orange: #e59266;
+  --card-teal: #82d5bb;
+  --card-green: #8ac68a;
+  --card-red: #fc736d;
+  --card-lime: #d1da49;
+  --card-brown: #c4a882;
+  --card-sky: #a4d8f0;
+  --card-lavender: #c4b5e8;
+
+  /* Typography */
+  --font-display: 'Nunito', 'Zen Maru Gothic', 'Noto Sans SC', sans-serif;
+  --font-body: 'Nunito', 'Zen Maru Gothic', 'Noto Sans SC', sans-serif;
+
+  /* Radii — NEVER 0px on interactive elements */
+  --radius-pill: 50px;
+  --radius-card: 20px;
+  --radius-organic: 40px 35px 45px 38px / 38px 45px 35px 40px;
+  --radius-sm: 12px;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Z-indices */
+  --z-sidebar: 100;
+  --z-overlay: 200;
+  --z-bubble: 150;
+
+  /* Transitions */
+  --transition-press: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   Global Reset
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  background-color: var(--c-bg-page);
+  color: var(--c-text-body);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-.card {
-  padding: 2em;
+  overflow-x: hidden;
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  min-height: 100vh;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Headings — Nunito 800 */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--c-text-heading);
+  letter-spacing: 0.01em;
+}
+
+/* Links */
+a {
+  color: var(--c-text-heading);
+  text-decoration: none;
+  transition: color var(--transition-smooth);
+}
+
+a:hover {
+  color: var(--c-accent-mint);
+}
+
+/* ============================================================
+   3D Button System — THE defining feature
+   ============================================================ */
+.btn-3d {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--c-text-heading);
+  background: var(--c-bg-content);
+  border: 2px solid var(--c-shadow-btn);
+  border-radius: var(--radius-pill);
+  padding: 10px 24px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 0 var(--c-shadow-btn);
+  transform: none;
+  transition:
+    transform var(--transition-press),
+    box-shadow var(--transition-press),
+    background var(--transition-press);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-3d:hover {
+  box-shadow: 0 6px 0 0 var(--c-shadow-btn);
+  transform: translateY(-1px);
+}
+
+.btn-3d:active {
+  box-shadow: 0 1px 0 0 var(--c-shadow-btn);
+  transform: translateY(2px);
+}
+
+.btn-3d:focus-visible {
+  outline: 3px solid var(--c-focus);
+  outline-offset: 2px;
+}
+
+/* Colored 3D button variants */
+.btn-3d-mint {
+  background: var(--c-accent-mint);
+  border-color: #14a89b;
+  color: #fff;
+  box-shadow: 0 5px 0 0 #14a89b;
+}
+.btn-3d-mint:hover { box-shadow: 0 6px 0 0 #14a89b; }
+.btn-3d-mint:active { box-shadow: 0 1px 0 0 #14a89b; }
+
+.btn-3d-yellow {
+  background: var(--card-yellow);
+  border-color: #d4a840;
+  color: var(--c-text-heading);
+  box-shadow: 0 5px 0 0 #d4a840;
+}
+.btn-3d-yellow:hover { box-shadow: 0 6px 0 0 #d4a840; }
+.btn-3d-yellow:active { box-shadow: 0 1px 0 0 #d4a840; }
+
+.btn-3d-teal {
+  background: var(--card-teal);
+  border-color: #5fa892;
+  color: #fff;
+  box-shadow: 0 5px 0 0 #5fa892;
+}
+.btn-3d-teal:hover { box-shadow: 0 6px 0 0 #5fa892; }
+.btn-3d-teal:active { box-shadow: 0 1px 0 0 #5fa892; }
+
+/* ============================================================
+   Input — Pill shape with 3D shadow
+   ============================================================ */
+input[type="text"],
+input[type="email"],
+input[type="search"],
+textarea,
+select {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--c-text-body);
+  background: var(--c-bg-content);
+  border: 2px solid var(--c-border-input);
+  border-radius: var(--radius-pill);
+  padding: 10px 20px;
+  box-shadow: 0 3px 0 0 var(--c-border-input);
+  transition:
+    border-color var(--transition-press),
+    box-shadow var(--transition-press);
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--c-focus);
+  box-shadow: 0 3px 0 0 var(--c-focus), 0 0 0 3px rgba(255, 204, 0, 0.2);
+}
+
+/* ============================================================
+   Cards — NookPhone color variants
+   ============================================================ */
+.card {
+  background: var(--card-default);
+  border-radius: var(--radius-card);
+  border: 3px solid var(--c-border-card);
+  padding: var(--space-lg);
+  box-shadow: 0 4px 0 0 rgba(189, 174, 160, 0.25);
+  transition: transform var(--transition-bounce), box-shadow var(--transition-smooth);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 0 rgba(189, 174, 160, 0.35);
+}
+
+.card-organic {
+  border-radius: var(--radius-organic);
+}
+
+/* 13 NookPhone color card variants */
+.card-pink    { background: var(--card-pink); border-color: #e88b98; }
+.card-purple  { background: var(--card-purple); border-color: #9b60d8; }
+.card-blue    { background: var(--card-blue); border-color: #6b7fd8; }
+.card-yellow  { background: var(--card-yellow); border-color: #d4a840; }
+.card-orange  { background: var(--card-orange); border-color: #c97a50; }
+.card-teal    { background: var(--card-teal); border-color: #5fa892; }
+.card-green   { background: var(--card-green); border-color: #6aa86a; }
+.card-red     { background: var(--card-red); border-color: #e05a53; }
+.card-lime    { background: var(--card-lime); border-color: #b3bc30; }
+.card-brown   { background: var(--card-brown); border-color: #a89068; }
+.card-sky     { background: var(--card-sky); border-color: #80b8d8; }
+.card-lavender { background: var(--card-lavender); border-color: #a898d0; }
+
+/* ============================================================
+   Speech Bubble — Organic blob shape
+   ============================================================ */
+.speech-bubble {
+  position: relative;
+  background: var(--card-default);
+  border-radius: var(--radius-organic);
+  padding: var(--space-md) var(--space-lg);
+  box-shadow: 0 4px 0 0 rgba(189, 174, 160, 0.25);
+  border: 2px solid var(--c-border-card);
+}
+
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -14px;
+  left: 28px;
+  width: 0;
+  height: 0;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 16px solid var(--c-border-card);
+}
+
+.speech-bubble::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 30px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 14px solid var(--card-default);
+  z-index: 1;
+}
+
+/* ============================================================
+   Tags / Pills
+   ============================================================ */
+.tag-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--c-text-heading);
+  background: var(--c-bg-content);
+  border: 1.5px solid var(--c-border-card);
+  border-radius: var(--radius-pill);
+  padding: 2px 10px;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   Skeleton Loading
+   ============================================================ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--c-bg-content) 25%,
+    #e8e0cc 50%,
+    var(--c-bg-content) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-text {
+  height: 14px;
+  margin-bottom: var(--space-sm);
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 60%;
+  margin-bottom: var(--space-md);
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+/* ============================================================
+   Keyframe Animations
+   ============================================================ */
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes firefly-blink {
+  0%, 80%, 100% { opacity: 0; transform: scale(0.8); }
+  85%, 95%      { opacity: 1; transform: scale(1); }
+}
+
+@keyframes leaf-fall {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.9; }
+  100% { transform: translateY(140px) rotate(180deg) scale(0.6); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(14px); }
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-2deg); }
+  50%      { transform: rotate(3deg); }
+}
+
+@keyframes bounce-in {
+  0%   { transform: scale(0); opacity: 0; }
+  50%  { transform: scale(1.12); opacity: 1; }
+  75%  { transform: scale(0.94); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  0%   { transform: translateY(24px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes flame-flicker {
+  0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.8; }
+  25%      { transform: scaleY(1.08) scaleX(0.92); }
+  50%      { transform: scaleY(0.92) scaleX(1.06); opacity: 1; }
+  75%      { transform: scaleY(1.04) scaleX(0.96); }
+}
+
+@keyframes smoke-rise {
+  0%   { transform: translateY(0) scaleX(1); opacity: 0.5; }
+  100% { transform: translateY(-40px) scaleX(1.8); opacity: 0; }
+}
+
+@keyframes wave-drift {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-16px); }
+}
+
+@keyframes stroke-dash-draw {
+  0%   { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes gear-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes spark-float {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  100% { transform: translate(var(--sx), var(--sy)) scale(0); opacity: 0; }
+}
+
+@keyframes ripple-out {
+  0%   { transform: scale(0.5); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ============================================================
+   Scrollbar — Warm theme
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--c-shadow-btn);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-text-muted);
+}
+
+/* ============================================================
+   Selection
+   ============================================================ */
+::selection {
+  background: rgba(255, 204, 0, 0.3);
+  color: var(--c-text-heading);
+}
+
+/* ============================================================
+   Reduced Motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  a:hover {
-    color: #747bff;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
   }
-  button {
-    background-color: #f9f9f9;
+
+  .card {
+    padding: var(--space-md);
+  }
+
+  .btn-3d {
+    padding: var(--space-sm) 18px;
+    font-size: 0.82rem;
+    box-shadow: 0 4px 0 0 var(--c-shadow-btn);
+  }
+
+  .btn-3d:active {
+    box-shadow: 0 1px 0 0 var(--c-shadow-btn);
   }
 }

@@ -2,9 +2,10 @@
 
 /* 自定义样式 */
 body {
-    background-color: white;
-    --z-leftbar-btn-secondry:#ffbe0b;
-    --z-leftbar-btn-slected:#ffd970;
+    background: var(--gradient-sunset);
+    background-attachment: fixed;
+    --z-leftbar-btn-secondry: #FFCA3A;
+    --z-leftbar-btn-slected: #FFB5BA;
 }
 
 html,body,#app{
@@ -18,37 +19,44 @@ html,body,#app{
         color: #fff;
         height: 100vh;
         left: 0;
-        /* 左侧固定宽度 */
         position: fixed;
         padding: 10px;
         display: flex;
-        align-items: center; /* 垂直居中 */
+        align-items: center;
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
     }
 
     #z-sidebar #z-container {
-        /* 样式代码 */
         left: 0;
         height: auto;
     }
 
-    
-    #z-sidebar #z-container .z-li{
+    #z-sidebar #z-container .z-li {
         margin-bottom: 30px;
     }
 
-    #z-sidebar #z-container .z-li .z-router-link {
+    .z-router-link {
         text-decoration: none;
-        color: black;
+        color: var(--color-text);
         position: relative;
         cursor: pointer;
-        padding: 16px;
-        border-radius: 60px;
-        background-color: #F0F0F0;
+        padding: 16px 20px;
+        border-radius: 25px 25px 35px 35px;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
-    #z-sidebar #z-container .z-li .z-router-link.router-link-exact-active {
+    .z-router-link:hover {
+        transform: translateY(-5px) scale(1.05);
+        background-color: var(--color-yellow);
         color: white;
-        background-color: var(--z-leftbar-btn-slected);
+    }
+
+    .z-router-link.router-link-exact-active {
+        background-color: var(--color-pink);
+        color: white;
     }
 
     #z-sidebar #z-container .z-li .z-baritem-setting {
@@ -62,19 +70,17 @@ html,body,#app{
 
     #z-sidebar #z-container .z-li:hover .z-router-link {
         color: white;
-        background-color: var(--z-leftbar-btn-secondry);
+        background-color: var(--color-purple);
     }
-    
+
     #z-sidebar #z-container .z-li :hover span {
         display: inline;
     }
 
     #z-content {
         z-index: 0;
-        /* 左侧宽度 + 20px 间隔 */
         padding: 20px 20px 20px 100px;
         height: 100%;
-
-        --user-card-bgcolr-hover: #0563bb
+        --user-card-bgcolr-hover: #A2D2FF
     }
 }

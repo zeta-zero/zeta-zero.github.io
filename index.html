@@ -1,56 +1,16 @@
 <!doctype html>
-<html>
-
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <!--<link rel="icon" type="image/svg+xml" href="/vite.svg" />-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>一些知识</title>
-    
-    <script type="module" src="/src/main.js"></script>
-    <!-- 引入 Bootstrap CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/src/assets/css/default_pc.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>哎嘿！欢迎来到我的岛～</title>
+  <meta name="description" content="一座动森主题的个人知识岛屿" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 15 C30 22 10 45 18 70 C26 92 48 98 50 72 C52 98 74 92 82 70 C90 45 70 22 50 15Z' fill='%237aaf6d' stroke='%233D5A2E' stroke-width='3'/><line x1='50' y1='72' x2='50' y2='95' stroke='%233D5A2E' stroke-width='3' stroke-linecap='round'/></svg>" />
+  <script type="module" src="/src/main.js"></script>
 </head>
 <body>
-    <div id="app" >
-        <div id="z-sidebar">
-            <div id="z-container">
-                <div class="z-li">
-                    <router-link to="/" class="z-router-link">
-                        <i class="bi bi-house-door z-baritem-setting"></i>
-                        <span>HOME</span>
-                    </router-link>
-                </div>
-                <div class="z-li">
-                    <router-link class="z-router-link" to="/blog">
-                        <i class="bi bi-book z-baritem-setting"></i>
-                        <span>BLOG</span>
-                    </router-link>
-                </div>
-                <div class="z-li">
-                    <router-link class="z-router-link" to="/relax">
-                        <i class="bi bi-cup-straw z-baritem-setting"></i>
-                        <span>RELAX</span>
-                    </router-link>
-                </div>
-                <div class="z-li">
-                    <router-link class="z-router-link" to="/about">
-                        <i class="bi bi-person z-baritem-setting"></i>
-                        <span>ABOUT</span>
-                    </router-link>
-                </div>
-            </div>
-        </div>
-
-        <div id="z-content">
-            <router-view />
-        </div>
-    </div>
+  <div id="app"></div>
 </body>
-
 </html>

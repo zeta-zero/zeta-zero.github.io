@@ -1,0 +1,62 @@
+<h2>技能树展示 — 工坊里的「创造」</h2>
+<p class="subtitle">技能=你在岛上能「制作」的东西。如何展示这些能力，既专业又有趣？</p>
+
+<div class="cards">
+  <div class="card" data-choice="constellation" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="height:120px;border-radius:12px;background:#E1F0DA;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#5D7A4A;font-family:monospace;font-size:13px;line-height:1.8">
+        <span>✨  C/C++ ──┐</span>
+        <span>           ├── STM32</span>
+        <span>✨  C# ────┤</span>
+        <span>           ├── NRF52</span>
+        <span>✨  Python ┘</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>星座连线图</h3>
+      <p>技能像夜空中的星座，用 SVG 线条连接相关的技术点。悬停时星座亮起，显示熟练度和简介。整体像一张「星图」——低调、神秘、高级。</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>亮点</h4><ul><li>视觉冲击力强</li><li>SVG绘制自然优雅</li><li>「星图」隐喻知识宇宙</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" data-choice="workbench" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="height:120px;border-radius:12px;background:#E1F0DA;display:flex;align-items:center;justify-content:center;color:#5D7A4A;font-size:14px">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;text-align:center">
+          <div style="background:white;padding:8px;border-radius:8px">🔌 嵌入式</div>
+          <div style="background:white;padding:8px;border-radius:8px">📡 蓝牙</div>
+          <div style="background:white;padding:8px;border-radius:8px">⚡ RTOS</div>
+          <div style="background:white;padding:8px;border-radius:8px">🖥️ C# GUI</div>
+          <div style="background:white;padding:8px;border-radius:8px">🐍 Python</div>
+          <div style="background:white;padding:8px;border-radius:8px">🌐 Web</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>制作台卡片墙</h3>
+      <p>技能以「制作配方卡片」形式展示。每张卡片是一个技术领域，翻转后显示详情。动森的 DIY 工作台概念——「我能用这些材料制作东西」。</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>亮点</h4><ul><li>最贴合动森工坊设定</li><li>卡片翻转交互有趣</li><li>分类清晰直观</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="card" data-choice="museum" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div style="height:120px;border-radius:12px;background:#E1F0DA;display:flex;align-items:center;justify-content:center;color:#5D7A4A;font-size:14px">
+        <div style="display:flex;gap:16px;align-items:flex-end">
+          <div style="background:white;padding:12px 8px;border-radius:4px 4px 0 0;height:60px;display:flex;align-items:center">📟</div>
+          <div style="background:white;padding:12px 8px;border-radius:4px 4px 0 0;height:80px;display:flex;align-items:center">🔧</div>
+          <div style="background:white;padding:12px 8px;border-radius:4px 4px 0 0;height:100px;display:flex;align-items:center">🏆</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>博物馆展柜</h3>
+      <p>技能像博物馆的展品陈列在玻璃展柜中，按类别分区（化石翼=嵌入式、鱼类=C#应用、昆虫=Web技术）。每个展柜点击后有详细解说牌。博物馆的庄严感=「高大上」。</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>亮点</h4><ul><li>高大上的博物感</li><li>分类陈列有仪式感</li><li>解说牌文字可以很幽默</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
