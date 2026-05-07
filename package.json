@@ -20,7 +20,7 @@
     "sass": "^1.69.5",
     "vite": "^4.5.1",
     "vite-plugin-md": "^0.22.5",
-    "vite-plugin-pages": "^0.31.0",
+
     "vite-plugin-toml": "^0.6.0",
     "vue-router": "^4.2.5"
   },
