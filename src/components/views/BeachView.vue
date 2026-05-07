@@ -21,33 +21,7 @@ function goGame() {
   <div class="beach-view">
     <!-- Title with wave/beach SVG icon -->
     <h1 class="view-title">
-      <svg
-        class="title-icon"
-        viewBox="0 0 32 32"
-        width="32"
-        height="32"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M4 20 C4 8 28 8 28 20"
-          fill="none"
-          stroke="var(--c-text-heading)"
-          stroke-width="2.5"
-          stroke-linecap="round"
-        />
-        <ellipse
-          cx="10" cy="22"
-          rx="6" ry="2"
-          fill="var(--card-yellow)"
-          opacity="0.6"
-        />
-        <ellipse
-          cx="24" cy="24"
-          rx="4" ry="1.5"
-          fill="var(--card-yellow)"
-          opacity="0.4"
-        />
-      </svg>
+      <img src="/assets/icons/icon-beach-wave.svg" class="title-icon" width="32" height="32" alt="" />
       沙滩
     </h1>
     <p class="view-sub">海浪声是最好的白噪音——休息一下</p>
@@ -91,35 +65,12 @@ function goGame() {
         :class="{ clicked: clickedShell }"
         @click="clickShell"
       >
-        <svg
-          viewBox="0 0 30 20"
-          width="30"
-          height="20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M2,10 Q8,2 15,8 Q22,2 28,10 Q22,18 15,12 Q8,18 2,10Z"
-            fill="var(--card-yellow)"
-            stroke="var(--c-border-card)"
-            stroke-width="1.5"
-          />
-        </svg>
+        <img src="/assets/icons/icon-beach-shell.svg" width="30" height="20" alt="" />
       </div>
 
       <!-- Starfish (decorative) -->
       <div class="starfish">
-        <svg
-          viewBox="0 0 30 30"
-          width="30"
-          height="30"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <polygon
-            points="15,2 19,11 28,11 21,17 24,26 15,20 6,26 9,17 2,11 11,11"
-            fill="var(--card-pink)"
-            opacity="0.55"
-          />
-        </svg>
+        <img src="/assets/icons/icon-beach-starfish.svg" width="30" height="30" alt="" />
       </div>
 
       <!-- Shell bubble (appears on click) -->
@@ -134,62 +85,14 @@ function goGame() {
     <!-- Game 2048 entry card -->
     <div class="game-entry card card-teal" @click="goGame">
       <div class="game-icon">
-        <svg
-          viewBox="0 0 32 32"
-          width="32"
-          height="32"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            x="2" y="2"
-            width="12" height="12"
-            rx="3"
-            fill="currentColor"
-            opacity="0.7"
-          />
-          <rect
-            x="18" y="2"
-            width="12" height="12"
-            rx="3"
-            fill="currentColor"
-            opacity="0.35"
-          />
-          <rect
-            x="2" y="18"
-            width="12" height="12"
-            rx="3"
-            fill="currentColor"
-            opacity="0.35"
-          />
-          <rect
-            x="18" y="18"
-            width="12" height="12"
-            rx="3"
-            fill="currentColor"
-            opacity="0.55"
-          />
-        </svg>
+        <img src="/assets/icons/icon-beach-game2048.svg" width="32" height="32" alt="" />
       </div>
       <div class="game-info">
         <h3>2048</h3>
         <p>经典数字合并游戏——看看你能不能赢</p>
       </div>
       <div class="game-arrow">
-        <svg
-          viewBox="0 0 16 16"
-          width="16"
-          height="16"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M5 3 L11 8 L5 13"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
+        <img src="/assets/icons/icon-beach-arrow.svg" width="16" height="16" alt="" />
       </div>
     </div>
   </div>
@@ -232,7 +135,7 @@ function goGame() {
 }
 
 .wave-svg {
-  width: 100%;
+  width: 110%;
   height: 80px;
   display: block;
 }
@@ -324,7 +227,6 @@ function goGame() {
   gap: 14px;
   padding: var(--space-md) 20px;
   cursor: pointer;
-  color: var(--c-text-heading);
 }
 
 .game-entry:active {
@@ -334,7 +236,6 @@ function goGame() {
 .game-entry .game-icon {
   display: flex;
   align-items: center;
-  color: var(--c-text-heading);
 }
 
 .game-info h3 {
@@ -354,6 +255,5 @@ function goGame() {
   margin-left: auto;
   display: flex;
   align-items: center;
-  color: var(--c-text-heading);
 }
 </style>

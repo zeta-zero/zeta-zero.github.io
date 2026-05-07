@@ -1,0 +1,7 @@
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <polygon points="16,3 3,29 29,29" fill="none" stroke="#794f27" stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="16" y1="3" x2="16" y2="29" stroke="#794f27" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <polygon points="16,3 3,29 16,29" fill="#f7f3df" opacity="0.5"/>
+  <ellipse cx="16" cy="11" rx="7" ry="4.5" fill="#FFB347" opacity="0.45"/>
+  <ellipse cx="16" cy="10" rx="4.5" ry="3" fill="#FFCA3A" opacity="0.5"/>
+</svg>

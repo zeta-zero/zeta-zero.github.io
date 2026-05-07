@@ -49,37 +49,7 @@ watch(() => props.slug, loadBlog, { immediate: true })
 
     <!-- Error state -->
     <div v-else-if="error" class="error-state">
-      <svg
-        viewBox="0 0 24 24"
-        width="28"
-        height="28"
-        class="error-icon"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle
-          cx="12"
-          cy="12"
-          r="10"
-          fill="none"
-          stroke="var(--c-text-muted)"
-          stroke-width="2"
-        />
-        <line
-          x1="12"
-          y1="8"
-          x2="12"
-          y2="13"
-          stroke="var(--c-text-muted)"
-          stroke-width="2"
-          stroke-linecap="round"
-        />
-        <circle
-          cx="12"
-          cy="16.5"
-          r="1.2"
-          fill="var(--c-text-muted)"
-        />
-      </svg>
+      <img src="/assets/icons/icon-exhibit-error.svg" class="error-icon" width="28" height="28" alt="" />
       <p class="error-msg">{{ error }}</p>
     </div>
 

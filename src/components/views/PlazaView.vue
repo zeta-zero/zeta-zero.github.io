@@ -29,12 +29,7 @@ onUnmounted(() => clearInterval(leafTimer))
 <template>
   <div class="plaza-view">
     <h1 class="view-title">
-      <svg class="title-icon" viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
-        <rect x="14" y="14" width="4" height="16" rx="2" fill="#8B7355" />
-        <ellipse cx="16" cy="9" rx="13" ry="10" fill="var(--card-green)" />
-        <ellipse cx="13" cy="11" rx="9" ry="8" fill="var(--card-teal)" opacity="0.7" />
-        <ellipse cx="19" cy="10" rx="8" ry="7" fill="var(--card-yellow)" opacity="0.5" />
-      </svg>
+      <img src="/assets/icons/icon-plaza-tree.svg" class="title-icon" width="32" height="32" alt="" />
       广场大树
     </h1>
     <p class="view-sub">岛上最古老的树，见证了所有知识的生长。</p>
@@ -115,12 +110,7 @@ onUnmounted(() => clearInterval(leafTimer))
         class="falling-leaf"
         :style="{ left: leaf.x + 'px' }"
       >
-        <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true">
-          <path
-            d="M10 2 C5 5 2 12 4 16 C6 20 10 18 10 14 C10 18 14 20 16 16 C18 12 15 5 10 2Z"
-            fill="var(--card-green)"
-          />
-        </svg>
+        <img src="/assets/icons/icon-plaza-leaf.svg" width="14" height="14" alt="" />
       </div>
     </div>
 
@@ -149,30 +139,17 @@ onUnmounted(() => clearInterval(leafTimer))
     <!-- Island Stats -->
     <div class="stats-row">
       <div class="stat-pill">
-        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-          <rect x="2" y="2" width="12" height="12" rx="2" fill="none" stroke="var(--c-accent-mint)" stroke-width="1.5" />
-          <line x1="5" y1="6" x2="11" y2="6" stroke="var(--c-accent-mint)" stroke-width="1.2" stroke-linecap="round" />
-          <line x1="5" y1="9" x2="11" y2="9" stroke="var(--c-accent-mint)" stroke-width="1.2" stroke-linecap="round" />
-          <line x1="5" y1="12" x2="8" y2="12" stroke="var(--c-accent-mint)" stroke-width="1.2" stroke-linecap="round" />
-        </svg>
+        <img src="/assets/icons/icon-plaza-stat-blog.svg" width="16" height="16" alt="" />
         <span class="stat-num">{{ islandStats.blogs }}</span>
         <span class="stat-label">博客</span>
       </div>
       <div class="stat-pill">
-        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-          <circle cx="8" cy="5" r="3" fill="none" stroke="var(--c-accent-mint)" stroke-width="1.5" />
-          <path d="M3 14 L6 10 L9 12 L13 7" fill="none" stroke="var(--c-accent-mint)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
+        <img src="/assets/icons/icon-plaza-stat-skills.svg" width="16" height="16" alt="" />
         <span class="stat-num">{{ islandStats.skills }}</span>
         <span class="stat-label">技能</span>
       </div>
       <div class="stat-pill">
-        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
-          <rect x="1" y="2" width="14" height="12" rx="2" fill="none" stroke="var(--c-accent-mint)" stroke-width="1.5" />
-          <rect x="4" y="5" width="8" height="6" rx="1" fill="var(--c-accent-mint)" opacity="0.3" />
-          <line x1="6" y1="5" x2="6" y2="11" stroke="var(--c-accent-mint)" stroke-width="0.8" />
-          <line x1="10" y1="5" x2="10" y2="11" stroke="var(--c-accent-mint)" stroke-width="0.8" />
-        </svg>
+        <img src="/assets/icons/icon-plaza-stat-projects.svg" width="16" height="16" alt="" />
         <span class="stat-num">{{ islandStats.projects }}</span>
         <span class="stat-label">项目</span>
       </div>

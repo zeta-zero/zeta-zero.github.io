@@ -7,44 +7,7 @@ import { projects } from '../../data/islandData.js'
   <div class="campsite-view">
     <!-- Title with tent SVG icon -->
     <h1 class="view-title">
-      <svg
-        class="title-icon"
-        viewBox="0 0 32 32"
-        width="32"
-        height="32"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <polygon
-          points="16,3 3,29 29,29"
-          fill="none"
-          stroke="var(--c-text-heading)"
-          stroke-width="2.5"
-          stroke-linejoin="round"
-        />
-        <line
-          x1="16" y1="3" x2="16" y2="29"
-          stroke="var(--c-text-heading)"
-          stroke-width="1.5"
-          stroke-dasharray="3 3"
-        />
-        <polygon
-          points="16,3 3,29 16,29"
-          fill="var(--c-bg-content)"
-          opacity="0.5"
-        />
-        <ellipse
-          cx="16" cy="11"
-          rx="7" ry="4.5"
-          fill="#FFB347"
-          opacity="0.45"
-        />
-        <ellipse
-          cx="16" cy="10"
-          rx="4.5" ry="3"
-          fill="#FFCA3A"
-          opacity="0.5"
-        />
-      </svg>
+      <img src="/assets/icons/icon-campsite-tent.svg" class="title-icon" width="32" height="32" alt="" />
       露营地
     </h1>
     <p class="view-sub">围着营火，看看岛民都做过哪些项目</p>

@@ -43,31 +43,31 @@ export const blogArticles = Object.entries(blogModules).map(([path, mod]) => {
 
 /* ======== 广场 ======== */
 
-export const greetings = [
+export const greetings = Object.freeze([
   { speaker: '傅达', text: '哩哈！广场的大树是岛上的中心。最近博物馆又收了新展品，有空来看看？' },
   { speaker: '狸克', text: '哦！这不是我们最棒的岛民代表吗？工坊的配方卡片翻新了，哩～' },
   { speaker: '傅珂', text: '今晚的星星特别亮呢...知识就像星星，一颗一颗连起来就成了星座～' },
-]
+]);
 
-export const recentUpdates = [
+export const recentUpdates = Object.freeze([
   { year: '2025', text: '从零开始设计 RTOS — 系列完结', cardColor: 'yellow' },
   { year: '2025', text: 'BLE Mesh 技术笔记更新', cardColor: 'teal' },
   { year: '2025', text: '滤波算法合集新增', cardColor: 'pink' },
-]
+]);
 
 /* ======== 小屋 ======== */
 
-export const aboutData = {
+export const aboutData = Object.freeze({
   description: '一位在嵌入式世界游荡了十年的开发者。白天在寄存器和中断向量表之间穿梭，晚上偶尔写写博客，记录那些「啊哈！」瞬间。',
   quote: '「十年嵌入式经验，至今仍在问这个寄存器为什么叫这个名字。」',
   selfIntro: '主要活动于嵌入式 MCU 领域，擅长从裸机到 RTOS 的全栈嵌入式开发。偶尔涉足 C# 桌面开发、Python 脚本和 Web 前端。热爱将复杂的技术概念用简单的话讲清楚——这也是这个博客存在的意义。',
   email: 'zeta.zero@outlook.com',
   skillsTags: ['C/C++', 'STM32', 'NRF52', 'ESP32', 'BLE', 'FreeRTOS', 'C#/WPF', 'Vue.js', 'PCB Design'],
-}
+});
 
 /* ======== 工坊 ======== */
 
-export const skillCategories = [
+export const skillCategories = Object.freeze([
   { id: 'embedded', title: '嵌入式开发', icon: 'embedded', summary: '在 MCU 的世界里，我是一等一的「寄存器翻译官」。',
     skills: [
       { name: 'C/C++', level: 4, tags: ['C99/C11/C17', 'Linux Socket', '可变长数组', '原子操作'] },
@@ -109,11 +109,11 @@ export const skillCategories = [
       { name: '算法', level: 2, tags: ['BP 神经网络', 'Q-Learning'] },
       { name: '文档工具', level: 4, tags: ['Markdown', 'Draw.io', 'VSCode'] },
     ] },
-]
+]);
 
 /* ======== 露营地 ======== */
 
-export const projects = [
+export const projects = Object.freeze([
   { id: 'rtos', title: '自研 RTOS', icon: 'gear',
     description: '一个用于学习 RTOS 知识的玩具内核。跑在 STM32F1/F4 上，实现了任务调度、内存管理、同步机制。虽然不适用于生产环境，但写它的过程教会了我很多。',
     tags: ['STM32', 'C', 'ARM', '任务调度', 'IPC'] },
@@ -132,20 +132,20 @@ export const projects = [
   { id: 'web', title: '个人网站（本站）', icon: 'web',
     description: '就是你正在浏览的这个岛！Vue 3 + Vite 构建，纯 SVG 和 CSS 动画，没有用任何贴图。从零开始设计动物森友会主题。',
     tags: ['Vue.js', 'Vite', 'SVG', 'CSS Animations'] },
-]
+]);
 
 /* ======== 沙滩 ======== */
 
-export const shellMessages = [
+export const shellMessages = Object.freeze([
   '你捡到了一个贝壳！打开一看——居然是 2048 游戏的传送门！',
   '贝壳里写着：「休息是为了走更远的路」……还有一个游戏入口。',
   '这只贝壳好特别！上面刻着 "2048" 几个数字...',
-]
+]);
 
 /* ======== 统计数据 — 从实际数据动态计算 ======== */
 
-export const islandStats = {
+export const islandStats = Object.freeze({
   blogs: blogArticles.length,
   skills: skillCategories.reduce((sum, c) => sum + c.skills.length, 0),
   projects: projects.length,
-}
+});

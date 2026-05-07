@@ -9,14 +9,11 @@ function onFlip(id) {
   flippedCard.value = flippedCard.value === id ? null : id
 }
 
-function gearSvg() {
-  return '<svg viewBox="0 0 36 36" width="36" height="36"><circle cx="18" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="18" cy="18" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><line x1="18" y1="8" x2="18" y2="12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="18" y1="24" x2="18" y2="28" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="8" y1="18" x2="12" y2="18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="24" y1="18" x2="28" y2="18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="10.9" y1="10.9" x2="13.7" y2="13.7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="22.3" y1="22.3" x2="25.1" y2="25.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="25.1" y1="10.9" x2="22.3" y2="13.7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="13.7" y1="22.3" x2="10.9" y2="25.1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>'
-}
 </script>
 
 <template>
   <div class="workshop-view">
-    <h1 class="view-title" v-html="gearSvg() + ' 工坊'"></h1>
+    <h1 class="view-title"><img src="/assets/icons/workshop-gear.svg" width="36" height="36" alt="" />工坊</h1>
     <p class="view-sub">DIY 配方卡片——这些都是我能「制作」的东西</p>
 
     <!-- Decorative gears -->
@@ -84,10 +81,9 @@ function gearSvg() {
   gap: var(--space-sm);
 }
 
-.view-title :deep(svg) {
+.view-title img {
   display: block;
   flex-shrink: 0;
-  color: var(--c-text-heading);
 }
 
 .view-sub {

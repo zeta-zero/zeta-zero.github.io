@@ -6,22 +6,6 @@ defineProps({
 
 defineEmits(['flip'])
 
-function categorySvg(icon) {
-  if (icon === 'embedded') return '<svg viewBox="0 0 40 40" width="40" height="40"><rect x="4" y="6" width="32" height="28" rx="3" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="8" y="10" width="10" height="8" rx="1" fill="currentColor" opacity="0.25"/><rect x="8" y="22" width="14" height="3" rx="1" fill="currentColor" opacity="0.15"/><rect x="8" y="27" width="9" height="3" rx="1" fill="currentColor" opacity="0.15"/><circle cx="28" cy="20" r="5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M28 16 L28 20 L32 22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-  if (icon === 'antenna') return '<svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="10" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="20" cy="20" r="3.5" fill="currentColor" opacity="0.4"/><path d="M20 10 L20 5 M20 30 L20 35 M10 20 L5 20 M30 20 L35 20 M12.9 12.9 L9.4 9.4 M27.1 12.9 L30.6 9.4 M12.9 27.1 L9.4 30.6 M27.1 27.1 L30.6 30.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>'
-  if (icon === 'desktop') return '<svg viewBox="0 0 40 40" width="40" height="40"><rect x="5" y="6" width="30" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="10" y="9" width="20" height="11" rx="1.5" fill="currentColor" opacity="0.2"/><line x1="20" y1="24" x2="20" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="32" x2="29" y2="32" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>'
-  if (icon === 'web') return '<svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="15" fill="none" stroke="currentColor" stroke-width="2.2"/><ellipse cx="20" cy="20" rx="6" ry="15" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="5" y1="20" x2="35" y2="20" stroke="currentColor" stroke-width="1.5"/><line x1="5" y1="13" x2="35" y2="13" stroke="currentColor" stroke-width="0.8" opacity="0.4"/><line x1="5" y1="27" x2="35" y2="27" stroke="currentColor" stroke-width="0.8" opacity="0.4"/></svg>'
-  if (icon === 'python') return '<svg viewBox="0 0 40 40" width="40" height="40"><path d="M12 14 C12 8 17 5 21 5 C25 5 28 7 28 10 C28 13 25 14 21 14 C17 14 13 14 13 18 C13 22 15 24 18 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M28 26 C28 32 23 35 19 35 C15 35 12 33 12 30 C12 27 15 26 19 26 C23 26 27 26 27 22 C27 18 25 16 22 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="21" cy="20" r="2.5" fill="currentColor" opacity="0.5"/></svg>'
-  if (icon === 'pcb') return '<svg viewBox="0 0 40 40" width="40" height="40"><rect x="5" y="5" width="30" height="30" rx="2" fill="none" stroke="currentColor" stroke-width="2.2"/><line x1="10" y1="10" x2="30" y2="10" stroke="currentColor" stroke-width="1"/><line x1="8" y1="15" x2="32" y2="15" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="21" r="1.8" fill="currentColor" opacity="0.5"/><circle cx="20" cy="21" r="1.8" fill="currentColor" opacity="0.5"/><circle cx="28" cy="21" r="1.8" fill="currentColor" opacity="0.5"/><rect x="10" y="26" width="10" height="3" rx="1" fill="currentColor" opacity="0.2"/><rect x="24" y="25" width="8" height="4" rx="1" fill="currentColor" opacity="0.3"/></svg>'
-  return '<svg viewBox="0 0 40 40" width="40" height="40"><circle cx="20" cy="20" r="13" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 9 L20 20 L27 23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-}
-
-function starSvg(filled) {
-  return filled
-    ? '<svg viewBox="0 0 16 16" width="12" height="12"><path d="M8 1.5 L9.8 5.7 L14.5 6.2 L11 9.3 L12 14 L8 11.5 L4 14 L5 9.3 L1.5 6.2 L6.2 5.7 Z" fill="#FFCA3A" stroke="#E5A800" stroke-width="0.5"/></svg>'
-    : '<svg viewBox="0 0 16 16" width="12" height="12"><path d="M8 1.5 L9.8 5.7 L14.5 6.2 L11 9.3 L12 14 L8 11.5 L4 14 L5 9.3 L1.5 6.2 L6.2 5.7 Z" fill="#d4c9b4" stroke="#c4b896" stroke-width="0.5"/></svg>'
-}
-
 function backFaceClass(icon) {
   const map = {
     embedded: 'card-teal',
@@ -44,7 +28,7 @@ function backFaceClass(icon) {
     <div class="card-inner">
       <!-- FRONT FACE -->
       <div class="card-face card-front">
-        <div class="front-icon" v-html="categorySvg(category.icon)"></div>
+        <img :src="`/assets/icons/skill-${category.icon}.svg`" class="front-icon" width="40" height="40" alt="" />
         <h3 class="front-title">{{ category.title }}</h3>
         <p class="front-summary">{{ category.summary }}</p>
         <span class="front-hint">点击翻转</span>
@@ -55,7 +39,7 @@ function backFaceClass(icon) {
         :class="backFaceClass(category.icon)"
       >
         <h3 class="back-title">
-          <span class="back-icon-inline" v-html="categorySvg(category.icon)"></span>
+          <img :src="`/assets/icons/skill-${category.icon}.svg`" class="back-icon-inline" width="20" height="20" alt="" />
           {{ category.title }}
         </h3>
         <div class="skill-list">
@@ -67,12 +51,15 @@ function backFaceClass(icon) {
             <div class="skill-head">
               <span class="skill-name">{{ skill.name }}</span>
               <span class="skill-stars">
-                <span
+                <img
                   v-for="n in 5"
                   :key="n"
+                  :src="n <= skill.level ? '/assets/icons/star-filled.svg' : '/assets/icons/star-empty.svg'"
                   class="star"
-                  v-html="starSvg(n <= skill.level)"
-                ></span>
+                  width="12"
+                  height="12"
+                  alt=""
+                />
               </span>
             </div>
             <div class="skill-tags">
@@ -137,10 +124,6 @@ function backFaceClass(icon) {
 }
 
 .front-icon {
-  color: var(--c-text-heading);
-}
-
-.front-icon :deep(svg) {
   display: block;
 }
 
@@ -195,10 +178,7 @@ function backFaceClass(icon) {
   flex-shrink: 0;
 }
 
-.back-icon-inline :deep(svg) {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
+.back-icon-inline {
   vertical-align: middle;
 }
 
@@ -233,7 +213,7 @@ function backFaceClass(icon) {
   flex-shrink: 0;
 }
 
-.star :deep(svg) {
+.star img {
   display: inline-block;
 }
 

@@ -11,15 +11,6 @@ function toggle() {
   expanded.value = !expanded.value
 }
 
-function iconSvg(name) {
-  if (name === 'gear') return '<svg viewBox="0 0 20 20" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="currentColor" opacity="0.4"/><path d="M10 5 L10 2.5 M10 15 L10 17.5 M5 10 L2.5 10 M15 10 L17.5 10 M6.5 6.5 L4.6 4.6 M13.5 13.5 L15.4 15.4 M6.5 13.5 L4.6 15.4 M13.5 6.5 L15.4 4.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
-  if (name === 'antenna') return '<svg viewBox="0 0 20 20" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="1.5" fill="currentColor" opacity="0.4"/><path d="M10 4 L10 1.5 M10 16 L10 18.5 M4 10 L1.5 10 M16 10 L18.5 10 M5.8 5.8 L3.8 3.8 M14.2 5.8 L16.2 3.8 M5.8 14.2 L3.8 16.2 M14.2 14.2 L16.2 16.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>'
-  if (name === 'button') return '<svg viewBox="0 0 20 20" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="2.5" fill="currentColor" opacity="0.4"/></svg>'
-  if (name === 'chip') return '<svg viewBox="0 0 20 20" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="14" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="3" y1="7" x2="17" y2="7" stroke="currentColor" stroke-width="0.8"/><line x1="3" y1="13" x2="17" y2="13" stroke="currentColor" stroke-width="0.8"/><line x1="7" y1="3" x2="7" y2="7" stroke="currentColor" stroke-width="0.8"/><line x1="13" y1="3" x2="13" y2="7" stroke="currentColor" stroke-width="0.8"/><line x1="7" y1="13" x2="7" y2="17" stroke="currentColor" stroke-width="0.8"/><line x1="13" y1="13" x2="13" y2="17" stroke="currentColor" stroke-width="0.8"/></svg>'
-  if (name === 'link') return '<svg viewBox="0 0 20 20" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><path d="M8 10 L12 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 12 L7 14 C5.3 15.7 2.7 15.7 1 14 C-0.7 12.3 -0.7 9.7 1 8 L3 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11 8 L13 6 C14.7 4.3 17.3 4.3 19 6 C20.7 7.7 20.7 10.3 19 12 L17 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>'
-  if (name === 'web') return '<svg viewBox="0 0 20 20" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="10" cy="10" rx="3" ry="8" fill="none" stroke="currentColor" stroke-width="0.8"/><line x1="2" y1="10" x2="18" y2="10" stroke="currentColor" stroke-width="0.8"/></svg>'
-  return '<svg viewBox="0 0 20 20" width="22" height="22" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 5 L10 10 L14 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
-}
 </script>
 
 <template>
@@ -55,7 +46,7 @@ function iconSvg(name) {
 
     <!-- Header -->
     <div class="tent-header">
-      <span class="tent-icon" v-html="iconSvg(project.icon)"></span>
+      <img :src="`/assets/icons/project-${project.icon}.svg`" class="tent-icon" width="22" height="22" alt="" />
       <h3 class="tent-title">{{ project.title }}</h3>
     </div>
 
@@ -114,12 +105,7 @@ function iconSvg(name) {
 }
 
 .tent-icon {
-  color: var(--c-text-heading);
   flex-shrink: 0;
-}
-
-.tent-icon :deep(svg) {
-  display: block;
 }
 
 .tent-title {
