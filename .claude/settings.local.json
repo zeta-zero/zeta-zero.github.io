@@ -12,7 +12,12 @@
       "Bash(python:*)",
       "WebFetch(domain:github.com)",
       "Bash(ls:*)",
-      "Bash(npx vite:*)"
+      "Bash(npx vite:*)",
+      "Bash(node:*)",
+      "Bash(gh run:*)",
+      "WebFetch(domain:zeta-zero.github.io)",
+      "Bash(git push:*)",
+      "Bash(grep:*)"
     ]
   }
 }
